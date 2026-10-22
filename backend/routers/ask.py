@@ -1,7 +1,11 @@
 """Ask QuIM endpoint: Hybrid retrieval -> EAR decision -> (if answering)
 generation -> citation verification -> routing audit record. This is the
 real, end-to-end implementation of Phase 5's "reliable routing" + Phase 8's
-"citation validation against actual retrieved evidence"."""
+"citation validation against actual retrieved evidence". The returned
+query_record_id lets the frontend trigger deeper, slower claim-level
+verification (POST /verify/{id}, backend/claim_verification.py) on demand
+rather than paying that cost on every query."""
+import json
 import time
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -50,15 +54,20 @@ def ask(req: AskRequest, db: Session = Depends(get_db)):
 
     latency_ms = (time.perf_counter() - t0) * 1000
 
-    db.add(QueryRecord(
+    record = QueryRecord(
         workspace_id=config.DEFAULT_WORKSPACE_ID, query=req.query, decision=decision, probability=probability,
         signal_agreement=sig["agreement"], signal_ocr_confidence=sig["ocr_confidence"],
         signal_contradiction=sig["contradiction"], signal_complexity=sig["complexity"],
         reason=reason, n_evidence=len(evidence), latency_ms=latency_ms,
-    ))
+        answer_text=answer_text, generation_provider=provider_used,
+        evidence_json=json.dumps(evidence) if evidence else None,
+    )
+    db.add(record)
     db.commit()
+    db.refresh(record)
 
     return AskResponse(
+        query_record_id=record.id,
         query=req.query,
         decision=decision,
         probability=probability,

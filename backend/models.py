@@ -55,7 +55,12 @@ class AuditRecord(Base):
 
 class QueryRecord(Base):
     """One row per /ask call -- the EAR routing audit trail Phase 5 requires
-    ('routing audit records'), plus the raw signal values for later analysis."""
+    ('routing audit records'), plus the raw signal values for later analysis.
+    answer_text/evidence_json/generation_provider are stored so a later,
+    on-demand POST /verify/{query_record_id} call (backend/claim_verification.py)
+    can run claim-level verification against the EXACT evidence the answer
+    was actually generated from, without needing to re-retrieve (which could
+    return different results if the index changed since)."""
     __tablename__ = "query_records"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
@@ -69,5 +74,31 @@ class QueryRecord(Base):
     signal_complexity: Mapped[float] = mapped_column()
     reason: Mapped[str] = mapped_column(Text)
     n_evidence: Mapped[int] = mapped_column(Integer)
+    latency_ms: Mapped[float] = mapped_column()
+    answer_text: Mapped[str | None] = mapped_column(Text, nullable=True)
+    generation_provider: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    evidence_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+    created_at: Mapped[datetime.datetime] = mapped_column(DateTime(timezone=True), default=_now, index=True)
+
+
+class ClaimVerificationRecord(Base):
+    """One row per POST /verify call -- persists the full claim-level
+    verification + evidence-lineage + counterfactual-test result so it can
+    be retrieved again without re-running (expensive, multi-LLM-call) work,
+    and so the UI's verification history is real stored data, not recomputed
+    on every page view."""
+    __tablename__ = "claim_verification_records"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    query_record_id: Mapped[int] = mapped_column(Integer, ForeignKey("query_records.id"), index=True)
+    workspace_id: Mapped[str] = mapped_column(String(64), default="default", index=True)
+    judge_model: Mapped[str] = mapped_column(String(128))
+    n_claims: Mapped[int] = mapped_column(Integer)
+    n_supported: Mapped[int] = mapped_column(Integer)
+    n_contradicted: Mapped[int] = mapped_column(Integer)
+    n_unsupported: Mapped[int] = mapped_column(Integer)
+    n_counterfactual_tested: Mapped[int] = mapped_column(Integer)
+    n_counterfactual_sensitive: Mapped[int] = mapped_column(Integer)
+    result_json: Mapped[str] = mapped_column(Text)  # full claim_verification.verify_answer() output
     latency_ms: Mapped[float] = mapped_column()
     created_at: Mapped[datetime.datetime] = mapped_column(DateTime(timezone=True), default=_now, index=True)

@@ -57,6 +57,51 @@ def _pages_from_pdf(content: bytes) -> tuple[list[str], list[dict], list[str]]:
     return pages, meta, notes
 
 
+def rebuild_index_from_storage(db: Session) -> dict:
+    """Rebuilds the in-process engine's chunks/embeddings/BM25 index from
+    every "ready" document's stored file on disk. Called once at backend
+    startup (backend/main.py's lifespan) -- the SQLite Document table is
+    durable across restarts, but the actual retrieval index lives only in
+    the in-process QuIMRAG instance (engine_singleton.py) and is lost when
+    the process exits. Without this, a document could show status="ready"
+    after a restart while being genuinely unretrievable, which is exactly
+    the kind of "looks done but isn't" gap this project's own audits have
+    repeatedly flagged elsewhere -- found and fixed here, not left silent.
+    Uses embed=False per document + a single reindex() call at the end
+    (per quimrag/core.py's own documented bulk-loading pattern), not one
+    reindex() per document, which would re-embed an ever-growing corpus
+    from scratch on every document."""
+    ready_docs = db.query(Document).filter(Document.status == "ready").all()
+    if not ready_docs:
+        logger.info("rebuild_index_from_storage: no ready documents to rebuild")
+        return {"attempted": 0, "succeeded": 0, "failed": 0}
+
+    succeeded = failed = 0
+    with ENGINE_LOCK:
+        engine = get_engine()
+        for doc in ready_docs:
+            try:
+                if not os.path.exists(doc.storage_path):
+                    raise FileNotFoundError(f"stored file missing: {doc.storage_path}")
+                with open(doc.storage_path, "rb") as f:
+                    content = f.read()
+                ext = os.path.splitext(doc.filename)[1].lower()
+                if ext == ".pdf":
+                    pages, meta, _notes = _pages_from_pdf(content)
+                else:
+                    pages, meta = _pages_from_text_file(content)
+                engine.add_document(doc.id, pages, page_meta=meta, embed=False)
+                succeeded += 1
+            except Exception as ex:  # noqa: BLE001 -- one bad file must not abort the whole rebuild
+                logger.warning("rebuild_index_from_storage: failed to rebuild %s (%s): %s", doc.id, doc.filename, ex)
+                failed += 1
+        if succeeded:
+            engine.reindex()
+    logger.info("rebuild_index_from_storage: %d/%d documents rebuilt (%d failed)",
+                succeeded, len(ready_docs), failed)
+    return {"attempted": len(ready_docs), "succeeded": succeeded, "failed": failed}
+
+
 def process_document(document_id: str, db: Session) -> None:
     """Runs synchronously inside a FastAPI BackgroundTask. Re-opens its own
     DB session (the request's session is closed by the time this runs) and

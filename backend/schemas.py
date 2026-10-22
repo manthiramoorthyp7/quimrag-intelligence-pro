@@ -56,6 +56,7 @@ class EARSignals(BaseModel):
 
 
 class AskResponse(BaseModel):
+    query_record_id: int
     query: str
     decision: str  # answer | expand_retrieval | inspect_structure | abstain
     probability: float
@@ -65,6 +66,56 @@ class AskResponse(BaseModel):
     generation_provider: str | None
     evidence: list[EvidenceOut]
     citations_verified: bool
+    latency_ms: float
+
+
+class VerifyRequest(BaseModel):
+    judge_model: str | None = None  # defaults to claim_verification.JUDGE_MODEL_DEFAULT
+    run_counterfactual: bool = True
+
+
+class EvidenceLineageOut(BaseModel):
+    chunk_id: str
+    document_id: str
+    page: int
+    source: str | None
+    ocr_confidence: float | None
+    retrieval_rank: int
+    retrieval_score: float | None
+    text_excerpt: str
+
+
+class CounterfactualOut(BaseModel):
+    test: str
+    removed_chunk_ids: list[str]
+    support_after_removal: str
+    support_changed: bool
+
+
+class ClaimOut(BaseModel):
+    claim_id: str
+    text: str
+    support_status: str  # SUPPORTED | CONTRADICTED | UNSUPPORTED | UNPARSEABLE
+    supporting_chunk_ids: list[str]
+    evidence_lineage: list[EvidenceLineageOut]
+    counterfactual: CounterfactualOut | None
+
+
+class VerifyOverview(BaseModel):
+    n_claims: int
+    n_supported: int
+    n_contradicted: int
+    n_unsupported: int
+    claim_support_rate: float | None
+    n_counterfactual_tested: int
+    n_counterfactual_sensitive: int
+
+
+class VerifyResponse(BaseModel):
+    query_record_id: int
+    judge_model: str
+    claims: list[ClaimOut]
+    overall: VerifyOverview
     latency_ms: float
 
 
