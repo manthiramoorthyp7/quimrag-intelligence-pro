@@ -1,0 +1,114 @@
+{
+  "run_id": "generation_eval_20261015T002048Z",
+  "baseline": {
+    "condition": "baseline (always answer)",
+    "n_total_queries": 250,
+    "n_answered": 250,
+    "coverage": 1.0,
+    "n_scored": 250,
+    "EM_mean": 0.0,
+    "F1_mean": 0.04758181185179064,
+    "semantic_similarity_mean": 0.2655840972959995,
+    "bertscore_F1_mean": 0.6290811871290207,
+    "numeric_accuracy": 0.6823529411764706,
+    "n_numeric_questions": 85,
+    "citation_precision_mean": 0.43839999999999996,
+    "citation_recall_mean": 0.3465437604878781,
+    "pct_answers_with_citation": 1.0,
+    "F1_95ci": [
+      0.038636958323592166,
+      0.057825159110601924
+    ]
+  },
+  "proposed": {
+    "condition": "proposed (EAR-gated)",
+    "n_total_queries": 250,
+    "n_answered": 201,
+    "coverage": 0.804,
+    "n_scored": 201,
+    "EM_mean": 0.0,
+    "F1_mean": 0.05028961086453429,
+    "semantic_similarity_mean": 0.27914071481081826,
+    "bertscore_F1_mean": 0.6309679589461331,
+    "numeric_accuracy": 0.7352941176470589,
+    "n_numeric_questions": 68,
+    "citation_precision_mean": 0.48167495854063014,
+    "citation_recall_mean": 0.38240760190935785,
+    "pct_answers_with_citation": 1.0,
+    "F1_95ci": [
+      0.03929805820397858,
+      0.062039305115322255
+    ]
+  },
+  "baseline_by_answer_form": [
+    {
+      "answer_form": "Equation",
+      "EM": 0.0,
+      "F1": 0.008281573498964804
+    },
+    {
+      "answer_form": "List",
+      "EM": 0.0,
+      "F1": 0.40789473684210525
+    },
+    {
+      "answer_form": "Numeric",
+      "EM": 0.0,
+      "F1": 0.01077920109533588
+    },
+    {
+      "answer_form": "Short Answer",
+      "EM": 0.0,
+      "F1": 0.07434872666208318
+    },
+    {
+      "answer_form": "Yes/No",
+      "EM": 0.0,
+      "F1": 0.004427689142454811
+    }
+  ],
+  "baseline_by_domain": [
+    {
+      "doc_type": "finance",
+      "EM": 0.0,
+      "F1": 0.03660864756584444
+    },
+    {
+      "doc_type": "law",
+      "EM": 0.0,
+      "F1": 0.04960652845503325
+    },
+    {
+      "doc_type": "manual",
+      "EM": 0.0,
+      "F1": 0.04192568103582571
+    },
+    {
+      "doc_type": "news",
+      "EM": 0.0,
+      "F1": 0.05480551078707017
+    },
+    {
+      "doc_type": "paper",
+      "EM": 0.0,
+      "F1": 0.037764322532142465
+    },
+    {
+      "doc_type": "textbook",
+      "EM": 0.0,
+      "F1": 0.06487659581117267
+    }
+  ],
+  "software": {
+    "metrics": [
+      "EM",
+      "token-F1",
+      "MiniLM cosine semantic similarity",
+      "BERTScore (distilbert-base-uncased)",
+      "numeric match",
+      "citation precision/recall"
+    ],
+    "not_computed": "RAGAS (faithfulness/answer relevancy/context precision) and LLM-judge scores -- no Anthropic API key available in this environment",
+    "generator": "quimrag.llm_answer.extractive_answer (no LLM call, max_sentences=5)"
+  }
+}

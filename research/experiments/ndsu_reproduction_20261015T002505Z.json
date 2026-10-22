@@ -1,0 +1,54 @@
+{
+  "run_id": "ndsu_reproduction_20261015T002505Z",
+  "substitute_dataset": {
+    "source": "OHR-Bench manual + textbook domains (closest local analog to NDSU catalog/career-advising content)",
+    "n_qa_pairs": 70,
+    "n_documents": 44,
+    "seed": 17
+  },
+  "retrieval_comparison": [
+    {
+      "Config": "Traditional RAG (paper's baseline; Dense-only cosine retrieval)",
+      "Recall@5": 0.7099659863945578,
+      "MRR@5": 0.8154761904761904,
+      "nDCG@5": 0.7132817231508451,
+      "Precision@5": 0.4371428571428571,
+      "n_scored": 70
+    },
+    {
+      "Config": "QuIM-style (reproduction; question-matching retrieval)",
+      "Recall@5": 0.344234693877551,
+      "MRR@5": 0.45928571428571424,
+      "nDCG@5": 0.34086981367984354,
+      "Precision@5": 0.2114285714285714,
+      "n_scored": 70
+    },
+    {
+      "Config": "This project: Hybrid RRF (BM25+Dense)",
+      "Recall@5": 0.7047278911564626,
+      "MRR@5": 0.879047619047619,
+      "nDCG@5": 0.731935636105272,
+      "Precision@5": 0.4228571428571428,
+      "n_scored": 70
+    }
+  ],
+  "ear_selective": {
+    "coverage": 0.7142857142857143,
+    "accuracy_on_answer": 0.96,
+    "overall_baseline_accuracy": 0.8428571428571429
+  },
+  "bertscore_by_method": {
+    "Traditional RAG": {
+      "bertscore_F1_mean": 0.6753066288573402,
+      "n": 70
+    },
+    "QuIM-style": {
+      "bertscore_F1_mean": 0.6478202351502009,
+      "n": 70
+    },
+    "Hybrid": {
+      "bertscore_F1_mean": 0.6669957160949707,
+      "n": 70
+    }
+  }
+}

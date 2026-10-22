@@ -1,0 +1,376 @@
+{
+  "run_id": "20261014T185643Z",
+  "timestamp_utc": "20261014T185643Z",
+  "dataset": {
+    "source": "OHR-Bench (Zhang et al., ICCV 2025, arXiv:2412.02592)",
+    "calibration_n": 168,
+    "evaluation_n": 252,
+    "domains": [
+      "finance",
+      "law",
+      "manual",
+      "news",
+      "paper",
+      "textbook"
+    ],
+    "seed": 42,
+    "per_domain": 70,
+    "calib_frac": 0.4
+  },
+  "software": {
+    "python": "3.11.9",
+    "platform": "macOS-26.4.1-arm64-arm-64bit"
+  },
+  "baseline_comparison": {
+    "k": 5,
+    "summary": [
+      {
+        "Config": "Dense only",
+        "Recall@5": 0.377571262397733,
+        "Precision@5": 0.3320000000000001,
+        "F1@5": 0.32078646939575733,
+        "HitRate@5": 0.86,
+        "MAP@5": 0.38120444444444446,
+        "nDCG@5": 0.4774414722979743,
+        "MRR@5": 0.7258666666666665,
+        "R-Precision": 0.3498454431189726,
+        "Latency ms (mean)": 47.37340530799702,
+        "Latency ms (p95)": 66.3852703408338,
+        "p-value nDCG vs Dense only": NaN
+      },
+      {
+        "Config": "BM25 (real)",
+        "Recall@5": 0.4071756358021064,
+        "Precision@5": 0.3448,
+        "F1@5": 0.3382907174352995,
+        "HitRate@5": 0.924,
+        "MAP@5": 0.42214666666666667,
+        "nDCG@5": 0.5284245091917963,
+        "MRR@5": 0.8373999999999999,
+        "R-Precision": 0.3912819383231148,
+        "Latency ms (mean)": 47.523437852971256,
+        "Latency ms (p95)": 66.11089553916827,
+        "p-value nDCG vs Dense only": 0.0
+      },
+      {
+        "Config": "Hybrid (RRF)",
+        "Recall@5": 0.40739785802432865,
+        "Precision@5": 0.3488,
+        "F1@5": 0.33925515918549976,
+        "HitRate@5": 0.896,
+        "MAP@5": 0.41340666666666664,
+        "nDCG@5": 0.5147019627768971,
+        "MRR@5": 0.7798,
+        "R-Precision": 0.38569831410419647,
+        "Latency ms (mean)": 52.69820379791781,
+        "Latency ms (p95)": 71.90357932122423,
+        "p-value nDCG vs Dense only": 0.0
+      },
+      {
+        "Config": "Hybrid + rerank",
+        "Recall@5": 0.4407590517325812,
+        "Precision@5": 0.3824000000000001,
+        "F1@5": 0.3694445903253953,
+        "HitRate@5": 0.944,
+        "MAP@5": 0.4663388888888889,
+        "nDCG@5": 0.573753017981991,
+        "MRR@5": 0.8697333333333334,
+        "R-Precision": 0.42939803823627354,
+        "Latency ms (mean)": 202.06878315703943,
+        "Latency ms (p95)": 293.6437916941941,
+        "p-value nDCG vs Dense only": 0.0
+      },
+      {
+        "Config": "Hybrid + rewriting",
+        "Recall@5": 0.374669157313275,
+        "Precision@5": 0.3144,
+        "F1@5": 0.3101682941413591,
+        "HitRate@5": 0.86,
+        "MAP@5": 0.35002,
+        "nDCG@5": 0.4533874486881931,
+        "MRR@5": 0.6941333333333334,
+        "R-Precision": 0.3447922557834322,
+        "Latency ms (mean)": 164.7540701474063,
+        "Latency ms (p95)": 204.3398647219874,
+        "p-value nDCG vs Dense only": 0.059
+      },
+      {
+        "Config": "Hybrid + rewriting + rerank",
+        "Recall@5": 0.4397291372026666,
+        "Precision@5": 0.3824000000000001,
+        "F1@5": 0.3692678781486831,
+        "HitRate@5": 0.956,
+        "MAP@5": 0.4638755555555556,
+        "nDCG@5": 0.5731722516815213,
+        "MRR@5": 0.8753333333333333,
+        "R-Precision": 0.42659575718399245,
+        "Latency ms (mean)": 327.04225517855957,
+        "Latency ms (p95)": 430.6621501629706,
+        "p-value nDCG vs Dense only": 0.0
+      }
+    ],
+    "bootstrap_ci": [
+      {
+        "Config": "Dense only",
+        "Metric": "Recall@5",
+        "Mean": 0.377571262397733,
+        "CI low": 0.33911474020260785,
+        "CI high": 0.41909747774284534,
+        "n": 250
+      },
+      {
+        "Config": "Dense only",
+        "Metric": "nDCG@5",
+        "Mean": 0.4774414722979743,
+        "CI low": 0.4402345764763579,
+        "CI high": 0.5179635077849027,
+        "n": 250
+      },
+      {
+        "Config": "Dense only",
+        "Metric": "MRR@5",
+        "Mean": 0.7258666666666665,
+        "CI low": 0.6794,
+        "CI high": 0.7757383333333334,
+        "n": 250
+      },
+      {
+        "Config": "BM25 (real)",
+        "Metric": "Recall@5",
+        "Mean": 0.4071756358021064,
+        "CI low": 0.37148809993111465,
+        "CI high": 0.4485989242538508,
+        "n": 250
+      },
+      {
+        "Config": "BM25 (real)",
+        "Metric": "nDCG@5",
+        "Mean": 0.5284245091917963,
+        "CI low": 0.49609178491346956,
+        "CI high": 0.5642974867106191,
+        "n": 250
+      },
+      {
+        "Config": "BM25 (real)",
+        "Metric": "MRR@5",
+        "Mean": 0.8373999999999999,
+        "CI low": 0.7955983333333332,
+        "CI high": 0.8765999999999999,
+        "n": 250
+      },
+      {
+        "Config": "Hybrid (RRF)",
+        "Metric": "Recall@5",
+        "Mean": 0.40739785802432865,
+        "CI low": 0.3733266855448473,
+        "CI high": 0.4501974353587589,
+        "n": 250
+      },
+      {
+        "Config": "Hybrid (RRF)",
+        "Metric": "nDCG@5",
+        "Mean": 0.5147019627768971,
+        "CI low": 0.47879111683143244,
+        "CI high": 0.5533363251293596,
+        "n": 250
+      },
+      {
+        "Config": "Hybrid (RRF)",
+        "Metric": "MRR@5",
+        "Mean": 0.7798,
+        "CI low": 0.7368000000000001,
+        "CI high": 0.82436,
+        "n": 250
+      },
+      {
+        "Config": "Hybrid + rerank",
+        "Metric": "Recall@5",
+        "Mean": 0.4407590517325812,
+        "CI low": 0.40401804067664365,
+        "CI high": 0.48262408193114076,
+        "n": 250
+      },
+      {
+        "Config": "Hybrid + rerank",
+        "Metric": "nDCG@5",
+        "Mean": 0.573753017981991,
+        "CI low": 0.5412874231163817,
+        "CI high": 0.6088288061603992,
+        "n": 250
+      },
+      {
+        "Config": "Hybrid + rerank",
+        "Metric": "MRR@5",
+        "Mean": 0.8697333333333334,
+        "CI low": 0.8303916666666666,
+        "CI high": 0.90449,
+        "n": 250
+      },
+      {
+        "Config": "Hybrid + rewriting",
+        "Metric": "Recall@5",
+        "Mean": 0.374669157313275,
+        "CI low": 0.3374600995246584,
+        "CI high": 0.41644933111006643,
+        "n": 250
+      },
+      {
+        "Config": "Hybrid + rewriting",
+        "Metric": "nDCG@5",
+        "Mean": 0.4533874486881931,
+        "CI low": 0.4189860311897921,
+        "CI high": 0.49041254339716206,
+        "n": 250
+      },
+      {
+        "Config": "Hybrid + rewriting",
+        "Metric": "MRR@5",
+        "Mean": 0.6941333333333334,
+        "CI low": 0.6472233333333334,
+        "CI high": 0.7418683333333334,
+        "n": 250
+      },
+      {
+        "Config": "Hybrid + rewriting + rerank",
+        "Metric": "Recall@5",
+        "Mean": 0.4397291372026666,
+        "CI low": 0.40380028767800824,
+        "CI high": 0.48031651157665867,
+        "n": 250
+      },
+      {
+        "Config": "Hybrid + rewriting + rerank",
+        "Metric": "nDCG@5",
+        "Mean": 0.5731722516815213,
+        "CI low": 0.5420410295869936,
+        "CI high": 0.6079447819369425,
+        "n": 250
+      },
+      {
+        "Config": "Hybrid + rewriting + rerank",
+        "Metric": "MRR@5",
+        "Mean": 0.8753333333333333,
+        "CI low": 0.8360633333333334,
+        "CI high": 0.9106033333333334,
+        "n": 250
+      }
+    ],
+    "runtime_s": 212.3932707309723
+  },
+  "ear": {
+    "calibrated_weights": {
+      "coef": [
+        1.6642717745377256,
+        -0.0030427897896785983,
+        -0.5794737418682977,
+        1.0304393516544461
+      ],
+      "intercept": 0.022988408744233055,
+      "threshold_abstain": 0.6284203007776249,
+      "threshold_answer": 0.6776478187358317,
+      "features": [
+        "agreement",
+        "ocr_confidence",
+        "contradiction",
+        "complexity"
+      ]
+    },
+    "ablations": {
+      "full_model": {
+        "coverage": 0.628,
+        "accuracy_on_answer": 0.7834394904458599,
+        "overall_baseline_accuracy": 0.712,
+        "decision_counts": {
+          "answer": 157,
+          "abstain": 49,
+          "expand_retrieval": 44
+        },
+        "improvement_ci_95": [
+          0.025065088757396436,
+          0.11990188679245287
+        ]
+      },
+      "without_agreement": {
+        "coverage": 0.192,
+        "accuracy_on_answer": 0.75,
+        "overall_baseline_accuracy": 0.712,
+        "decision_counts": {
+          "expand_retrieval": 139,
+          "abstain": 63,
+          "answer": 48
+        }
+      },
+      "without_ocr_confidence": {
+        "coverage": 0.628,
+        "accuracy_on_answer": 0.7834394904458599,
+        "overall_baseline_accuracy": 0.712,
+        "decision_counts": {
+          "answer": 157,
+          "abstain": 49,
+          "expand_retrieval": 44
+        }
+      },
+      "without_contradiction": {
+        "coverage": 0.636,
+        "accuracy_on_answer": 0.7861635220125787,
+        "overall_baseline_accuracy": 0.712,
+        "decision_counts": {
+          "answer": 159,
+          "abstain": 49,
+          "expand_retrieval": 42
+        }
+      },
+      "without_complexity": {
+        "coverage": 0.404,
+        "accuracy_on_answer": 0.7920792079207921,
+        "overall_baseline_accuracy": 0.712,
+        "decision_counts": {
+          "expand_retrieval": 125,
+          "answer": 101,
+          "abstain": 24
+        }
+      }
+    }
+  },
+  "rvq": {
+    "exact_dense_recall_at_5": 0.377571262397733,
+    "configs": [
+      {
+        "mse": 0.001077940597902381,
+        "mean_cosine_to_original": 0.7608070525138186,
+        "compression_ratio": 768.0,
+        "n_stages": 2,
+        "n_centroids": 256,
+        "recall@5": 0.1605879169849758,
+        "fit_time_s": 11.8
+      },
+      {
+        "mse": 0.0008951168232020949,
+        "mean_cosine_to_original": 0.8060679329353846,
+        "compression_ratio": 384.0,
+        "n_stages": 4,
+        "n_centroids": 256,
+        "recall@5": 0.26050882548823723,
+        "fit_time_s": 25.0
+      },
+      {
+        "mse": 0.0009321661766790988,
+        "mean_cosine_to_original": 0.7973073348753643,
+        "compression_ratio": 682.6666666666666,
+        "n_stages": 2,
+        "n_centroids": 512,
+        "recall@5": 0.224314472129178,
+        "fit_time_s": 18.3
+      },
+      {
+        "mse": 0.0007325004960488912,
+        "mean_cosine_to_original": 0.8443343139793348,
+        "compression_ratio": 341.3333333333333,
+        "n_stages": 4,
+        "n_centroids": 512,
+        "recall@5": 0.2827633725751373,
+        "fit_time_s": 44.4
+      }
+    ]
+  }
+}

@@ -1,0 +1,251 @@
+query,decision,probability,top1_correct,agreement,ocr_confidence,contradiction,complexity
+What position does Brad Raffensperger hold in Georgia and what legal challenge has he faced due to standing up to former President Donald Trump's efforts to overturn the 2020 election?,answer,0.7092664949185722,1,0.1111111111111111,1.0,0.0,0.6666666666666666
+What achievement of Nirmal Purja was chronicled in a Netflix documentary before he was accused of sexual abuse by Lotta Hintsa?,answer,0.688033704822302,1,0.25,1.0,0.0,0.3444444444444444
+In which town did a Ukrainian soldier break off a wooden post from a town council building and throw the Russian flag to the ground?,answer,0.777027037392891,1,0.42857142857142855,1.0,0.0,0.5
+How did President Biden's instincts contrast with current political practices according to the document?,abstain,0.5759522697957896,0,0.0,1.0,0.0,0.27777777777777773
+How many times was Prime Minister Robert Fico of Slovakia shot in the attack on Wednesday?,answer,0.737087906524892,1,0.42857142857142855,1.0,0.0,0.2888888888888889
+"Is there an expectation of forming a new government in Gaza while combat is ongoing, according to Israeli officials?",answer,0.6830976242544695,0,0.25,1.0,0.0,0.3222222222222222
+"During the trial involving Donald J. Trump, which prosecutor delivered a sweeping rebuke and what was the main accusation against Trump?",answer,0.6875693854419977,1,0.1111111111111111,1.0,0.0,0.5666666666666667
+"How many people were arrested at the University of California, Los Angeles during protests related to Israel's war in Gaza?",expand_retrieval,0.6364048317155946,0,0.1111111111111111,1.0,0.0,0.3444444444444444
+"According to the article 'Arrival of F-16s May Not Solve Ukraine’s Challenges in the Skies,' what has Russia been using to exploit gaps in Ukraine's defenses?",answer,0.7073477321349688,1,0.25,1.0,0.0,0.43333333333333335
+What percentage points did Claudia Sheinbaum beat her opponent by in the election to become Mexico's president?,answer,0.7415012679262832,1,0.42857142857142855,1.0,0.0,0.3111111111111111
+How many individuals had to be evacuated from the Kursk region due to the conflict between Russia and Ukraine?,answer,0.7073477321349688,1,0.25,1.0,0.0,0.4333333333333333
+"Who did Vice President Kamala Harris choose as her running mate for the presidential election, known for his rural roots and criticism of Donald Trump?",answer,0.777027037392891,0,0.42857142857142855,1.0,0.0,0.5
+"What ruling did the Supreme Court make regarding the use of an obstruction law to prosecute some members of the Capitol on January 6, 2021?",expand_retrieval,0.646934422060707,1,0.1111111111111111,1.0,0.0,0.3888888888888889
+How much global revenue has 'The Lion King' generated according to the document?,abstain,0.6149574441355556,1,0.1111111111111111,1.0,0.0,0.25555555555555554
+Which town was the rocket strike from Lebanon that killed at least 12 children and teenagers located in?,answer,0.827003065662115,1,0.6666666666666666,1.0,0.0,0.4222222222222222
+Did an account on X claim without evidence that the CIA was involved in an attack against Donald Trump at a rally?,abstain,0.6122428746750521,1,0.1111111111111111,1.0,0.0,0.24444444444444444
+Who was instrumental in gaining support for President Biden's campaign despite doubts about his age?,abstain,0.6230577420033524,0,0.1111111111111111,1.0,0.0,0.2888888888888889
+"Who is the youngest member among Ron Klain, Ted Kaufman, and Mike Donilon in Joe Biden's inner circle?",answer,0.7648990143915233,1,0.42857142857142855,1.0,0.0,0.4333333333333333
+"What proposal did Donald Trump make regarding Social Security benefits, and which group could it benefit politically?",answer,0.6776478187358317,1,0.1111111111111111,1.0,0.0,0.5222222222222223
+"According to a New York Times and Siena College poll, what is Donald Trump's lead over Joe Biden among registered voters?",answer,0.8334574519406975,1,0.6666666666666666,1.0,0.0,0.4666666666666666
+"How many people in the United States received the Covid vaccines, and how many doses were administered?",answer,0.7809691872974118,1,0.42857142857142855,1.0,0.0,0.5222222222222223
+"What revealed the prosecution's star witness, Michael D. Cohen, during the trial of former President Donald J. Trump?",answer,0.6830976242544695,0,0.25,1.0,0.0,0.3222222222222222
+What record-shattering action did Mr. Bernstein perform during his live-streamed session with Dr. Alok Kanojia?,answer,0.6781199803408905,1,0.25,1.0,0.0,0.3
+Who is the new prime minister of Britain?,answer,0.7189567884697133,1,0.42857142857142855,1.0,0.0,0.19999999999999998
+How many civilians were reportedly killed during the Israeli rescue operation in Gaza according to a hospital official?,answer,0.6806139488963052,1,0.25,1.0,0.0,0.3111111111111111
+What event led to nearly doubling of calls involving forced unprotected sex or sabotaged birth control to the National Domestic Violence Hotline?,answer,0.8334574519406975,1,0.6666666666666666,1.0,0.0,0.4666666666666666
+How much are cigarettes reportedly selling for in Gaza according to U.N. and Israel officials?,expand_retrieval,0.6495451452583173,1,0.1111111111111111,1.0,0.0,0.39999999999999997
+What military advantage does Hezbollah have over the Lebanese national forces?,answer,0.7258445912829847,0,0.42857142857142855,1.0,0.0,0.2333333333333333
+"Did Vicki Hollub, the chief executive of Occidental Petroleum, expect to join the private luncheon to benefit MAGA Inc.?",abstain,0.559093235769181,1,0.0,1.0,0.0,0.2111111111111111
+Did Prime Minister Benjamin Netanyahu mention the impact on Palestinian civilians during his address to Congress?,expand_retrieval,0.650037211774831,1,0.25,1.0,0.0,0.17777777777777778
+Which tech giant was found by the U.S. Court for the District of Columbia on Monday to have violated antitrust laws by stifling rivals in internet search?,expand_retrieval,0.6547396934815747,1,0.1111111111111111,1.0,0.0,0.4222222222222222
+What type of charges was Boris Epshteyn arraigned on in Arizona?,abstain,0.6095213192981425,1,0.1111111111111111,1.0,0.0,0.2333333333333333
+What is one key condition cited by the Fed Chair Jerome H. Powell before considering a reduction in interest rates?,answer,0.685570908232136,1,0.25,1.0,0.0,0.3333333333333333
+What was the original funding amount allocated by New York State for the Musical and Theatrical Production program before it was increased?,answer,0.7144070311027523,1,0.25,1.0,0.0,0.4666666666666666
+What did federal judge Robert L. Hinkle rule regarding the Florida law banning gender transition care for minors?,answer,0.6806139488963052,1,0.25,1.0,0.0,0.3111111111111111
+"Is it true that the decision to suspend the congestion toll was made by Governor Kathy Hochul, and was it due to economic concerns?",answer,0.820352455094298,1,0.6666666666666666,1.0,0.0,0.37777777777777777
+"How many people, according to the report, have been displaced due to violence along the Lebanon-Israel border?",answer,0.6806139488963052,1,0.25,1.0,0.0,0.3111111111111111
+"By 1928, had Pierre de Coubertin’s views on women’s participation in the Olympics changed according to his statements from 1912?",answer,0.7992069760505753,1,0.6666666666666666,1.0,0.0,0.24444444444444444
+What significant political and social changes occurred in Ferguson and St. Louis County following the death of Michael Brown in 2014?,answer,0.7349588073190232,1,0.25,1.0,0.0,0.5666666666666665
+What specific event did protesters in Israel cite while calling for a ceasefire deal with Hamas?,expand_retrieval,0.6495451452583173,1,0.1111111111111111,1.0,0.0,0.39999999999999997
+What did Rear Adm. Daniel Hagari report about the Israeli military's rescue mission in Gaza?,expand_retrieval,0.6756158189417801,1,0.25,1.0,0.0,0.2888888888888889
+"How did Donald Sutherland's physical appearance affect his early acting career, according to his recollections?",abstain,0.6230577420033524,1,0.1111111111111111,1.0,0.0,0.2888888888888889
+"How many shares of preferred stock are authorized by the company, and what is their par value?",answer,0.6776478187358317,0,0.1111111111111111,1.0,0.0,0.5222222222222223
+"Does the company's expansion into new products, services, technologies, and geographic regions subject it to additional risks?",answer,0.6806139488963052,1,0.25,1.0,0.0,0.3111111111111111
+What method is primarily used to account for inventories consisting of products available for sale?,answer,0.7348631345141269,1,0.42857142857142855,1.0,0.0,0.27777777777777773
+"What was the allowance for loan losses to nonaccrual loans retained ratio as of March 31, 2021?",answer,0.727978296965101,0,0.42857142857142855,1.0,0.1,0.3
+Does JPMorgan Chase's Firmwide Business Resiliency Program include planning and testing of recovery strategies for business disruptions?,expand_retrieval,0.6284203007776249,0,0.1111111111111111,1.0,0.0,0.3111111111111111
+"What was the carrying value of cash and due from banks as of June 30, 2023, according to the fair value hierarchy classification?",expand_retrieval,0.6675635169017153,0,0.1111111111111111,1.0,0.0,0.4777777777777778
+What is the definition of nonaccrual loans according to the glossary of terms and acronyms?,expand_retrieval,0.646934422060707,1,0.1111111111111111,1.0,0.0,0.38888888888888884
+Does Verizon's network infrastructure include redundancy elements to enhance service reliability?,answer,0.7048698778963747,1,0.42857142857142855,1.0,0.0,0.13333333333333333
+"What was the total net derivative receivables, net of collateral, at December 31, 2022?",expand_retrieval,0.6705773298364428,0,0.25,1.0,0.0,0.26666666666666666
+What is the name of the next-generation multi-use platform that is expected to simplify operations and speed the deployment of 5G wireless technology?,answer,0.777027037392891,1,0.42857142857142855,1.0,0.0,0.5
+"What was the total carrying value of the principal investment portfolios as of March 31, 2021?",answer,0.737087906524892,1,0.42857142857142855,1.0,0.0,0.2888888888888889
+"What is the compliance date extension recommended by the Statewide Advisory Committee on Cooling Water Intake Structures for AES Huntington Beach, LLC and AES Alamitos, LLC?",answer,0.8397177011976399,0,0.6666666666666666,1.0,0.0,0.5111111111111111
+Are third-party sellers' inventories included in the inventories of the company providing Fulfillment by Amazon services?,expand_retrieval,0.652637310720405,1,0.25,1.0,0.0,0.18888888888888888
+"Did the total wholesale credit portfolio increase or decrease from December 31, 2021, to June 30, 2022?",abstain,0.612076504002883,1,0.1111111111111111,1.0,0.1,0.3
+What is the role of Deutsche Bank Trust Company Americas in relation to the 2001 Indenture?,expand_retrieval,0.6756158189417801,1,0.25,1.0,0.0,0.2888888888888889
+By how much did the early debt extinguishment costs increase in 2021 compared to 2020?,abstain,0.6203650255672778,1,0.1111111111111111,1.0,0.0,0.27777777777777773
+What was the outcome of the appellate court's decision in the Hartpence case in August 2022?,abstain,0.6257428815091917,1,0.1111111111111111,1.0,0.0,0.3
+"Did the company recognize lease assets and liabilities for operating leases with terms of more than twelve months as a result of new accounting guidance adopted on January 1, 2019?",answer,0.7669516816858084,0,0.42857142857142855,1.0,0.0,0.4444444444444444
+Did the acquisition of noncontrolling interests in 2020 include an additional ownership interest in AES Brasil?,abstain,0.623236415564369,1,0.25,1.0,0.2,0.17777777777777778
+"What was the net income for JPMorgan Chase's Asset & Wealth Management segment for the three months ended June 30, 2022?",abstain,0.5926363575599727,0,0.0,1.0,0.0,0.3444444444444444
+"How much was the intangible asset amortization expense for the year ended December 31, 2021?",expand_retrieval,0.6731015672160194,0,0.25,1.0,0.0,0.27777777777777773
+What are the primary components of fulfillment costs for Amazon's North America and International operations?,answer,0.7586661702502878,0,0.42857142857142855,1.0,0.0,0.39999999999999997
+"What was the total amount of long-term debt for JPMorgan Chase as of June 30, 2023?",answer,0.6781199803408905,1,0.25,1.0,0.0,0.3
+What is the Auditor Firm ID for Ernst & Young LLP as mentioned in the document?,answer,0.7348631345141269,1,0.42857142857142855,1.0,0.0,0.27777777777777773
+How much of the residential real estate loans are due after 15 years at fixed interest rates?,abstain,0.5530947387634081,0,0.0,1.0,0.2,0.3
+Is the company Shazia S.R.L. registered in the United States?,abstain,0.5392534396181955,0,0.0,1.0,0.0,0.13333333333333333
+Did the aggregate carrying values of the principal investment portfolios experience significant changes due to the COVID-19 pandemic?,abstain,0.6040578606921646,1,0.1111111111111111,1.0,0.0,0.2111111111111111
+"Does the company capitalize any technology and content costs, and if so, which specific costs are capitalized?",answer,0.7259423047256299,0,0.25,1.0,0.0,0.5222222222222221
+What is the purpose of the adjustments made in segment managed results according to the document?,answer,0.702042965022472,0,0.42857142857142855,1.0,0.3,0.2888888888888889
+Is the Company's ability to meet its obligations to customers dependent on the performance and stability of its suppliers?,expand_retrieval,0.6337514145583364,1,0.1111111111111111,1.0,0.0,0.3333333333333333
+"What was the total amount of long-term capital lease obligations as of December 31, 2017?",expand_retrieval,0.6756158189417801,1,0.25,1.0,0.0,0.2888888888888889
+Did the depreciation expense for the International segment exceed $1 billion in 2017?,answer,0.7072460625382815,1,0.42857142857142855,1.0,0.0,0.14444444444444446
+"What was the net income (loss) for The AES Corporation for the year ended December 31, 2022?",abstain,0.5815348830816461,0,0.0,1.0,0.0,0.3
+"What was the net amount of derivative assets subject to master netting agreements as of June 30, 2023?",abstain,0.5843184712719967,0,0.0,1.0,0.0,0.3111111111111111
+"What was the total amount of Home Lending loans held-for-sale and loans at fair value for the six months ended June 30, 2021?",answer,0.7213631245871107,1,0.25,1.0,0.0,0.5
+"What is the estimated aggregate range of reasonably possible losses for JPMorgan Chase's legal proceedings as of March 31, 2021?",abstain,0.5926363575599727,0,0.0,1.0,0.0,0.3444444444444444
+"What factors affect the demand for the Company's products, impacting revenue and profit margins?",answer,0.6977781735960656,1,0.25,1.0,0.0,0.38888888888888884
+Does the firm estimate the fair value of consumer off-balance sheet lending-related commitments?,answer,0.6876273310626049,0,0.42857142857142855,1.0,0.2,0.16666666666666666
+"What was the net amount of customer receivables as of December 31, 2019?",abstain,0.6149574441355556,1,0.1111111111111111,1.0,0.0,0.25555555555555554
+Does the Inline XBRL Instance Document appear in the Interactive Data File?,answer,0.7048698778963747,0,0.42857142857142855,1.0,0.0,0.13333333333333333
+"How much outstanding unsecured indebtedness did Verizon have as of December 31, 2021?",abstain,0.6149574441355556,1,0.1111111111111111,1.0,0.0,0.25555555555555554
+"Is the Independent Contractor Agreement between Amazon Corporate LLC and William B. Gordon dated before or after the Credit Agreement involving Amazon.com, Inc. and Bank of America, N.A.?",answer,0.8053642064497948,1,0.42857142857142855,1.0,0.0,0.6666666666666666
+Does the Reseller have the right to assign sub-resellers outside of the defined territory without Diversinet's consent according to the Reseller Agreement?,answer,0.7326263654405851,1,0.42857142857142855,1.0,0.0,0.26666666666666666
+Under which country's laws is the Service Provider organized and existing according to the agreement?,expand_retrieval,0.6624758812220876,1,0.25,1.0,0.3,0.39999999999999997
+Is the arbitral award from the Beijing Arbitration Commission final and binding upon the parties involved in the agreement?,expand_retrieval,0.6310898583333993,1,0.1111111111111111,1.0,0.0,0.3222222222222222
+What does the term 'Force Majeure' include according to the document?,abstain,0.5647300626934921,0,0.0,1.0,0.0,0.2333333333333333
+"What must a franchisee do if they receive a notice of non-compliance with any law, rule, regulation, or ordinance?",expand_retrieval,0.6598975612768745,1,0.1111111111111111,1.0,0.0,0.4444444444444444
+Is a shipper allowed to request volume or quality adjustments for periods beyond the most previous twenty-four months?,expand_retrieval,0.6310898583333993,1,0.1111111111111111,1.0,0.0,0.3222222222222222
+Is Ono obligated to continue sponsoring or conducting Clinical Studies if it terminates the agreement with respect to a Product pursuant to Section 13.5(a)?,answer,0.6878832750834665,1,0.25,1.0,0.1,0.39999999999999997
+Can the Indemnifying Party settle an Indemnified Claim involving third-party intellectual property infringement by obtaining a license from the third-party?,abstain,0.6122428746750521,1,0.1111111111111111,1.0,0.0,0.24444444444444444
+Is the minimum logo size in physical formats greater than 20 mm?,expand_retrieval,0.6395485990815757,0,0.25,1.0,0.0,0.13333333333333333
+What is the priority level option available on the Bank of America Change Order Request Form?,answer,0.737087906524892,0,0.42857142857142855,1.0,0.0,0.2888888888888889
+What must Turpin do with all Work Product and Company Property upon termination of employment with the Company?,answer,0.8185548724014071,1,0.6666666666666666,1.0,0.1,0.4222222222222222
+What is the relationship between AIRSOPURE and the other party as defined in the agreement?,abstain,0.6036440503868581,0,0.0,1.0,0.0,0.38888888888888884
+What is the minimum A.M. Best Company rating required for insurers providing liability insurance for a Pretzel Time franchisee?,answer,0.685570908232136,1,0.25,1.0,0.0,0.3333333333333333
+What is the principal place of business for Vayyar Imaging Ltd. as mentioned in the Walabot-HOME Reseller Agreement?,answer,0.6830976242544695,1,0.25,1.0,0.0,0.3222222222222222
+"What is the maximum liability of Excite for damages under the agreement, regardless of the legal theory?",abstain,0.6257428815091917,1,0.1111111111111111,1.0,0.0,0.3
+"Which country is defined as the Astellas Territory in the collaboration agreement between FibroGen, Inc. and Astellas Pharma Inc.?",answer,0.7648990143915233,1,0.42857142857142855,1.0,0.0,0.4333333333333333
+What is the minimum combined single limit of liability required for Commercial General Liability Insurance per occurrence according to the document?,expand_retrieval,0.6754622257343301,1,0.25,1.0,0.1,0.3444444444444444
+"Is Susan N. Johnson a witness to the agreement between Roanoke Gas Company and the Town of Vinton, Virginia?",answer,0.7436897668211329,1,0.42857142857142855,1.0,0.0,0.3222222222222222
+How many thirty-second radio spots does the sponsor receive for the Jaguars Thursday broadcasts during each Contract Year?,answer,0.8824924712124225,1,1.0,1.0,0.0,0.3222222222222222
+"For how many years after the expiration or termination of the Agreement must the Reseller maintain complete books, records, and accounts relevant to the computation of and accounting for the amounts payable under the Agreement with Diversinet?",answer,0.7751226951845887,1,0.25,1.0,0.0,0.7777777777777777
+"What is the obligation of Ono, its Affiliates, and its Sublicensees regarding the distribution of the Product if the agreement is terminated after the First Commercial Sale in the Ono Territory, other than pursuant to Section 13.5?",answer,0.7867878990990537,0,0.42857142857142855,1.0,0.0,0.5555555555555555
+What is the call completion rate by the system that Party B's customer service system must achieve according to the agreement?,answer,0.7501820367371096,1,0.42857142857142855,1.0,0.0,0.35555555555555557
+Does the definition of 'Software' in the agreement include Source Code if it is licensed to Bank of America?,answer,0.7212644053569344,0,0.42857142857142855,1.0,0.0,0.2111111111111111
+Does Certegy have the right to make Derivative Works of the APPLY source code and object code without any obligation to Equifax?,expand_retrieval,0.6390499739730305,1,0.1111111111111111,1.0,0.0,0.35555555555555557
+"What is the effective date of the amendment entered into by NETGEAR, Inc. and Ingram Micro?",answer,0.8151290607928556,1,0.6666666666666666,1.0,0.1,0.39999999999999997
+Does the definition of 'Work Product' in the agreement include items developed by Kenneth Turpin after working hours?,answer,0.7820410740319746,0,0.6666666666666666,1.0,0.1,0.19999999999999998
+"According to the agreement, which state's laws govern the agreement and any amendments thereto?",abstain,0.589699836860556,1,0.0,1.0,0.1,0.38888888888888884
+What is the penalty for a party that solicits an employee of the other party in the Hosting Agreement between ELEPHANT TALK and T-Mobile?,expand_retrieval,0.6726255980337064,1,0.1111111111111111,1.0,0.0,0.5
+How long is the initial term of the Reseller Agreement between Diversinet Corp. and 2205925 Ontario Limited?,answer,0.7025851481367603,1,0.25,1.0,0.0,0.41111111111111104
+"Is American General Life Insurance Company of Delaware an indirect wholly owned subsidiary of American International Group, Inc.?",answer,0.7189567884697133,1,0.42857142857142855,1.0,0.0,0.19999999999999998
+"Who is the President of Square Two Golf, Inc. as mentioned in the agreement?",answer,0.7211235045893598,1,0.42857142857142855,1.0,0.1,0.26666666666666666
+Is Ono allowed to commercialize a product with an active pharmaceutical ingredient that is a [ * ] other than Binimetinib in the Ono Territory before the specified date?,abstain,0.6230577420033524,1,0.1111111111111111,1.0,0.0,0.2888888888888889
+What action must Kitov take if they want a replacement shipment from Dexcel for a product with claimed defects?,answer,0.7324890779367119,1,0.42857142857142855,1.0,0.1,0.3222222222222222
+Does the Company have the right to register any domain name containing Arizona Licensed Trademarks?,answer,0.7119646084111644,1,0.42857142857142855,1.0,0.0,0.16666666666666666
+What happens if the volume of each Product shipped by Shipper on the Pipeline during the Quarter is less than the applicable Quarterly Volume Commitment for that Product?,answer,0.8185548724014071,1,0.6666666666666666,1.0,0.1,0.4222222222222222
+Who retains the absolute property rights to TDA's Golf Instruction Related Products?,expand_retrieval,0.6680432136230804,1,0.25,1.0,0.0,0.25555555555555554
+What is the range of the penalty that Party A may impose on Party B if Party B is found to have violated the Integrity Agreement by bribing Party A's working personnel?,answer,0.7669516816858084,1,0.42857142857142855,1.0,0.0,0.4444444444444444
+How much additional spectrum has the FCC authorized for digital television service to Nexstar for WMBD-TV and to WYZZ for WYZZ-TV?,answer,0.835040626926196,1,0.6666666666666666,1.0,0.0,0.4777777777777778
+"What is the method for verifying the freight payment in the Road Transportation Agreement between ZTO Express Co., Ltd. and Tonglu Tongze Logistics Ltd.?",answer,0.7750370827635793,1,0.42857142857142855,1.0,0.0,0.4888888888888889
+What is the responsibility of the Supplier regarding the purchase and compliance of Materials for the Manufacture of the Product?,answer,0.8302546630174842,1,0.6666666666666666,1.0,0.0,0.4444444444444444
+What genre does the book 'A Question and Answer Guide to Astronomy' belong to?,answer,0.820352455094298,1,0.6666666666666666,1.0,0.0,0.37777777777777777
+What is the abnormal hit rate percentage for the ScienceQA benchmark when evaluated with closed-source and open-source LLMs?,answer,0.7327225518091418,0,0.25,1.0,0.0,0.5555555555555555
+What is the average performance gain of the LVLMs Sphinx-X-8x7B and Monkey-Chat compared to their original LLMs?,answer,0.7669516816858084,0,0.42857142857142855,1.0,0.0,0.4444444444444444
+Does the architecture of $\Phi$ use positional embedding (PE) with LLM-steps?,abstain,0.5392534396181955,0,0.0,1.0,0.0,0.13333333333333333
+What is the starting learning rate used in the last post-training stage of GOT?,expand_retrieval,0.6731015672160194,1,0.25,1.0,0.0,0.27777777777777773
+"According to the document, what are the two important variables that the study measures to understand how models transition between choosing the prior and the context?",answer,0.7459591626414924,0,0.25,1.0,0.0,0.6222222222222221
+What is the equation used to compute the set confidence score in the Selfmem framework?,abstain,0.6203650255672778,1,0.1111111111111111,1.0,0.0,0.27777777777777773
+Who did Whitney Jones partner with in the doubles draw at the 2007 Sunfeast Open?,abstain,0.5759522697957896,0,0.0,1.0,0.0,0.27777777777777773
+Is the paper 'Fine-tuning language models from human preferences' published before 2020?,abstain,0.5875159714404514,1,0.1111111111111111,1.0,0.0,0.14444444444444446
+In which district is Vila Franca de Xira located?,answer,0.7936382951279295,0,0.6666666666666666,1.0,0.0,0.2111111111111111
+"What is the average R@1 percentage for the CrossTask dataset when all three pathways (S-N-V, S-V-Long, S-V-Short) are used?",expand_retrieval,0.6751417437462072,1,0.1111111111111111,1.0,0.0,0.5111111111111111
+Which organization provided computing resources to train and evaluate the language models in the work focused on improving LLM outputs?,abstain,0.6172562773132684,0,0.0,1.0,0.0,0.4444444444444444
+What is the average score of the open-source LLM model InternLM2-7B across the six multi-modal benchmarks?,expand_retrieval,0.6310898583333993,0,0.1111111111111111,1.0,0.0,0.3222222222222222
+"In which year did Yuchen Liu and colleagues conduct a study on model averaging, ensembling, and reranking in neural machine translation?",answer,0.7349588073190232,0,0.25,1.0,0.0,0.5666666666666665
+What is the name of India's first private FM radio station that started on 3 July 2001?,answer,0.7415012679262832,0,0.42857142857142855,1.0,0.0,0.3111111111111111
+What is the nDCG@10 score for the 'Dense' model in the 'M3-w.skd' configuration for the Hindi language?,expand_retrieval,0.6337514145583364,0,0.1111111111111111,1.0,0.0,0.3333333333333333
+What is the name of India's first private FM radio station that started on 3 July 2001?,answer,0.7415012679262832,1,0.42857142857142855,1.0,0.0,0.3111111111111111
+What is the impact of pre-training on unsupervised data on the retrieval quality of the embedding model according to the document?,expand_retrieval,0.6390499739730305,1,0.1111111111111111,1.0,0.0,0.35555555555555557
+"What is the probability that a model responds correctly given that either the context is right or the prior is right, according to the study's defined metrics?",answer,0.782921365540468,1,0.42857142857142855,1.0,0.0,0.5333333333333333
+What is the role of the pseudo matching matrix $\mathbf{Y}^{N V}$ in the S-N-V path?,answer,0.6830976242544695,0,0.25,1.0,0.0,0.3222222222222222
+Does the dual label assignment strategy for YOLOs require NMS post-processing during inference?,answer,0.7096109974430103,0,0.42857142857142855,1.0,0.0,0.15555555555555556
+What is the accuracy of GPT-4o when using calibrated token probability correction?,answer,0.75232159096295,1,0.42857142857142855,1.0,0.0,0.3666666666666667
+What is the Recall@100 score for the M3-Embedding Dense model on the German (de) language in the MIRACL dataset?,expand_retrieval,0.6364048317155946,0,0.1111111111111111,1.0,0.0,0.3444444444444444
+What is the format used in the prompt for OCR in the document?,abstain,0.6149574441355556,1,0.1111111111111111,1.0,0.0,0.25555555555555554
+Does the paper 'Yolo-ms: rethinking multi-scale representation learning for real-time object detection' appear in the references list with a publication year of 2023?,expand_retrieval,0.6756158189417801,1,0.25,1.0,0.0,0.2888888888888889
+Is the work titled 'Deepseek-vl: Towards real-world vision-language understanding' expected to be published in 2024?,abstain,0.556269005444294,0,0.0,1.0,0.0,0.19999999999999998
+Does the Selfmem Framework use a memory selector with an XLM-R base as its backbone?,answer,0.7143068234294502,0,0.42857142857142855,1.0,0.0,0.17777777777777778
+What type of document pairs can researchers use to train the GOT model for multi-page OCR tasks?,answer,0.7415012679262832,1,0.42857142857142855,1.0,0.0,0.3111111111111111
+Which publication by Ross Girshick focuses on a method for object detection and was presented at the IEEE international conference on computer vision in 2015?,answer,0.777027037392891,1,0.42857142857142855,1.0,0.0,0.5
+What is the impact of isolating label words within the first 5 layers on the model's behavior according to the document?,answer,0.6904859201992762,1,0.25,1.0,0.0,0.35555555555555557
+What is the F1-score for the 'All text' type in the multi-crop strategy for Markdown documents?,expand_retrieval,0.6284203007776249,0,0.1111111111111111,1.0,0.0,0.3111111111111111
+"What position did Rory Tapner hold at Coutts, a private banking and wealth management company, starting in 2010?",expand_retrieval,0.6547396934815747,1,0.1111111111111111,1.0,0.0,0.4222222222222222
+What is the name of the model that demonstrates outstanding OCR performance in the document?,answer,0.7348631345141269,0,0.42857142857142855,1.0,0.0,0.27777777777777773
+What is the proposed hypothesis about label words in in-context learning according to the paper?,abstain,0.5787460930245472,0,0.0,1.0,0.0,0.2888888888888889
+Which dataset includes questions about Olympic records across multiple sports such as athletics and swimming?,answer,0.7565636887349827,1,0.42857142857142855,1.0,0.0,0.38888888888888884
+Does the Token Probability Correction method improve the overall accuracy of the models?,answer,0.7072460625382815,0,0.42857142857142855,1.0,0.0,0.14444444444444446
+What is the R@1 performance on the HT-Step dataset when using the N-MPTVA training data?,answer,0.7628338582242685,1,0.42857142857142855,1.0,0.0,0.4222222222222222
+How many image-text pairs are used in the encoder pre-training stage of the GOT framework?,answer,0.7393006330917148,0,0.42857142857142855,1.0,0.0,0.3
+Which grant supported the research work that led to the development of the Selfmem framework?,abstain,0.5759522697957896,0,0.0,1.0,0.0,0.27777777777777773
+"Does the MIRACL dataset cover multiple languages, and if so, how many languages does it include?",answer,0.7001871696187487,0,0.25,1.0,0.0,0.39999999999999997
+"Who is the representative director of Prestige Shoes Co., Ltd., a subsidiary of G-Foot Co., Ltd.?",abstain,0.5815348830816461,0,0.0,1.0,0.0,0.3
+Which models were used in the paper 'Calibrate before use: Improving few-shot performance of language models'?,abstain,0.6257428815091917,1,0.1111111111111111,1.0,0.0,0.3
+What is the gene density of the D. mojavensis F element?,answer,0.797363347704633,1,0.6666666666666666,1.0,0.0,0.2333333333333333
+"What is the result of the linear mapping $T(g)$ in the theorem (20.20) for a decomposable measure space $(X,{\mathcal{A}},\mu)$?",answer,0.7544488189642766,1,0.42857142857142855,1.0,0.0,0.37777777777777777
+"What is the value of $p_{j}$ when $\omega_1,\ldots,\omega_n$ are inputs?",answer,0.8220336070427711,1,0.6666666666666666,1.0,0.0,0.38888888888888884
+"Which university has the highest percentage of white composers, and what is that percentage?",answer,0.7750370827635793,1,0.42857142857142855,1.0,0.0,0.4888888888888889
+What percentage of males aged 40-49 engaged in vaginal intercourse during the previous year according to the National Survey of Sexual Health and Behavior?,answer,0.8381707146641977,1,0.6666666666666666,1.0,0.0,0.5
+"In the proof that involves induction on the dimension of a compact convex set C, what happens if a point x in C is not an extreme point?",answer,0.827003065662115,1,0.6666666666666666,1.0,0.0,0.4222222222222222
+Is the diffusion coefficient $D$ in semiconductors affected by temperature?,answer,0.7000840671470663,1,0.42857142857142855,1.0,0.0,0.1111111111111111
+What is needed for a set $A$ in $c$ to have compact closure according to the Arzela-Ascoli theorem?,answer,0.7436897668211329,1,0.42857142857142855,1.0,0.0,0.3222222222222222
+What is the definition of a parametrized set in an oriented n-manifold M according to Definition 23.1o and what properties must the map F have?,answer,0.7904879514383641,1,0.42857142857142855,1.0,0.1,0.6333333333333333
+What is the physiological difference between ventricular escape rhythm and ventricular tachycardia?,answer,0.7501820367371096,1,0.42857142857142855,1.0,0.0,0.35555555555555557
+What polynomial is described as generating the algebra of all symmetric polynomials and is connected to the roots of polynomials?,answer,0.709712182834357,1,0.25,1.0,0.0,0.4444444444444444
+"In the proof of Theorem 6.5, what relationship between \(k\) and \(n\) is used to show that any number lying between \(-1/kn\) and \(1/kn\) must lie between \(-1/n^2\) and \(1/n^2\)?",answer,0.7751226951845887,1,0.25,1.0,0.0,0.7777777777777777
+What type of bijection does the Correspondence Theorem for Rings provide between the set of all ideals in a commutative ring containing a proper ideal I and the set of all ideals in the quotient ring R/I?,answer,0.7867878990990537,1,0.42857142857142855,1.0,0.0,0.5555555555555555
+What percentage of ADHD cases is attributed to genetic variations according to twin studies mentioned in the document?,answer,0.8100047849253992,1,0.6666666666666666,1.0,0.0,0.3111111111111111
+How many companies are included in the NASDAQ stock market index?,abstain,0.6095213192981425,1,0.1111111111111111,1.0,0.0,0.2333333333333333
+"In the ethical decision-making process, what are the essential steps to follow when you find yourself facing an ethical dilemma?",expand_retrieval,0.6624624416590005,1,0.1111111111111111,1.0,0.0,0.45555555555555555
+"What function is bounded on (a,x) by a function integrable with weight w?",answer,0.7326263654405851,1,0.42857142857142855,1.0,0.0,0.26666666666666666
+"In which town was Nathaniel Hawthorne born, and what notable historical trials were associated with his ancestors?",answer,0.8412527003592342,1,0.6666666666666666,1.0,0.0,0.5222222222222223
+What theorem provides a representation for the second smallest eigenvalue of a symmetric matrix?,expand_retrieval,0.6705773298364428,1,0.25,1.0,0.0,0.26666666666666666
+"If $Z_{0} = 1$ and the generating function of $Z_{n}$ is $G_{n}(s)$, what is the fold iteration relation given for $G_{n}$ and $G$?",answer,0.7481227403605545,1,0.25,1.0,0.0,0.6333333333333333
+In which year did Stevens define the concept of scaling?,abstain,0.6067929300634389,1,0.1111111111111111,1.0,0.0,0.2222222222222222
+"If $V_{0}$ is a dense open subset of a nonsingular variety $V$, what is the relationship between $ar{P}_{m}(V_{0})$ and $ar{P}_{m}(V)$ for all $m$?",answer,0.9052255001518483,1,1.0,1.0,0.0,0.5555555555555555
+What educational qualifications are typically necessary for a medical social worker to practice?,expand_retrieval,0.6680432136230804,1,0.25,1.0,0.0,0.25555555555555554
+What describes the position of the center and directrix of an ellipse in relation to $O_j$?,answer,0.7025851481367603,1,0.25,1.0,0.0,0.41111111111111104
+"What is the outcome when applying the $\sigma$-homomorphism q in Theorem 5.4.6 on a monotone complete C*-algebra A, particularly regarding the kernel?",answer,0.7790044087027712,1,0.42857142857142855,1.0,0.0,0.5111111111111111
+"In the context of oriented manifolds, how can an effective method of calculating an integral over a manifold be achieved?",answer,0.7347265796593504,1,0.42857142857142855,1.0,0.1,0.3333333333333333
+What term is used to describe a morphism of derivators that commutes with homotopy limits?,answer,0.7234201747987267,1,0.42857142857142855,1.0,0.1,0.27777777777777773
+Which model did Ginkgo biloba best fit according to the photographic data method?,answer,0.8010380161552597,1,0.6666666666666666,1.0,0.0,0.25555555555555554
+What inequality is satisfied if function f is less than or equal to function g?,abstain,0.6036440503868581,0,0.0,1.0,0.0,0.38888888888888884
+What is the name of the geometric figure whose circumcircle passes through the feet of the altitudes from the vertices of triangle ABC?,answer,0.75232159096295,1,0.42857142857142855,1.0,0.0,0.3666666666666667
+"Which individual served as the Check-In/Check-Out coordinator and mentor in one of the schools according to the procedures described in the intervention manual by Crone et al., 2003?",answer,0.7327225518091418,1,0.25,1.0,0.0,0.5555555555555555
+Does the Dirichlet problem with domain $\Omega=\{x \in \mathbb{R}^{n} \mid 0<a<|x|<b\}$ have a solution concentrating near the outer boundary $|x|=b$?,answer,0.7393006330917148,1,0.42857142857142855,1.0,0.0,0.3
+What kind of plot is used to obtain the activation energy $E_{A}$ and coefficient $D_{o}$ for the diffusion coefficient in semiconductors?,answer,0.7730345559905544,1,0.42857142857142855,1.0,0.0,0.4777777777777778
+"According to Mick, Biederman, Faraone, Sayer, & Kleinman (2002), name one environmental factor that can increase the likelihood of developing ADHD?",answer,0.7955071229395894,1,0.6666666666666666,1.0,0.0,0.2222222222222222
+What can be inferred about $T_{\gamma}$ if $T_{eta}$ is not a successor ordinal?,answer,0.7348631345141269,1,0.42857142857142855,1.0,0.0,0.27777777777777773
+"In a penalized least-squares problem known as Lasso, what condition involving lambda is given to show an inequality involving the minimizer \( \hat{\beta} \) and any given \( \beta^{*} \)?",answer,0.6801437200777724,1,0.1111111111111111,1.0,0.0,0.5333333333333333
+"In the genomic regions analyzed, which Drosophila species shows the highest frequency of 13-mers?",answer,0.7348631345141269,1,0.42857142857142855,1.0,0.0,0.27777777777777773
+What field is the residue field associated with the $\pmb{p}$-adic valuation on the field of rational numbers $\mathbf{Q}$?,answer,0.7369520873485517,1,0.42857142857142855,1.0,0.1,0.3444444444444444
+Where did Nathaniel Hawthorne serve as a U.S. consul during Franklin Pierce's presidency?,answer,0.8046623719670326,1,0.6666666666666666,1.0,0.0,0.27777777777777773
+What is the orthonormality condition for the conjugate spinors $|\xi\\rangle$ and $|\\bar{\\xi}\\rangle$?,answer,0.7565636887349827,1,0.42857142857142855,1.0,0.0,0.38888888888888884
+"If $T_{eta}$ is supposed to be consistent, which condition would lead to a contradiction based on $T_{eta} \vdash \bot$?",answer,0.688033704822302,1,0.25,1.0,0.0,0.3444444444444444
+What theorem implies the isoperimetric inequality according to the document?,expand_retrieval,0.6603826921829096,1,0.25,1.0,0.0,0.2222222222222222
+How many positions can be powered when using Zips universal display platform?,answer,0.8169529934588718,1,0.6666666666666666,1.0,0.0,0.35555555555555557
+What should you do if the SpO2 measurement on your watch is interrupted by a notification for an incoming call?,answer,0.7458660876370584,1,0.42857142857142855,1.0,0.0,0.3333333333333333
+Does the Enrollment Planning Service in New Hampshire include the Monadnock and Lake Sunapee region?,expand_retrieval,0.6731015672160194,1,0.25,1.0,0.0,0.27777777777777773
+What command line instruction is used to determine the current port configuration for a device with ConnectX6?,abstain,0.6257428815091917,1,0.1111111111111111,1.0,0.0,0.3
+"If you need to install the Windows 10 operating system and want to keep a copy for offline access, which page should you print?",expand_retrieval,0.6700994866773708,0,0.1111111111111111,1.0,0.0,0.4888888888888889
+How many branches does China Unicom have on the Tsinghua University campus?,expand_retrieval,0.665499327533668,1,0.25,1.0,0.0,0.24444444444444446
+Is a MacBook Air intended for use in operating air traffic control systems?,abstain,0.5734053381929126,0,0.1111111111111111,1.0,0.1,0.14444444444444446
+Which synchronization clients are mentioned as being useful for manual backup of a single database or program to OBS?,answer,0.7648990143915233,1,0.42857142857142855,1.0,0.0,0.4333333333333333
+Can you sort Notepad items into different folders by category?,answer,0.6877778281678077,1,0.42857142857142855,1.0,0.1,0.1111111111111111
+How many user roles have permission to configure the ACL for an object of a specified version?,abstain,0.5815348830816461,0,0.0,1.0,0.0,0.3
+What is the first step to take if the issue is related to the milk foam not being okay or the temperature being too cold or too hot when using Basic Milk?,answer,0.7322988666197185,1,0.1111111111111111,1.0,0.0,0.7777777777777777
+Can an OBS Tenant Administrator configure online decompression?,expand_retrieval,0.6289250834160793,0,0.25,1.0,0.0,0.08888888888888889
+Which undergraduate degree offered at the Confetti Nottingham campus focuses on managing events?,expand_retrieval,0.6680432136230804,1,0.25,1.0,0.0,0.25555555555555554
+Which EPS code corresponds to Metropolitan Denver and Northeastern Colorado?,answer,0.685570908232136,1,0.25,1.0,0.0,0.3333333333333333
+Is turning the drive for the dosing auger manually a solution for replacing the choc hopper on a WMF machine?,answer,0.785918999682392,1,0.6666666666666666,1.0,0.1,0.2222222222222222
+Does OneKEY's transfer of interactions to Access Manager include the ability to deauthorize keys?,abstain,0.5930539126871128,1,0.1111111111111111,1.0,0.0,0.16666666666666666
+What is the maximum power supply current allowed for the 8032AH/8052AH/8751BH/8752BH devices under the specified conditions?,expand_retrieval,0.6310898583333993,0,0.1111111111111111,1.0,0.0,0.3222222222222222
+"When accessing archived EPS Report Summaries in the College Board system, after viewing a report summary, what is one of the specific research activities you can choose to engage in?",answer,0.7327225518091418,1,0.25,1.0,0.0,0.5555555555555555
+Can external NTU Education Counsellors assist with visa applications for international students?,answer,0.7048698778963747,1,0.42857142857142855,1.0,0.0,0.13333333333333333
+Where should the proxy addresses be added for configuring the OS and most applications on the DGX A100 System?,answer,0.7648990143915233,1,0.42857142857142855,1.0,0.0,0.4333333333333333
+Where can one find the latest information about Mac OS X?,abstain,0.6095213192981425,0,0.1111111111111111,1.0,0.0,0.2333333333333333
+Is it possible to export handwritten notes as a document in the app?,answer,0.7072460625382815,1,0.42857142857142855,1.0,0.0,0.14444444444444446
+What version must the HUAWEI WATCH GT 2e be updated to in order to use the Remote shutter feature?,answer,0.6830976242544695,1,0.25,1.0,0.0,0.3222222222222222
+What is the total number of students in the College Board Search database that Enrollment Planning subscribers can query?,answer,0.7436897668211329,1,0.42857142857142855,1.0,0.0,0.3222222222222222
+Is it safe to clean refrigerator parts with flammable fluids according to the safety instructions in the refrigerator guide?,answer,0.7212644053569344,1,0.42857142857142855,1.0,0.0,0.2111111111111111
+What symbol represents NFC being enabled in the control panel of this device?,abstain,0.6011482618537342,0,0.1111111111111111,1.0,0.1,0.25555555555555554
+What is the recommended waiting time before starting a temperature measurement after you exercise or switch between outdoor and indoor environments using the Huawei Health app?,answer,0.7348222839581254,0,0.25,1.0,0.1,0.6222222222222222
+"If a WMF coffee machine displays error number 163, what steps should be taken if the error is not remedied after switching the machine off and on again?",answer,0.782921365540468,0,0.42857142857142855,1.0,0.0,0.5333333333333333
+What does 'O' signify in the context of SJ/T 11364-2014 with regards to hazardous substances and homogeneous materials?,answer,0.709712182834357,1,0.25,1.0,0.0,0.4444444444444444
+Which key on the keyboard is used for ejecting media in the document's listing?,abstain,0.5759522697957896,0,0.0,1.0,0.0,0.27777777777777773
+Does adjusting the meat drawer temperature involve letting more cold air from the freezer into the drawer?,answer,0.7898628117419693,1,0.6666666666666666,1.0,0.0,0.18888888888888888
+What actions can you perform with floating window previews when switching between open floating windows?,answer,0.813397491147188,1,0.6666666666666666,1.0,0.1,0.38888888888888884
+What is the location of the Global Summer School that allows students to experience Nottingham and the UK?,answer,0.7628338582242685,1,0.42857142857142855,1.0,0.0,0.4222222222222222
+What display resolutions are available for the computer screens mentioned in the document?,abstain,0.6149574441355556,0,0.1111111111111111,1.0,0.0,0.25555555555555554
+Is there a drain in the small tray beneath the water dispenser designed to evaporate small spills?,answer,0.7166375726667952,1,0.42857142857142855,1.0,0.0,0.18888888888888888
+How can the Flashlight application be accessed quickly using the menu button after lighting up the screen?,abstain,0.6257428815091917,0,0.1111111111111111,1.0,0.0,0.3
+"What feature in the College Board's 'My Searches, Orders & Files' section allows users to identify searches and orders as templates for new searches?",answer,0.8285354537507028,1,0.6666666666666666,1.0,0.1,0.4888888888888889
+What should be done to the main water supply tap and mains switch at the end of coffee machine operation for insurance reasons?,answer,0.7167372870145821,1,0.25,1.0,0.0,0.4777777777777778
+What is one way to wake the MacBook Air from sleep mode?,answer,0.728117040161926,0,0.42857142857142855,1.0,0.0,0.24444444444444446
+Who has access to the Search for Students service?,answer,0.7212644053569344,0,0.42857142857142855,1.0,0.0,0.2111111111111111
+"According to the instructions, where should the nano-SIM card be placed initially to eject it from the slot?",answer,0.8824924712124225,1,1.0,1.0,0.0,0.3222222222222222
+What must you hold down when restarting your MacBook Air to access the Apple Hardware Test?,answer,0.7586661702502878,1,0.42857142857142855,1.0,0.0,0.39999999999999997

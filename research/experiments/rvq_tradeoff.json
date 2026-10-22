@@ -1,0 +1,41 @@
+{
+  "exact_dense_recall_at_5": 0.377571262397733,
+  "configs": [
+    {
+      "mse": 0.001077940597902381,
+      "mean_cosine_to_original": 0.7608070525138186,
+      "compression_ratio": 768.0,
+      "n_stages": 2,
+      "n_centroids": 256,
+      "recall@5": 0.1605879169849758,
+      "fit_time_s": 11.8
+    },
+    {
+      "mse": 0.0008951168232020949,
+      "mean_cosine_to_original": 0.8060679329353846,
+      "compression_ratio": 384.0,
+      "n_stages": 4,
+      "n_centroids": 256,
+      "recall@5": 0.26050882548823723,
+      "fit_time_s": 25.0
+    },
+    {
+      "mse": 0.0009321661766790988,
+      "mean_cosine_to_original": 0.7973073348753643,
+      "compression_ratio": 682.6666666666666,
+      "n_stages": 2,
+      "n_centroids": 512,
+      "recall@5": 0.224314472129178,
+      "fit_time_s": 18.3
+    },
+    {
+      "mse": 0.0007325004960488912,
+      "mean_cosine_to_original": 0.8443343139793348,
+      "compression_ratio": 341.3333333333333,
+      "n_stages": 4,
+      "n_centroids": 512,
+      "recall@5": 0.2827633725751373,
+      "fit_time_s": 44.4
+    }
+  ]
+}

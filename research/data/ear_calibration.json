@@ -1,0 +1,1 @@
+{"coef": [1.6642717745377256, -0.0030427897896785983, -0.5794737418682977, 1.0304393516544461], "intercept": 0.022988408744233055, "threshold_abstain": 0.6284203007776249, "threshold_answer": 0.6776478187358317, "features": ["agreement", "ocr_confidence", "contradiction", "complexity"]}

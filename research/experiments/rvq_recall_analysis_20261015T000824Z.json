@@ -1,0 +1,54 @@
+{
+  "run_id": "rvq_recall_analysis_20261015T000824Z",
+  "rvq_config": {
+    "mse": 0.001077940597902381,
+    "mean_cosine_to_original": 0.7608070525138186,
+    "compression_ratio": 768.0,
+    "n_stages": 2,
+    "n_centroids": 256
+  },
+  "diagnosis": {
+    "n_gold_chunk_instances": 1495,
+    "n_lost_to_quantization": 276,
+    "pct_lost": 18.461538461538463,
+    "mean_reconstruction_cosine_lost": 0.6206534481719035,
+    "mean_reconstruction_cosine_not_lost": 0.6712733144237448,
+    "corpus_mean_reconstruction_cosine": 0.7608070525138186,
+    "welch_t": -4.709809949944868,
+    "welch_p": 3.5401626202672054e-06
+  },
+  "config_comparison": {
+    "Exact dense (no quantization)": {
+      "Recall@5": 0.377571262397733,
+      "MRR@5": 0.7258666666666665,
+      "nDCG@5": 0.4774414722979743,
+      "Precision@5": 0.3320000000000001,
+      "latency_ms_mean": 48.2922166865319,
+      "n_scored": 250
+    },
+    "RVQ quantized (current)": {
+      "Recall@5": 0.1605879169849758,
+      "MRR@5": 0.2764,
+      "nDCG@5": 0.1810829702717081,
+      "Precision@5": 0.14,
+      "latency_ms_mean": 12.924624847713858,
+      "n_scored": 250
+    },
+    "RVQ quantized + exact rerank (candidate fix)": {
+      "Recall@5": 0.3006525056642704,
+      "MRR@5": 0.6111333333333333,
+      "nDCG@5": 0.3891899197612808,
+      "Precision@5": 0.27040000000000003,
+      "latency_ms_mean": 12.961900012101978,
+      "n_scored": 250
+    },
+    "Hybrid RRF (existing baseline, for context)": {
+      "Recall@5": 0.40739785802432865,
+      "MRR@5": 0.7798,
+      "nDCG@5": 0.5147019627768971,
+      "Precision@5": 0.3488,
+      "latency_ms_mean": 53.5743539519608,
+      "n_scored": 250
+    }
+  }
+}

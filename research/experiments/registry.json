@@ -1,0 +1,154 @@
+{
+  "gaps": [
+    {
+      "id": "ndsu_reproduction",
+      "title": "A \u2014 NDSU Reproduction (Substitute Data)",
+      "problem_statement": "The original QuIM-RAG paper (Saha et al. 2024) reports results on a private NDSU catalog/career-advising corpus that is not available to this project. Exact reproduction of those numbers is not possible.",
+      "status": "unverified_under_correction",
+      "dataset": "OHR-Bench manual+textbook domains (substitute for NDSU catalog/career-advising; NOT the original private corpus)",
+      "sample_count": 70,
+      "baseline": "Traditional RAG (chunk-cosine retrieval)",
+      "proposed": "QuIM-style question-indexed retrieval vs. this project's Hybrid/EAR pipeline",
+      "results": {
+        "traditional_rag_recall_at_5": 0.7099659863945578,
+        "quim_style_recall_at_5": 0.344234693877551,
+        "hybrid_recall_at_5": 0.7047278911564626,
+        "hybrid_ear_coverage": 0.7142857142857143,
+        "hybrid_ear_accuracy_on_answer": 0.96,
+        "bertscore_by_method": {
+          "Traditional RAG": {
+            "bertscore_F1_mean": 0.6753066288573402,
+            "n": 70
+          },
+          "QuIM-style": {
+            "bertscore_F1_mean": 0.6478202351502009,
+            "n": 70
+          },
+          "Hybrid": {
+            "bertscore_F1_mean": 0.6669957160949707,
+            "n": 70
+          }
+        }
+      },
+      "uncertainty": "No significance test run between Traditional RAG and QuIM-style on this substitute dataset (single run, not bootstrapped) -- a gap in this analysis, stated not hidden.",
+      "limitations": "This is a SUBSTITUTE-DATA study, not a reproduction of Saha et al. 2024's published numbers. Embedding model (MiniLM vs. their bge-large-en-v1.5), question generation (heuristic template vs. their GPT-3.5), and dataset (OHR-Bench manual/textbook vs. their private NDSU catalog/career-advising corpus) all differ -- see research/NDSU_REPRODUCTION_REPORT.md for the full deviation log. Results here are internally comparable (same dataset/protocol across methods) but NOT comparable to the paper's Table 2 numbers in research/PAPER_REVIEW.md. [2026-10-21 audit note: this gap's EAR-gating result depends on the same un-corrected calibration/evaluation split family that final_validation_ear_core_claim found to be document-overlapping; this gap's own split was NOT independently checked for the same issue, so its EAR-dependent numbers should be treated as unverified, not confirmed, until re-checked. See research/FINAL_VALIDATION/CLAIM_VERIFICATION_MATRIX.md.]",
+      "reproduce_command": ".venv/bin/python research/run_ndsu_reproduction.py",
+      "report_path": "research/NDSU_REPRODUCTION_REPORT.md"
+    },
+    {
+      "id": "ocr_robustness",
+      "title": "B \u2014 OCR Robustness & EAR Validation",
+      "problem_statement": "EAR's ocr_confidence signal was calibrated only on OHR-Bench's clean ground-truth text (zero OCR noise variance), so its real-world value for retrieval decisions was unvalidated.",
+      "status": "done",
+      "dataset": "15 OHR-Bench documents, text rendered then synthetically degraded at 3 severities + clean baseline (4 conditions)",
+      "sample_count": 45,
+      "baseline": "Clean-document retrieval",
+      "proposed": "Degraded-document retrieval with vs. without the ocr_confidence signal",
+      "results": {
+        "pearson_r_confidence_vs_cer": -0.9835084046661161,
+        "pearson_p": 1.4030542611148824e-30,
+        "mean_cer_clean": null,
+        "mean_cer_mild": 0.028903667207317192,
+        "mean_cer_moderate": 0.10512225254990627,
+        "mean_cer_severe": 0.874448120953689,
+        "retrieval_recall_at_3_by_condition": {
+          "clean": 0.9055555555555556,
+          "mild": 0.9055555555555556,
+          "moderate": 0.9222222222222222,
+          "severe": 0.5454545454545454
+        },
+        "ear_ocr_confidence_weight_clean_only": -0.0030427897896785983,
+        "ear_ocr_confidence_weight_mixed": 0.0003223394699878317
+      },
+      "uncertainty": "Pearson correlation p=1.403e-30 (n=41); small sample, see report for caveats.",
+      "limitations": "Degradation is SYNTHETIC image corruption of real text, not genuine scanner noise. Small sample (~18 documents) relative to the full OHR-Bench corpus, and restricted to pages whose ground truth is prose-renderable (table/formula-markup pages were excluded -- rendering literal LaTeX table syntax onto a page and OCR'ing it is not a meaningful OCR-noise simulation, an issue found and fixed during this run; see the report). Retrieval engines here index one page per document (not full multi-page documents) to isolate the OCR-condition effect.",
+      "reproduce_command": ".venv/bin/python research/run_ocr_robustness.py",
+      "report_path": "research/OCR_ROBUSTNESS_STUDY.md"
+    },
+    {
+      "id": "generation_quality",
+      "title": "C \u2014 End-to-End Generation Quality",
+      "problem_statement": "All prior evaluation in this project was retrieval-only. No metric has ever been computed on an answer this project actually generated.",
+      "status": "unverified_under_correction",
+      "dataset": "OHR-Bench evaluation split, stratified 60-query sample (10/domain, seed 23)",
+      "sample_count": 60,
+      "baseline": "Local LLM (llama3.2:latest) answer, always generated",
+      "proposed": "Local LLM answer, generated only when EAR does not abstain",
+      "results": {
+        "generator_model": "llama3.2:latest",
+        "baseline_EM": 0.0,
+        "baseline_F1": 0.20887564725171964,
+        "baseline_bertscore_F1": 0.7234534800052643,
+        "baseline_ragas_faithfulness": 0.5140483971366324,
+        "baseline_ragas_answer_relevancy": 0.6997575726567044,
+        "baseline_ragas_context_precision": 0.7209953703703705,
+        "baseline_ragas_context_recall": 0.4098111221889886,
+        "baseline_ragas_harmfulness": 0.0,
+        "proposed_EM": 0.0,
+        "proposed_F1": 0.1915398068108378,
+        "proposed_bertscore_F1": 0.716655785733081,
+        "proposed_ragas_faithfulness": 0.6188956433637284,
+        "proposed_coverage": 0.7833333333333333
+      },
+      "uncertainty": "Single run, no bootstrap CI on the RAGAS/generation metrics in this pass (60-query sample) -- a gap, stated not hidden.",
+      "limitations": "RAGAS metrics are this project's own implementation (quimrag/ragas_eval.py) of the published definitions, judged by a LOCAL llama3.2:latest (3.2B) model via Ollama -- not the `ragas` PyPI package, and not validated against a cloud-scale judge (GPT-4/Claude) the way the original RAGAS metric family was. A smaller local model (llama3.2:1b) was tested and found unreliable for claim-extraction tasks even at temperature=0 (see module docstring) -- documented, and worked around with a two-step extract-then-verify prompt design, not silently accepted. No API key was needed since generation and judging both run locally via Ollama. [2026-10-21 audit note: this gap's EAR-gating result depends on the same un-corrected calibration/evaluation split family that final_validation_ear_core_claim found to be document-overlapping; this gap's own split was NOT independently checked for the same issue, so its EAR-dependent numbers should be treated as unverified, not confirmed, until re-checked. See research/FINAL_VALIDATION/CLAIM_VERIFICATION_MATRIX.md.]",
+      "reproduce_command": ".venv/bin/python research/run_full_metrics.py",
+      "report_path": "research/GENERATION_EVALUATION_REPORT.md"
+    },
+    {
+      "id": "rvq_recall",
+      "title": "D \u2014 RVQ Recall Gap Analysis",
+      "problem_statement": "The project's 2-stage RVQ compresses embeddings 341x-768x but loses substantial Recall@5 (e.g. 0.378 exact -> 0.161-0.283 quantized) versus exact dense search, with the root cause not yet diagnosed.",
+      "status": "done",
+      "dataset": "OHR-Bench evaluation split (same 252-query set as research/BASELINE_COMPARISON.md)",
+      "sample_count": 1495,
+      "baseline": "Exact dense retrieval",
+      "proposed": "RVQ with candidate fix (exact-rerank of quantized top-N)",
+      "results": {
+        "exact_dense_recall_at_5": 0.377571262397733,
+        "rvq_quantized_recall_at_5": 0.1605879169849758,
+        "rvq_plus_rerank_recall_at_5": 0.3006525056642704,
+        "pct_gold_chunks_lost_to_quantization": 18.461538461538463,
+        "welch_t_lost_vs_not_lost_reconstruction": -4.709809949944868,
+        "welch_p": 3.5401626202672054e-06
+      },
+      "uncertainty": "Welch's t-test on reconstruction cosine, lost vs. not-lost gold chunks: p=3.54e-06",
+      "limitations": "Root-cause isolated to quantization reconstruction error specifically (dense-only comparison, no hybrid fusion/rerank/threshold confound). Candidate fix requires keeping exact vectors for the candidate pool, which is itself a storage/latency tradeoff, not a free fix -- see report.",
+      "reproduce_command": ".venv/bin/python research/run_rvq_analysis.py",
+      "report_path": "research/RVQ_RECALL_ANALYSIS.md"
+    },
+    {
+      "id": "final_validation_ear_core_claim",
+      "title": "FINAL VALIDATION \u2014 EAR Core Claim Re-Checked Under Document-Disjoint Split",
+      "problem_statement": "A 2026-10-21 research-grade audit found the calibration/evaluation split used for every prior EAR selective-prediction measurement (ndsu_reproduction aside) was document-overlapping: 52/102 (51%) calibration documents also appeared in evaluation. This gap re-measures the core EAR claim on a corrected, verified-zero-overlap, document-disjoint split.",
+      "status": "corrected_negative",
+      "dataset": "OHR-Bench qas_v2.json (corrected from qas.json), document-level-disjoint split (corrected from row-level)",
+      "sample_count": {
+        "calibration": 173,
+        "evaluation": 247
+      },
+      "baseline": "Unfiltered Hybrid-RRF retrieval accuracy",
+      "proposed": "EAR-gated selective accuracy on the document-disjoint split",
+      "results": {
+        "coverage": 0.15384615384615385,
+        "accuracy_on_answer": 0.6842105263157895,
+        "overall_baseline_accuracy": 0.6234817813765182,
+        "improvement_ci_95": [
+          -0.08299758391014753,
+          0.19715165317138988
+        ],
+        "original_leaky_split_coverage": 0.628,
+        "original_leaky_split_accuracy_on_answer": 0.7834394904458599,
+        "original_leaky_split_improvement_ci_95": [
+          0.025065088757396436,
+          0.11990188679245287
+        ]
+      },
+      "uncertainty": "95% CI on the corrected improvement includes zero -- the core EAR selective-prediction claim is NOT statistically significant under the corrected split, superseding the original (leaky-split) CI which excluded zero.",
+      "limitations": "This gap re-ran only the main benchmark (baseline comparison + EAR fit/eval). It did NOT re-run the ndsu_reproduction or generation_quality gaps below, which still use the uncorrected split family and are flagged as unverified-under-correction, not confirmed, in research/FINAL_VALIDATION/CLAIM_VERIFICATION_MATRIX.md.",
+      "reproduce_command": "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python research/run_benchmark_v2.py",
+      "report_path": "research/FINAL_VALIDATION/FINAL_RESULTS.md",
+      "run_id": "FINAL_VALIDATION_20261021T144036Z"
+    }
+  ]
+}

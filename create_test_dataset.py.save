@@ -1,0 +1,29 @@
+from datasets import Dataset
+import json
+
+# Sample data structure - adapt this to YOUR actual use case
+test_data = {
+    "question": [
+        "What is Proton Mail's encryption standard?",
+        "How do I reset my Proton password?",
+        "Does Proton offer two-factor authentication?",
+        # ... add 50-100 queries relevant to your RAG domain
+    ],
+    "ground_truth": [
+        "Proton Mail uses end-to-end encryption with PGP standards",
+        "Go to settings > security > password reset",
+        "Yes, Proton offers TOTP-based 2FA authenticator integration",
+    ],
+    "contexts": [
+        ["Proton Mail encrypts all messages using PGP end-to-end encryption standards"],
+        ["Password reset can be performed through the security settings panel"],
+        ["Two-factor authentication is supported via TOTP authenticator apps"],
+    ]
+}
+
+# Create dataset
+dataset = Dataset.from_dict(test_data)
+dataset.save_to_disk("test_dataset_rag")
+print(f"Dataset created with {len(dataset)} examples")
+
+

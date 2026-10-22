@@ -1,0 +1,1589 @@
+doc_name,doc_type,page_idx,severity,query,ocr_text,clean_text,ocr_confidence,CER,WER,ocr_ms
+finance/VERIZON_2021_10K,finance,105,mild,Is the information about principal accounting fees and services included in the definitive Proxy Statement for the 2022 Annual Meeting of Shareholders?,"Item 13. Certain Relationships and Related Transactions, and Director
+Independence
+For information with respect to certain relationships and related transactions and
+Director independence, see the sections entitled ""Governance - Our governance
+framework - Other risk-related matters - Related person transactions and - Item 1:
+Election of Directors - Our Board's independence” in our definitive Proxy
+Statement to be filed with the Securities and Exchange Commission and delivered
+to shareholders in connection with our 2022 Annual Meeting of Shareholders,
+which are incorporated herein by reference.
+Item 14. Principal Accounting Fees and Services
+Our independent registered public accounting firm is Ernst \& Young LLP, New
+York, NY, Auditor Firm ID: 42.
+For information with respect to principal accounting fees and services, see the
+section entitled ""Audit matters - Item 3: Ratification of appointment of independent
+registered public accounting firm"" in our definitive Proxy Statement to be filed with
+the Securities and Exchange Commission and delivered to shareholders in
+connection with our 2022 Annual Meeting of Shareholders, which is incorporated
+herein by reference.","Item 13. Certain Relationships and Related Transactions, and Director Independence
+
+
+For information with respect to certain relationships and related transactions and Director independence, see the sections entitled ""Governance - Our governance framework - Other risk-related matters - Related person transactions and - Item 1: Election of Directors - Our Board's independence"" in our definitive Proxy Statement to be filed with the Securities and Exchange Commission and delivered to shareholders in connection with our 2022 Annual Meeting of Shareholders, which are incorporated herein by reference.
+
+Item 14. Principal Accounting Fees and Services
+
+Our independent registered public accounting firm is Ernst \& Young LLP, New York, NY, Auditor Firm ID: 42.
+For information with respect to principal accounting fees and services, see the section entitled ""Audit matters - Item 3: Ratification of appointment of independent registered public accounting firm"" in our definitive Proxy Statement to be filed with the Securities and Exchange Commission and delivered to shareholders in connection with our 2022 Annual Meeting of Shareholders, which is incorporated herein by reference.",0.9510588235294118,0.015215553677092139,0.0058823529411764705,507.62224197387695
+finance/VERIZON_2021_10K,finance,105,moderate,Is the information about principal accounting fees and services included in the definitive Proxy Statement for the 2022 Annual Meeting of Shareholders?,"item 13. Certain Relationships and Related Transactions, and Director
+independence
+For information with respect to certain relationships and related transactions and
+Director independence, see the sections entitled ""Governance - Our governance
+framework - Other risk-related matters - Related person transactions and - \tem 1:
+Election of Directors - Our Board's independence” in our definitive Proxy
+Statement to be filed with the Securities and Exchange Commission and delivered
+to shareholders in connection with our 2022 Annual Meeting of Shareholders,
+which are incorporated herein by reference.
+tem 14. Principal Accounting Fees and Services
+Our independent registered public accounting firm is Ernst \& Young LLP, New
+section entitled “Audit matters - Item 3: Ratification of appointment of independent
+registered public accounting firm” in our definitive Proxy Statement to be filed with
+the Securities and Exchange Commission and delivered to shareholders in
+connection with our 2022 Annual Meeting of Shareholders, which is incorporated
+herein by reference.","Item 13. Certain Relationships and Related Transactions, and Director Independence
+
+
+For information with respect to certain relationships and related transactions and Director independence, see the sections entitled ""Governance - Our governance framework - Other risk-related matters - Related person transactions and - Item 1: Election of Directors - Our Board's independence"" in our definitive Proxy Statement to be filed with the Securities and Exchange Commission and delivered to shareholders in connection with our 2022 Annual Meeting of Shareholders, which are incorporated herein by reference.
+
+Item 14. Principal Accounting Fees and Services
+
+Our independent registered public accounting firm is Ernst \& Young LLP, New York, NY, Auditor Firm ID: 42.
+For information with respect to principal accounting fees and services, see the section entitled ""Audit matters - Item 3: Ratification of appointment of independent registered public accounting firm"" in our definitive Proxy Statement to be filed with the Securities and Exchange Commission and delivered to shareholders in connection with our 2022 Annual Meeting of Shareholders, which is incorporated herein by reference.",0.9278289473684211,0.11242603550295859,0.14705882352941177,416.0928726196289
+finance/VERIZON_2021_10K,finance,105,severe,Is the information about principal accounting fees and services included in the definitive Proxy Statement for the 2022 Annual Meeting of Shareholders?,cclciapender vepne wane accorane enn ene TMNT,"Item 13. Certain Relationships and Related Transactions, and Director Independence
+
+
+For information with respect to certain relationships and related transactions and Director independence, see the sections entitled ""Governance - Our governance framework - Other risk-related matters - Related person transactions and - Item 1: Election of Directors - Our Board's independence"" in our definitive Proxy Statement to be filed with the Securities and Exchange Commission and delivered to shareholders in connection with our 2022 Annual Meeting of Shareholders, which are incorporated herein by reference.
+
+Item 14. Principal Accounting Fees and Services
+
+Our independent registered public accounting firm is Ernst \& Young LLP, New York, NY, Auditor Firm ID: 42.
+For information with respect to principal accounting fees and services, see the section entitled ""Audit matters - Item 3: Ratification of appointment of independent registered public accounting firm"" in our definitive Proxy Statement to be filed with the Securities and Exchange Commission and delivered to shareholders in connection with our 2022 Annual Meeting of Shareholders, which is incorporated herein by reference.",0.045714285714285714,0.9644970414201184,1.0,205.14702796936035
+finance/3M_2023Q2_10Q,finance,85,mild,Does the Inline XBRL Instance Document appear in the Interactive Data File?,"Item 6. Exhibits.
+\begin{tabular}{|c|c|}
+10.1 & Settlement Agreement, dated as of June 22, 2023, of 3M Company is
+incorporated by reference from our Form 8-K dated June 22, 2023. \\
+10.2 & Amendment No. 1, dated July 7, 2023, to the Five-Year Credit Agreement
+is incorporated by reference trom our Form 8-K dated July 10, 2023. \\
+$(31.1)$ & Certification of the Chief Executive Officer pursuant to Section 302 of
+the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+$(31.2)$ & Certification of the Chief Financial Officer pursuant to Section 302 of
+the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+$(32.1)$ & Certification of the Chief Executive Officer pursuant to Section 906 of
+the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+$(32.2)$ & Certification of the Chief Financial Officer pursuant to Section 906 of
+the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+(95) & Mine Safety Disclosures. \
+(101.INS) & Inline XBRL Instance Document (the instance document does not
+appear in the Interactive Data File because its XBRL tags are embedded within
+the Inline XBRL document) \\
+(101.SCH) & Inline XBRL Taxonomy Extension Schema Document \
+(101.CAL) & Inline XBRL Taxonomy Extension Calculation Linkbase Document \\
+(101.DEF) & Inline XBRL Taxonomy Extension Definition Linkbase Document \
+(101.LAB) & Inline XBRL Taxonomy Extension Label Linkbase Document \\
+(101.PRE) & Inline XBRL Taxonomy Extension Presentation Linkbase Document
+\\
+(104) & Cover Page Interactive Data File (formatted as inline XBRL and
+contained in Exhibit 101) \\
+\end{tabular}","Item 6. Exhibits.
+
+\begin{tabular}{|c|c|}
+  10.1 & Settlement Agreement, dated as of June 22, 2023, of 3M Company is incorporated by reference from our Form 8-K dated June 22, 2023. \\
+  10.2 & Amendment No. 1, dated July 7, 2023, to the Five-Year Credit Agreement is incorporated by reference from our Form 8-K dated July 10, 2023. \\
+  $(31.1)$ & Certification of the Chief Executive Officer pursuant to Section 302 of the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+  $(31.2)$ & Certification of the Chief Financial Officer pursuant to Section 302 of the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+  $(32.1)$ & Certification of the Chief Executive Officer pursuant to Section 906 of the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+  $(32.2)$ & Certification of the Chief Financial Officer pursuant to Section 906 of the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+  (95) & Mine Safety Disclosures. \\
+  (101.INS) & Inline XBRL Instance Document (the instance document does not appear in the Interactive Data File because its XBRL tags are embedded within the Inline XBRL document) \\
+  (101.SCH) & Inline XBRL Taxonomy Extension Schema Document \\
+  (101.CAL) & Inline XBRL Taxonomy Extension Calculation Linkbase Document \\
+  (101.DEF) & Inline XBRL Taxonomy Extension Definition Linkbase Document \\
+  (101.LAB) & Inline XBRL Taxonomy Extension Label Linkbase Document \\
+  (101.PRE) & Inline XBRL Taxonomy Extension Presentation Linkbase Document \\
+  (104) & Cover Page Interactive Data File (formatted as inline XBRL and contained in Exhibit 101) \\
+ 
+\end{tabular}",0.9308366533864542,0.027794935145151328,0.01593625498007968,575.059175491333
+finance/3M_2023Q2_10Q,finance,85,moderate,Does the Inline XBRL Instance Document appear in the Interactive Data File?,"item 6. Exhibits.
+\begin{tabular}{|cic|}
+10.1 & Settlement Agreement, dated as of June 22, 2023, of 3M Company is
+incorporated by reference from our Form 8-K dated June 22, 2023. \\
+10.2 & Amendment No. 1, dated July 7, 2023, to the Five-Year Credit Agreement
+is incorporated by reference from our Form 8-K dated July 10, 2023. \\
+$(31.1)$ & Certification of the Chief Executive Officer pursuant to Section 302 of
+the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+$(31.2)$ & Certification of the Chief Financia! Officer pursuant to Section 302 of
+the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+$(32.1)$ & Certification of the Chief Executive Officer pursuant to Section 906 of
+the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+$(32.2)$ & Certification of the Chief Financial Officer pursuant to Section 906 of
+the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+(95) & Mine Safety Disclosures. \\
+(101.1INS) & Inline XBRL Instance Document (the instance document does not
+appear in the Interactive Data File because its XBRL tags are embedded within
+the Inline XBRL document) \\
+(101.SCH) & Inline XBRL Taxonomy Extension Schema Document \\
+(101.CAL) & Inline XBRL Taxonomy Extension Calculation Linkbase Document \\
+(101.DEF) & Inline XBRL Taxonomy Extension Definition Linkbase Document \
+(101.LAB) & Inline XBRL Taxonomy Extension Label Linkbase Document \\
+(101.PRE) & Inline XBRL Taxonomy Extension Presentation Linkbase Document
+\
+(104) & Cover Page interactive Data File (formatted as inline XBRL and
+contained in Exhibit 101) \\
+\end{tabular}","Item 6. Exhibits.
+
+\begin{tabular}{|c|c|}
+  10.1 & Settlement Agreement, dated as of June 22, 2023, of 3M Company is incorporated by reference from our Form 8-K dated June 22, 2023. \\
+  10.2 & Amendment No. 1, dated July 7, 2023, to the Five-Year Credit Agreement is incorporated by reference from our Form 8-K dated July 10, 2023. \\
+  $(31.1)$ & Certification of the Chief Executive Officer pursuant to Section 302 of the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+  $(31.2)$ & Certification of the Chief Financial Officer pursuant to Section 302 of the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+  $(32.1)$ & Certification of the Chief Executive Officer pursuant to Section 906 of the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+  $(32.2)$ & Certification of the Chief Financial Officer pursuant to Section 906 of the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+  (95) & Mine Safety Disclosures. \\
+  (101.INS) & Inline XBRL Instance Document (the instance document does not appear in the Interactive Data File because its XBRL tags are embedded within the Inline XBRL document) \\
+  (101.SCH) & Inline XBRL Taxonomy Extension Schema Document \\
+  (101.CAL) & Inline XBRL Taxonomy Extension Calculation Linkbase Document \\
+  (101.DEF) & Inline XBRL Taxonomy Extension Definition Linkbase Document \\
+  (101.LAB) & Inline XBRL Taxonomy Extension Label Linkbase Document \\
+  (101.PRE) & Inline XBRL Taxonomy Extension Presentation Linkbase Document \\
+  (104) & Cover Page Interactive Data File (formatted as inline XBRL and contained in Exhibit 101) \\
+ 
+\end{tabular}",0.9211155378486056,0.02964793082149475,0.027888446215139442,552.6900291442871
+finance/3M_2023Q2_10Q,finance,85,severe,Does the Inline XBRL Instance Document appear in the Interactive Data File?,"sated an of urn 22 DOS. of BAA Ccenpaeny
+esc ox varrance omc Fem 0 dated 2082), FE”
+40.2 & Amendment Ho. «ae uty 7, 2023, 19 the Freee Cae CHR AGM
+ee rowateyetorence wm our Fore 0K Gait RAT) EY
+a ee caer ota cunt Eoncune once pasar 9 AP TSS
+he Oat fed of 2002, 18 U.S.C. Seabees 1350, %
+te ce foe cet Fares comen paras SUES
+ce cerpervee City Act ok 2002, 18US.C SoH 12D, © GCE
+e a ence ot Com Emer em SEE DEES ©
+the Sart dey Act of 2002, 18 U.S.C. Section 950% eas
+encase se careers aay rsa BNET
+5 no Sahne Chey Sete 200, 380 GOR? PE”
+rk nae XBPL, rare Oncor ce OOSIOTS
+ce a vic Dam Fa canes Bo HOPS ioe WeSC”
+(101 DEF} & ine XBRL. Taxonomy Extension Debation Linkbaee Document
+ee MRL, Taso Exrcn Arewaanton Lesa OOS
+conan in Exit 107) 5","Item 6. Exhibits.
+
+\begin{tabular}{|c|c|}
+  10.1 & Settlement Agreement, dated as of June 22, 2023, of 3M Company is incorporated by reference from our Form 8-K dated June 22, 2023. \\
+  10.2 & Amendment No. 1, dated July 7, 2023, to the Five-Year Credit Agreement is incorporated by reference from our Form 8-K dated July 10, 2023. \\
+  $(31.1)$ & Certification of the Chief Executive Officer pursuant to Section 302 of the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+  $(31.2)$ & Certification of the Chief Financial Officer pursuant to Section 302 of the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+  $(32.1)$ & Certification of the Chief Executive Officer pursuant to Section 906 of the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+  $(32.2)$ & Certification of the Chief Financial Officer pursuant to Section 906 of the Sarbanes-Oxley Act of 2002, 18 U.S.C. Section 1350. \\
+  (95) & Mine Safety Disclosures. \\
+  (101.INS) & Inline XBRL Instance Document (the instance document does not appear in the Interactive Data File because its XBRL tags are embedded within the Inline XBRL document) \\
+  (101.SCH) & Inline XBRL Taxonomy Extension Schema Document \\
+  (101.CAL) & Inline XBRL Taxonomy Extension Calculation Linkbase Document \\
+  (101.DEF) & Inline XBRL Taxonomy Extension Definition Linkbase Document \\
+  (101.LAB) & Inline XBRL Taxonomy Extension Label Linkbase Document \\
+  (101.PRE) & Inline XBRL Taxonomy Extension Presentation Linkbase Document \\
+  (104) & Cover Page Interactive Data File (formatted as inline XBRL and contained in Exhibit 101) \\
+ 
+\end{tabular}",0.3153846153846154,0.701667696108709,0.8924302788844621,514.070987701416
+finance/AMD_2022_10K,finance,119,mild,"Does the Annual Report on Form 10-K of Advanced Micro Devices, Inc. for the period ended December 31, 2022, comply with the requirements of Section 13(a) or Section 15(d) of the Securities Exchange Act of 1934?","Certification of Principal Executive Officer Pursuant to Section 906 of the
+Sarbanes-Oxley Act of 2002
+Pursuant to 18 U.S.C. § 1350, as adopted pursuant to Section 906 of the
+Sarbanes-Oxley Act of 2002, the undersigned officer of Advanced Micro Devices,
+Inc. (the ""Company”) hereby certifies, to such officer's knowledge, that:
+(i.) the Annual Report on Form 10-K of the Company for the period ended
+December 31, 2022 (the ""Report”) fully complies with the requirements of Section
+13(a) or Section 15(d), as applicable, of the Securities Exchange Act of 1934, as
+amended; and
+(ii.) the information contained in the Report fairly presents, in all material respects,
+the financial condition and results of operations of the Company.
+Date: February 27, 2023
+$\frac{\text { /s/Lisa T. Su }}{\text { Lisa T. Su }}$
+Chair, President and Chief Executive Officer
+(Principal Executive Officer)","Certification of Principal Executive Officer Pursuant to Section 906 of the Sarbanes-Oxley Act of 2002
+
+
+Pursuant to 18 U.S.C. § 1350, as adopted pursuant to Section 906 of the Sarbanes-Oxley Act of 2002, the undersigned officer of Advanced Micro Devices, Inc. (the ""Company"") hereby certifies, to such officer's knowledge, that:
+(i.) the Annual Report on Form 10-K of the Company for the period ended December 31, 2022 (the ""Report"") fully complies with the requirements of Section 13(a) or Section 15(d), as applicable, of the Securities Exchange Act of 1934, as amended; and
+(ii.) the information contained in the Report fairly presents, in all material respects, the financial condition and results of operations of the Company.
+
+Date: February 27, 2023
+$\frac{\text { /s/Lisa T. Su }}{\text { Lisa T. Su }}$
+Chair, President and Chief Executive Officer
+(Principal Executive Officer)",0.9449640287769785,0.013528748590755355,0.014388489208633094,385.4258060455322
+finance/AMD_2022_10K,finance,119,moderate,"Does the Annual Report on Form 10-K of Advanced Micro Devices, Inc. for the period ended December 31, 2022, comply with the requirements of Section 13(a) or Section 15(d) of the Securities Exchange Act of 1934?","Certification of Principal Executive Officer Pursuant to Section 906 of the
+Sarbanes-Oxley Act of 2002
+Pursuant to 18 U.S.C. § 1350, as adopted pursuant to Section 906 of the
+Sarbanes-Oxley Act of 2002, the undersigned officer of Advanced Micro Devices,
+Inc. (the ""Company”) hereby certities, to such officer's knowledge, that:
+(i.) the Annual Report on Form 10-K of the Company for the period ended
+December 31, 2022 (the “Report’) fully complies with the requirements of Section
+13(a) or Section 15(d), as applicable, of the Securities Exchange Act of 1934, as
+amended; and
+(ii.) the information contained in the Report fairly presents, in all material respects,
+the financial condition and results of operations of the Company.
+Date: February 27, 2023
+$iracfitext { /s/Lisa T. Su }}{Wtext { Lisa T. Su }}$
+Chair, President and Chiet Executive Officer
+(Principal Executive Officer)","Certification of Principal Executive Officer Pursuant to Section 906 of the Sarbanes-Oxley Act of 2002
+
+
+Pursuant to 18 U.S.C. § 1350, as adopted pursuant to Section 906 of the Sarbanes-Oxley Act of 2002, the undersigned officer of Advanced Micro Devices, Inc. (the ""Company"") hereby certifies, to such officer's knowledge, that:
+(i.) the Annual Report on Form 10-K of the Company for the period ended December 31, 2022 (the ""Report"") fully complies with the requirements of Section 13(a) or Section 15(d), as applicable, of the Securities Exchange Act of 1934, as amended; and
+(ii.) the information contained in the Report fairly presents, in all material respects, the financial condition and results of operations of the Company.
+
+Date: February 27, 2023
+$\frac{\text { /s/Lisa T. Su }}{\text { Lisa T. Su }}$
+Chair, President and Chief Executive Officer
+(Principal Executive Officer)",0.8996402877697842,0.02254791431792559,0.04316546762589928,356.8291664123535
+finance/AMD_2022_10K,finance,119,severe,"Does the Annual Report on Form 10-K of Advanced Micro Devices, Inc. for the period ended December 31, 2022, comply with the requirements of Section 13(a) or Section 15(d) of the Securities Exchange Act of 1934?","amcation of Principal Executive OCH mmsuart wo Santon 906-08 he
+cnusra 19 u9.c. $1260 an deed oummart ESTES
+Ny Acc wa, te omens fim AECAPORE OSS OTT
+earn “oampay hae seen. 0
+te cd hasen ice voor ba conroary RY ON POT A
+nen te npr hay cnmpans wah HUGO
+Oa 1c, os acca, on ovcten ements AA TTT
+: ai cnt te faery eset SMAPS
+se eneial concen are. esas of operatic oe COMPA: 5h
+poracttent (utina 7. So jreet U8 Su is","Certification of Principal Executive Officer Pursuant to Section 906 of the Sarbanes-Oxley Act of 2002
+
+
+Pursuant to 18 U.S.C. § 1350, as adopted pursuant to Section 906 of the Sarbanes-Oxley Act of 2002, the undersigned officer of Advanced Micro Devices, Inc. (the ""Company"") hereby certifies, to such officer's knowledge, that:
+(i.) the Annual Report on Form 10-K of the Company for the period ended December 31, 2022 (the ""Report"") fully complies with the requirements of Section 13(a) or Section 15(d), as applicable, of the Securities Exchange Act of 1934, as amended; and
+(ii.) the information contained in the Report fairly presents, in all material respects, the financial condition and results of operations of the Company.
+
+Date: February 27, 2023
+$\frac{\text { /s/Lisa T. Su }}{\text { Lisa T. Su }}$
+Chair, President and Chief Executive Officer
+(Principal Executive Officer)",0.2604761904761905,0.713641488162345,0.9568345323741008,379.3342113494873
+law/IDREAMSKYTECHNOLOGYLTD_07_03_2014-EX-10.39-Cooperation Agreement on Mobile Game Business,law,26,mild,What is the contact number for Party A to accept violation reporting?,"11 Liabilities for breach:
+If Party A discovers that Party B violates this Agreement, bribes Party A's working
+staff, or has committed any commercial bribery being investigated by judicial
+authority, Party A shall have the right to suspend the agreement and depending on
+the actual situation and consequences thereof, claim compensation from Party B
+for the economic loss thus incurred to Party A, record such bad acts of Party B,
+disallow Party B the access to Party A's full corporate scope to engage in the
+various services, supplies, construction and other project cooperation for 1 to 3
+years,
+Call number for each Party to accept violation reporting:
+Party A: $025-86588790$
+Party B: $0755-86110235$","11 Liabilities for breach:
+
+If Party A discovers that Party B violates this Agreement, bribes Party A's working staff, or has committed any commercial bribery being investigated by judicial authority, Party A shall have the right to suspend the agreement and depending on the actual situation and consequences thereof, claim compensation from Party B for the economic loss thus incurred to Party A, record such bad acts of Party B, disallow Party B the access to Party A's full corporate scope to engage in the various services, supplies, construction and other project cooperation for 1 to 3 years,
+
+Call number for each Party to accept violation reporting:
+Party A: $025-86588790$
+Party B: $0755-86110235$",0.9463716814159292,0.01272984441301273,0.0,345.1509475708008
+law/IDREAMSKYTECHNOLOGYLTD_07_03_2014-EX-10.39-Cooperation Agreement on Mobile Game Business,law,26,moderate,What is the contact number for Party A to accept violation reporting?,"11 Liabilities for breach:
+authority, Party A shall have the right to suspend the agreement and depending on
+the actual situation and consequences thereot, claim compensation from Party 6
+for the economic loss thus incurred to Party A, record such bad acts of Party 8,
+disallow Party 8 the access to Party A’s full corporate scope to engage in the
+various services, supplies, construction and other project cooperation for 1 to 3
+years,
+Call number for each Party to accept violation reporting:
+Party A: $025-86588790$
+Party B: $0755-86110235$","11 Liabilities for breach:
+
+If Party A discovers that Party B violates this Agreement, bribes Party A's working staff, or has committed any commercial bribery being investigated by judicial authority, Party A shall have the right to suspend the agreement and depending on the actual situation and consequences thereof, claim compensation from Party B for the economic loss thus incurred to Party A, record such bad acts of Party B, disallow Party B the access to Party A's full corporate scope to engage in the various services, supplies, construction and other project cooperation for 1 to 3 years,
+
+Call number for each Party to accept violation reporting:
+Party A: $025-86588790$
+Party B: $0755-86110235$",0.9243181818181818,0.24611032531824611,0.26548672566371684,283.9770317077637
+law/IDREAMSKYTECHNOLOGYLTD_07_03_2014-EX-10.39-Cooperation Agreement on Mobile Game Business,law,26,severe,What is the contact number for Party A to accept violation reporting?,"shart, oF Paes ar corsmvancial bribery being wnvestigned OF PASS
+mthority. arty A shall tae the apn tO guapend Bi? and depending on
+the achvai wiuaton and thereat, chan seoen Party 8
+ce nae pre second to Pere Regatta SNS PING, es
+eo cpanel toe Pate Pen
+‘ can number ox wach Party to actant whan IPRA
+Party &: SO7S5- B62 102358","11 Liabilities for breach:
+
+If Party A discovers that Party B violates this Agreement, bribes Party A's working staff, or has committed any commercial bribery being investigated by judicial authority, Party A shall have the right to suspend the agreement and depending on the actual situation and consequences thereof, claim compensation from Party B for the economic loss thus incurred to Party A, record such bad acts of Party B, disallow Party B the access to Party A's full corporate scope to engage in the various services, supplies, construction and other project cooperation for 1 to 3 years,
+
+Call number for each Party to accept violation reporting:
+Party A: $025-86588790$
+Party B: $0755-86110235$",0.32822580645161287,0.6647807637906648,0.8584070796460177,294.1310405731201
+law/BIOAMBERINC_04_10_2013-EX-10.34-DEVELOPMENT AGREEMENT (1),law,17,mild,What is one of the guiding principles that Cargill adheres to regarding business obligations?,"EXHIBITF
+Cargill's Guiding Principles
+- Cargill will comply with the laws of all countries to which it is subject.
+- Cargill will not knowingly assist any third party to violate any law of any country,
+by creating false documents or by any other means.
+- Cargill will not pay or receive bribes or participate in any other unethical,
+fraudulent, or corrupt practice.
+- Cargill will always honor all business obligations that it undertakes with absolute
+integrity.
+- Cargill will keep its business records in a manner that accurately reflects the true
+nature of its business transactions.
+- Cargill managers and supervisors will be responsible that employees,
+consultants and contract workers under their supervision are familiar with
+applicable laws and company policies and comply with them. Further, they will be
+responsible for preventing, detecting, and reporting any violations of law of Cargill
+policies.
+- Cargill employees will not become involved in situations that create a conflict of
+interest between the company and the employee.
+- Every year, all Cargill employees sign an agreement to live these principles.
+Cargill's Compliance Policy on Intellectual Property
+${* * * 2$ pages omitted. $}$
+Cargill Confidential
+-18 -
+* Confidential treatment requested","EXHIBITF
+
+
+Cargill's Guiding Principles
+- Cargill will comply with the laws of all countries to which it is subject.
+- Cargill will not knowingly assist any third party to violate any law of any country, by creating false documents or by any other means.
+- Cargill will not pay or receive bribes or participate in any other unethical, fraudulent, or corrupt practice.
+- Cargill will always honor all business obligations that it undertakes with absolute integrity.
+- Cargill will keep its business records in a manner that accurately reflects the true nature of its business transactions.
+- Cargill managers and supervisors will be responsible that employees, consultants and contract workers under their supervision are familiar with applicable laws and company policies and comply with them. Further, they will be responsible for preventing, detecting, and reporting any violations of law of Cargill policies.
+- Cargill employees will not become involved in situations that create a conflict of interest between the company and the employee.
+- Every year, all Cargill employees sign an agreement to live these principles.
+
+Cargill's Compliance Policy on Intellectual Property
+$[* * * 2$ pages omitted. $]$
+Cargill Confidential
+-18 -
+* Confidential treatment requested",0.9432994923857868,0.01103230890464933,0.01015228426395939,476.76992416381836
+law/BIOAMBERINC_04_10_2013-EX-10.34-DEVELOPMENT AGREEMENT (1),law,17,moderate,What is one of the guiding principles that Cargill adheres to regarding business obligations?,"EXHIBITF
+Cargill's Guiding Principles
+- Cargill will comply with the laws of all countries to which itis subject.
+- Cargill will not knowingly assist any third party to violate any law of any country,
+by creating false documents or by any other means.
+- Cargill will not pay or receive bribes or participate in any other unethical,
+fraudulent, or corrupt practice.
+- Cargill will always honor all business obligations that it undertakes with absolute
+~ Cargill will keep its business records in a manner that accurately reflects the true
+nature of its business transactions.
+- Cargill managers and supervisors will be responsible that employees,
+consultants and contract workers under their supervision are familiar with
+applicable laws and company policies and comply with them. Further, they will be
+responsible for preventing, detecting, and reporting any violations of law of Cargill
+policies.
+"" Cargill employees will not become involved in situations that create a conflict of
+interest between the company and the employee.
+Cargill's Compliance Policy on Intellectual Property
+${"" * * 2$ pages omitted. $}$
+Cargill Confidential
+-18 -
+* Confidential treatment requested","EXHIBITF
+
+
+Cargill's Guiding Principles
+- Cargill will comply with the laws of all countries to which it is subject.
+- Cargill will not knowingly assist any third party to violate any law of any country, by creating false documents or by any other means.
+- Cargill will not pay or receive bribes or participate in any other unethical, fraudulent, or corrupt practice.
+- Cargill will always honor all business obligations that it undertakes with absolute integrity.
+- Cargill will keep its business records in a manner that accurately reflects the true nature of its business transactions.
+- Cargill managers and supervisors will be responsible that employees, consultants and contract workers under their supervision are familiar with applicable laws and company policies and comply with them. Further, they will be responsible for preventing, detecting, and reporting any violations of law of Cargill policies.
+- Cargill employees will not become involved in situations that create a conflict of interest between the company and the employee.
+- Every year, all Cargill employees sign an agreement to live these principles.
+
+Cargill's Compliance Policy on Intellectual Property
+$[* * * 2$ pages omitted. $]$
+Cargill Confidential
+-18 -
+* Confidential treatment requested",0.8912087912087913,0.0851063829787234,0.10152284263959391,415.424108505249
+law/BIOAMBERINC_04_10_2013-EX-10.34-DEVELOPMENT AGREEMENT (1),law,17,severe,What is one of the guiding principles that Cargill adheres to regarding business obligations?,,"EXHIBITF
+
+
+Cargill's Guiding Principles
+- Cargill will comply with the laws of all countries to which it is subject.
+- Cargill will not knowingly assist any third party to violate any law of any country, by creating false documents or by any other means.
+- Cargill will not pay or receive bribes or participate in any other unethical, fraudulent, or corrupt practice.
+- Cargill will always honor all business obligations that it undertakes with absolute integrity.
+- Cargill will keep its business records in a manner that accurately reflects the true nature of its business transactions.
+- Cargill managers and supervisors will be responsible that employees, consultants and contract workers under their supervision are familiar with applicable laws and company policies and comply with them. Further, they will be responsible for preventing, detecting, and reporting any violations of law of Cargill policies.
+- Cargill employees will not become involved in situations that create a conflict of interest between the company and the employee.
+- Every year, all Cargill employees sign an agreement to live these principles.
+
+Cargill's Compliance Policy on Intellectual Property
+$[* * * 2$ pages omitted. $]$
+Cargill Confidential
+-18 -
+* Confidential treatment requested",,1.0,1.0,211.77315711975098
+law/DIVERSINETCORP_03_01_2012-EX-4-RESELLER AGREEMENT,law,7,mild,Who is the person signing the contract for 2205925 Ontario Limited?,"$\qquad$
+Schedule 1
+Reseller Information
+\begin{tabular}{|!||I|}
+Name & 2205925 Ontario Limited \\
+Street Address & 111 Main Street West, Suite 304 \
+City & North Bay, ON \\
+Country & Canada \\
+Zip/Postal Code & P1B 2T6 \\
+Billing Address (if different from above) & \\
+Shipping Address (if different from above) & \\
+Telephone & \\
+Facsimile & \\
+Person Signing Contract & Dr. Wendy Graham \\
+E-mail Address & drgraham@vianet.ca \\
+Primary Technical Support Contact & \\
+Address and Contact Information for Notice section in the Agreement & \\
+\end{tabular}","$\qquad$
+
+Schedule 1
+Reseller Information
+\begin{tabular}{|l|l|}
+  Name & 2205925 Ontario Limited \\
+  Street Address & 111 Main Street West, Suite 304 \\
+  City & North Bay, ON \\
+  Country & Canada \\
+  Zip/Postal Code & P1B 2T6 \\
+  Billing Address (if different from above) & \\
+  Shipping Address (if different from above) & \\
+  Telephone & \\
+  Facsimile & \\
+  Person Signing Contract & Dr. Wendy Graham \\
+  E-mail Address & drgraham@vianet.ca \\
+  Primary Technical Support Contact & \\
+  Address and Contact Information for Notice section in the Agreement & \\
+ 
+\end{tabular}",0.9178260869565217,0.056218057921635436,0.021739130434782608,330.37471771240234
+law/DIVERSINETCORP_03_01_2012-EX-4-RESELLER AGREEMENT,law,7,moderate,Who is the person signing the contract for 2205925 Ontario Limited?,"S\qquad$
+Schedule 1
+Reseller Information
+\begin{tabular}{(t{!{}
+Name & 2205925 Ontario Limited \\
+Street Address & 111 Main Street West. Suite 304 \\
+Gity & North Bay, ON \\
+Country & Canada \\
+Zip/Postal Code & P1B 276 \\
+Billing Address (if different from above) & \\
+Shipping Address (if different trom above) & \\
+Telephone & \\
+Facsimile & \\
+Person Signing Contract & Dr. Wendy Graham \\
+E-mail Address & drgraham@vianet.ca \\
+Primary Technical Support Contact &\\
+Address and Contact Information for Notice section in the Agreement & \
+\end{tabular}","$\qquad$
+
+Schedule 1
+Reseller Information
+\begin{tabular}{|l|l|}
+  Name & 2205925 Ontario Limited \\
+  Street Address & 111 Main Street West, Suite 304 \\
+  City & North Bay, ON \\
+  Country & Canada \\
+  Zip/Postal Code & P1B 2T6 \\
+  Billing Address (if different from above) & \\
+  Shipping Address (if different from above) & \\
+  Telephone & \\
+  Facsimile & \\
+  Person Signing Contract & Dr. Wendy Graham \\
+  E-mail Address & drgraham@vianet.ca \\
+  Primary Technical Support Contact & \\
+  Address and Contact Information for Notice section in the Agreement & \\
+ 
+\end{tabular}",0.9036263736263735,0.06984667802385008,0.09782608695652174,315.0022029876709
+law/DIVERSINETCORP_03_01_2012-EX-4-RESELLER AGREEMENT,law,7,severe,Who is the person signing the contract for 2205925 Ontario Limited?,,"$\qquad$
+
+Schedule 1
+Reseller Information
+\begin{tabular}{|l|l|}
+  Name & 2205925 Ontario Limited \\
+  Street Address & 111 Main Street West, Suite 304 \\
+  City & North Bay, ON \\
+  Country & Canada \\
+  Zip/Postal Code & P1B 2T6 \\
+  Billing Address (if different from above) & \\
+  Shipping Address (if different from above) & \\
+  Telephone & \\
+  Facsimile & \\
+  Person Signing Contract & Dr. Wendy Graham \\
+  E-mail Address & drgraham@vianet.ca \\
+  Primary Technical Support Contact & \\
+  Address and Contact Information for Notice section in the Agreement & \\
+ 
+\end{tabular}",,1.0,1.0,183.64810943603516
+manual/t480_ug_en,manual,22,mild,What indication does the Ethernet connector give when data is being transmitted on a computer connected to a local area network?,"3 HDMI connector
+The High-Definition Multimedia Interface (HDMI) connector is a digital audio and video interface. It
+enables you to connect your computer to a compatible digital audio device or video monitor, such as a
+high-definition television (HDTV).
+4 Always on USB 3.1 connector Gen 1
+By default, the Always On USB 3.0 connector enables you to charge the USB-compatible devices in
+the following situations:
+- When your computer is on or in sleep mode
+- When your computer is off or in hibernation mode, but connected to ac power
+To charge these devices when the computer is off or in hibernation mode, and the computer is not
+connected to ac power, start the Lenovo Vantage program, click Hardware Settings $\rightarrow$
+Power. Locate the Always On USB section and follow the instructions on the screen to make your
+preferred setting.
+5 Ethernet connector
+Connect the computer to a local area network (LAN). The Ethernet connector has two network status
+indicators. When the green indicator is on, the computer is connected to a LAN. When the yellow
+indicator blinks, data is being transmitted.
+$\searrow_{\text {DANGER }$}
+To avoid the risk of electrical shock, do not connect the telephone cable to the Ethernet connector. You
+can only connect an Ethernet cable to this connector.
+Note: If the computer is connected to a docking station, use the Ethernet connector on the docking
+station instead of the one on the computer.
+6 Media-card slot
+Insert a flash media card into the media-card slot for data access or storage. For more information, see
+""Using a media card or a smart card” on page 34.
+7 Security-lock slot
+Lock your computer to a desk, table, or other fixtures through a security cable lock that fits this
+security-lock slot to protect your computer from theft,.
+Note: You are responsible for evaluating, selecting, and implementing the locking device and security
+feature. Lenovo makes no comments, judgments, or warranties about the function, quality, or
+performance of the locking device and security feature.","3 HDMI connector
+
+
+The High-Definition Multimedia Interface (HDMI) connector is a digital audio and video interface. It enables you to connect your computer to a compatible digital audio device or video monitor, such as a high-definition television (HDTV).
+
+4 Always on USB 3.1 connector Gen 1
+
+By default, the Always On USB 3.0 connector enables you to charge the USB-compatible devices in the following situations:
+- When your computer is on or in sleep mode
+- When your computer is off or in hibernation mode, but connected to ac power
+
+To charge these devices when the computer is off or in hibernation mode, and the computer is not connected to ac power, start the Lenovo Vantage program, click Hardware Settings $\rightarrow$ Power. Locate the Always On USB section and follow the instructions on the screen to make your preferred setting.
+
+5 Ethernet connector
+
+Connect the computer to a local area network (LAN). The Ethernet connector has two network status indicators. When the green indicator is on, the computer is connected to a LAN. When the yellow indicator blinks, data is being transmitted.
+
+$\searrow_{\text {DANGER }$}
+
+To avoid the risk of electrical shock, do not connect the telephone cable to the Ethernet connector. You can only connect an Ethernet cable to this connector.
+
+Note: If the computer is connected to a docking station, use the Ethernet connector on the docking station instead of the one on the computer.
+
+6 Media-card slot
+
+Insert a flash media card into the media-card slot for data access or storage. For more information, see ""Using a media card or a smart card"" on page 34.
+
+7 Security-lock slot
+
+Lock your computer to a desk, table, or other fixtures through a security cable lock that fits this security-lock slot to protect your computer from theft,.
+
+Note: You are responsible for evaluating, selecting, and implementing the locking device and security feature. Lenovo makes no comments, judgments, or warranties about the function, quality, or performance of the locking device and security feature.",0.9497597597597597,0.01466275659824047,0.003003003003003003,648.5590934753418
+manual/t480_ug_en,manual,22,moderate,What indication does the Ethernet connector give when data is being transmitted on a computer connected to a local area network?,"3 HOM! connector
+The High-Definition Mutimedia Interace (HOM) connector is ighal aucdo and video interface.
+enables you to connect your computer to a compatible digital audio device or video moniior. such a8 8
+4 Always on USB 3.1 connector Gen 1
+By deftaut, the Aways On USB 3.0 comector enables you to charge the USB-compaubie devices ©
+the following situations:
+- When your computer is on or in sleep mode
+- When your computer is off of in hibernation mode, but connected to ac power
+To charge these devices when the computer is off or in hibernation mode, and the computer's net
+connected o ac power, stat the Lenovo Vantage program, cick Hardware Settings Siaghtarrows
+Power. Locate the Aways On USB section and follow the instructions on the screen to make YOU
+preferred setting.
+5 Ethernet connector
+Connect the computer to local area network (LAN), The Ethernet connector has two nonwork stake
+indicators. When the green indicator is on, the computer is connected to @ LAN, Wnen the yellow
+indicator blinks, data is being transmitted.
+$searrow_(\text (DANGER }$}
+To avoid the rith of electrical shack, do not connect the telephone cable to the Ethernet connector: You
+can only connect an Ethernet cable to this connector.
+ote: ifthe computer is connected to a docking station, use the Ethemet connector on the docking
+station instead of the one on the computer.
+6 Media-card slot
+insert a flash media card into the media-card slot for data access or storage. For more information, 208
+“Using a media card or a smart card” on page 34,
+7 Security-lock slot
+Lock your computer to a desk. table, or other fextures through a security cable lock that Ms his
+security-lock slot to protect your computer from theft.
+note: You are responsible for evaluating, selecting, and implementing the locking device and securty
+feature. Lenove makes no comments, judgments, or warranties about the function, quality, Of","3 HDMI connector
+
+
+The High-Definition Multimedia Interface (HDMI) connector is a digital audio and video interface. It enables you to connect your computer to a compatible digital audio device or video monitor, such as a high-definition television (HDTV).
+
+4 Always on USB 3.1 connector Gen 1
+
+By default, the Always On USB 3.0 connector enables you to charge the USB-compatible devices in the following situations:
+- When your computer is on or in sleep mode
+- When your computer is off or in hibernation mode, but connected to ac power
+
+To charge these devices when the computer is off or in hibernation mode, and the computer is not connected to ac power, start the Lenovo Vantage program, click Hardware Settings $\rightarrow$ Power. Locate the Always On USB section and follow the instructions on the screen to make your preferred setting.
+
+5 Ethernet connector
+
+Connect the computer to a local area network (LAN). The Ethernet connector has two network status indicators. When the green indicator is on, the computer is connected to a LAN. When the yellow indicator blinks, data is being transmitted.
+
+$\searrow_{\text {DANGER }$}
+
+To avoid the risk of electrical shock, do not connect the telephone cable to the Ethernet connector. You can only connect an Ethernet cable to this connector.
+
+Note: If the computer is connected to a docking station, use the Ethernet connector on the docking station instead of the one on the computer.
+
+6 Media-card slot
+
+Insert a flash media card into the media-card slot for data access or storage. For more information, see ""Using a media card or a smart card"" on page 34.
+
+7 Security-lock slot
+
+Lock your computer to a desk, table, or other fixtures through a security cable lock that fits this security-lock slot to protect your computer from theft,.
+
+Note: You are responsible for evaluating, selecting, and implementing the locking device and security feature. Lenovo makes no comments, judgments, or warranties about the function, quality, or performance of the locking device and security feature.",0.8230599369085173,0.10068426197458455,0.2012012012012012,507.61866569519043
+manual/t480_ug_en,manual,22,severe,What indication does the Ethernet connector give when data is being transmitted on a computer connected to a local area network?,"eee crane mnsangan aoa eae smn
+arte tnieaemenreancre emer ;
+ines pons cone ae ent ERE ; aS te NS Xe
+ee cones nx nenmrrenncee MAM TT
+2 star ean oro en emg oh PATO seagate O
+Ee power wan fierce Wsrtngn OA OE SST sevcenges Beane :
+1 Bienen nonce
+Ce nanan x seer nereramrtne: TT ‘
+‘enn te, Se A OS ern ener teas
+esera ot DARER TE ee
+: scene Aa ct ects cack. ncorenet MAE? sen to he Biber coment.
+“ee ty camer ie meet oaaea eM OES: 2s
+arte a sn cpa endemcsns ten momen 6 Ki comet on Poe a
+svn cree et rt seanucn ton nee eee
+“ain a wing cram 9 mere on Pe 2 i 2 eS es ;
+<n vs cose to in tat 91 OR 4 wren nn scanty io th tea HOH
+enna ek pe et eters PAE i
+choc meinen ee eo nomena eae
+aiunuee. Lanne aie 10 ROMANS. soe et gins at AUN. NAY OF","3 HDMI connector
+
+
+The High-Definition Multimedia Interface (HDMI) connector is a digital audio and video interface. It enables you to connect your computer to a compatible digital audio device or video monitor, such as a high-definition television (HDTV).
+
+4 Always on USB 3.1 connector Gen 1
+
+By default, the Always On USB 3.0 connector enables you to charge the USB-compatible devices in the following situations:
+- When your computer is on or in sleep mode
+- When your computer is off or in hibernation mode, but connected to ac power
+
+To charge these devices when the computer is off or in hibernation mode, and the computer is not connected to ac power, start the Lenovo Vantage program, click Hardware Settings $\rightarrow$ Power. Locate the Always On USB section and follow the instructions on the screen to make your preferred setting.
+
+5 Ethernet connector
+
+Connect the computer to a local area network (LAN). The Ethernet connector has two network status indicators. When the green indicator is on, the computer is connected to a LAN. When the yellow indicator blinks, data is being transmitted.
+
+$\searrow_{\text {DANGER }$}
+
+To avoid the risk of electrical shock, do not connect the telephone cable to the Ethernet connector. You can only connect an Ethernet cable to this connector.
+
+Note: If the computer is connected to a docking station, use the Ethernet connector on the docking station instead of the one on the computer.
+
+6 Media-card slot
+
+Insert a flash media card into the media-card slot for data access or storage. For more information, see ""Using a media card or a smart card"" on page 34.
+
+7 Security-lock slot
+
+Lock your computer to a desk, table, or other fixtures through a security cable lock that fits this security-lock slot to protect your computer from theft,.
+
+Note: You are responsible for evaluating, selecting, and implementing the locking device and security feature. Lenovo makes no comments, judgments, or warranties about the function, quality, or performance of the locking device and security feature.",0.23934911242603552,0.7834799608993157,0.975975975975976,583.6119651794434
+manual/obs-productdesc-en,manual,42,mild,Is it possible for a Tenant Guest to manage image processing tasks?,"\begin{tabular}{|1|I|II|I||I|}
+Operatio n & Tenant Administ rator & Tenant Guest & OBS Administ rator & OBS
+Buckets Viewer & OBS ReadOn yAccess & OBS Operate Access \\
+Managin g logging & Yes & No & Yes & No & No & No \\
+Managin g tags & Yes & No & Yes & No & No & No \
+Managin g lifecycle rules & Yes & No & Yes & No & No & No \\
+Managin g static website hosting & Yes & No & Yes & No & No & No \\
+Managin g CORS rules & Yes & No & Yes & No & No & No \\
+Managin g URL validation & Yes & No & Yes & No & No & No \\
+Managin g domain names & Yes & No & Yes & No & No & No \\
+Managin g cross- region replication & Yes & No & Yes & No & No & No \\
+Managin gimage processin g & Yes & No & Yes & No & No & No \\
+Appendin gobjects & Yes & No & Yes & No & No & Yes \\
+Configuri ng object ACL & Yes & No & Yes & No & No & No \\
+\end{tabular}","\begin{tabular}{|l|l|l|l|l|l|l|}
+  Operatio n & Tenant Administ rator & Tenant Guest & OBS Administ rator & OBS Buckets Viewer & OBS ReadOn yAccess & OBS Operate Access \\
+  Managin g logging & Yes & No & Yes & No & No & No \\
+  Managin g tags & Yes & No & Yes & No & No & No \\
+  Managin g lifecycle rules & Yes & No & Yes & No & No & No \\
+  Managin g static website hosting & Yes & No & Yes & No & No & No \\
+  Managin g CORS rules & Yes & No & Yes & No & No & No \\
+  Managin g URL validatio n & Yes & No & Yes & No & No & No \\
+  Managin g domain names & Yes & No & Yes & No & No & No \\
+  Managin g cross- region replicatio n & Yes & No & Yes & No & No & No \\
+  Managin gimage processin g & Yes & No & Yes & No & No & No \\
+  Appendin gobjects & Yes & No & Yes & No & No & Yes \\
+  Configuri ng object ACL & Yes & No & Yes & No & No & No \\
+ 
+\end{tabular}",0.9127230046948357,0.0440324449594438,0.027906976744186046,396.65937423706055
+manual/obs-productdesc-en,manual,42,moderate,Is it possible for a Tenant Guest to manage image processing tasks?,"\begin{tabutar} (}t}i{t}{!}HH)}
+Operatio n & Tenant Administrator & Tenant Guest & OBS Administ rator & OBS
+Buckets Viewer & OBS ReadOn yAccess & OBS Operate Access \
+Managin g logging & Yes & No & Yes & No & No & No \\
+Managin g tags & Yes & No & Yes & No & No & No \
+Managin g lifecycle rules & Yes & No & Yes & No & No & No \\
+Managin g static website hosting & Yes & No & Yes & No & No & No\
+Managin g CORS rules & Yes & No & Yes & No & No & No \\
+Managin g URL validatio n & Yes & No & Yes & No & No & No \\
+Managin g domain names & Yes & No & Yes & No & No & No \\
+Managin g cross- region replicatio n & Yes & No & Yes & No & No & No \\
+Managin gimage processin g & Yes & No & Yes & No & No & No\
+Appendin gobjects & Yes & No & Yes & No & No & Yes \\
+Configuri ng object ACL & Yes & No & Yes & No & No & No\\
+\end{tabular}","\begin{tabular}{|l|l|l|l|l|l|l|}
+  Operatio n & Tenant Administ rator & Tenant Guest & OBS Administ rator & OBS Buckets Viewer & OBS ReadOn yAccess & OBS Operate Access \\
+  Managin g logging & Yes & No & Yes & No & No & No \\
+  Managin g tags & Yes & No & Yes & No & No & No \\
+  Managin g lifecycle rules & Yes & No & Yes & No & No & No \\
+  Managin g static website hosting & Yes & No & Yes & No & No & No \\
+  Managin g CORS rules & Yes & No & Yes & No & No & No \\
+  Managin g URL validatio n & Yes & No & Yes & No & No & No \\
+  Managin g domain names & Yes & No & Yes & No & No & No \\
+  Managin g cross- region replicatio n & Yes & No & Yes & No & No & No \\
+  Managin gimage processin g & Yes & No & Yes & No & No & No \\
+  Appendin gobjects & Yes & No & Yes & No & No & Yes \\
+  Configuri ng object ACL & Yes & No & Yes & No & No & No \\
+ 
+\end{tabular}",0.8839150943396227,0.06025492468134415,0.05581395348837209,360.83197593688965
+manual/obs-productdesc-en,manual,42,severe,Is it possible for a Tenant Guest to manage image processing tasks?,"Miocon pam weeuteronieg ts You ek NR ASE TEE TT”
+venanng Cons nses &Yes ENDL VERRNORNGA TO |
+deere a ure. vendako 5 4 Yen a not Yen SNORND STS”
+Mg doce inennn eshte TU RNOE TOT
+Le eee regen rcmcann ng en nna Ton NOSES TY”
+Mee cage pene gavesarnesera NokMOSTST
+hoonain gorpecs YORE NOR YORRNOR MELT |
+Hrociegonen sc avesanea yess MEBMOETS ©","\begin{tabular}{|l|l|l|l|l|l|l|}
+  Operatio n & Tenant Administ rator & Tenant Guest & OBS Administ rator & OBS Buckets Viewer & OBS ReadOn yAccess & OBS Operate Access \\
+  Managin g logging & Yes & No & Yes & No & No & No \\
+  Managin g tags & Yes & No & Yes & No & No & No \\
+  Managin g lifecycle rules & Yes & No & Yes & No & No & No \\
+  Managin g static website hosting & Yes & No & Yes & No & No & No \\
+  Managin g CORS rules & Yes & No & Yes & No & No & No \\
+  Managin g URL validatio n & Yes & No & Yes & No & No & No \\
+  Managin g domain names & Yes & No & Yes & No & No & No \\
+  Managin g cross- region replicatio n & Yes & No & Yes & No & No & No \\
+  Managin gimage processin g & Yes & No & Yes & No & No & No \\
+  Appendin gobjects & Yes & No & Yes & No & No & Yes \\
+  Configuri ng object ACL & Yes & No & Yes & No & No & No \\
+ 
+\end{tabular}",0.18584615384615386,0.8041714947856315,1.0,323.5461711883545
+manual/Macbook_air,manual,2,mild,Does GarageBand provide help options for both recording and using a virtual stage?,"iMovie
+Collect all your video in
+one library. Create and share movies in minutes.
+GarageBand
+Create music by adding
+musicians to a virtual stage.
+Enhance your song to sound
+like a pro.
+wwwapple.com/ilife/garageband
+GarageBand Help (Q, record)
+iPhoto
+Organize all your photos with Events. Publish to a Web Gallery with a click.
+iPhoto Help ( a photo
+iWeb
+Create beautiful websites with photos, movies, blogs, podcasts, and dynamic web
+widgets.
+www.apple.com/ilife/iveb
+Neb Help ( $Q$ website","iMovie
+Collect all your video in
+one library. Create and share movies in minutes.
+
+GarageBand
+Create music by adding
+musicians to a virtual stage.
+Enhance your song to sound
+like a pro.
+wwwapple.com/ilife/garageband
+GarageBand Help (Q, record)
+iPhoto
+Organize all your photos with Events. Publish to a Web Gallery with a click.
+iPhoto Help ( a photo
+iWeb
+Create beautiful websites with photos, movies, blogs, podcasts, and dynamic web widgets.
+www.apple.com/ilife/iveb
+Neb Help ( $Q$ website",0.9423684210526316,0.004073319755600814,0.0,298.734188079834
+manual/Macbook_air,manual,2,moderate,Does GarageBand provide help options for both recording and using a virtual stage?,"iMovi
+Collect all your video in
+one library. Create and share movies in minutes.
+GarageBand
+Create music by adding
+musicians to a virtual stage.
+Enhance your song to sound
+like a pro.
+wwwapple.comviilite/garageband
+GarageBand Help (Q, record)
+iPhoto
+Organize all your photos with Events. Publish to a Web Gallery with a click.
+iPhoto Help ( a photo
+iWeb
+Create beautiful websites with photos, movies, blogs, podcasts, and dynamic web
+widgets.
+www.apple.convilife/iveb
+Neb Help ( $Q$ website","iMovie
+Collect all your video in
+one library. Create and share movies in minutes.
+
+GarageBand
+Create music by adding
+musicians to a virtual stage.
+Enhance your song to sound
+like a pro.
+wwwapple.com/ilife/garageband
+GarageBand Help (Q, record)
+iPhoto
+Organize all your photos with Events. Publish to a Web Gallery with a click.
+iPhoto Help ( a photo
+iWeb
+Create beautiful websites with photos, movies, blogs, podcasts, and dynamic web widgets.
+www.apple.com/ilife/iveb
+Neb Help ( $Q$ website",0.9317105263157894,0.016293279022403257,0.039473684210526314,287.45412826538086
+manual/Macbook_air,manual,2,severe,Does GarageBand provide help options for both recording and using a virtual stage?,,"iMovie
+Collect all your video in
+one library. Create and share movies in minutes.
+
+GarageBand
+Create music by adding
+musicians to a virtual stage.
+Enhance your song to sound
+like a pro.
+wwwapple.com/ilife/garageband
+GarageBand Help (Q, record)
+iPhoto
+Organize all your photos with Events. Publish to a Web Gallery with a click.
+iPhoto Help ( a photo
+iWeb
+Create beautiful websites with photos, movies, blogs, podcasts, and dynamic web widgets.
+www.apple.com/ilife/iveb
+Neb Help ( $Q$ website",,1.0,1.0,180.99212646484375
+paper/2402.03216v4,paper,15,mild,Does the M3 model outperform BM25 on the MIRACL dataset when using the same tokenizer?,"Figure 4: Language and sequence length distribution of unsupervised data
+\begin{tabular}{cccc}
+\multirow{2}{*}{ Use Split-batch } & \multicolumn{3}{c}{ Max Length } \\
+\cline {2-4} & 1024 & 4096 & 8192 \\
+$\times$ & 262 & 25 & 6 \\
+$isqrt{ }$ & 855 & 258 & 130 \\
+\end{tabular}
+Table 10: Maximum batch size per device under different experimental settings.
+Figure 5: NarrativeQA with variant sequence length.
+- Using the Analyzer from Lucene ${ }*{9}$ can significantly enhance the effectiveness of
+BM25. Lucene analyzer includes multiple steps typically including tokenization, stemming,
+stopword removal, etc, achieving better results than directly using the tokenzier of
+XLMROBERTa. Additionally, it's worth noting that the vocabulary size of the tokenizer from
+XLM-RoBERTa is limited, resulting in fewer
+\begin{tabular}{Illll}
+Method & \multicolumn{5}{I}{ Tokenizer MIRACL } & MKQA & MLDR \\
+BM25 & Analyzer & 38.5 & 40.9 & 64.1 \\
+BM25 & XLM-R & 31.9 & 39.9 & 53.6 \\
+M3(Sparse) & XLM-R & 53.9 & 45.3 & 62.2 \\
+M3(All) & XLM-R & 71.5 & 75.5 & 65.0 \\
+\end{tabular}
+Table 11: Comparison with the BM25 methods using different tokenizers.
+unique tokens after encoding documents (for example, on the MLDR dataset, the tokenizer of
+XLM-RoBERTa produces 1056 unique terms per article, while Lucene’s analyzer generates
+1451 unique terms, which is over $37 \%$ more and will increase retrieval latency).
+- M3 outperforms BM25 models using the same tokenizer on all datasets, indicating that the
+learned weights are significantly better than the weights calculated by BM25.
+- The sparse retrieval of M3 outperforms BM25 on MIRACL and MKQA datasets. In long
+document retrieval (MLOR), M3's sparse doesn't surpass BM2S5 but achieves competitive
+performance. This suggests that BM25 remains a highly competitive baseline model. Exploring
+tokenizers that perform better for sparse representation is a worthwhile topic for future
+research.
+\footnotetext{
+9.
+https://github.com/apache/lucene/tree/main/lucene/analysis/common/src/java/org/apache/lucen
+e/analysis
+}","Figure 4: Language and sequence length distribution of unsupervised data
+\begin{tabular}{cccc}
+  \multirow{2}{*}{ Use Split-batch } & \multicolumn{3}{c}{ Max Length } \\
+\cline { 2 - 4 } & 1024 & 4096 & 8192 \\
+ $\times$ & 262 & 25 & 6 \\
+$\sqrt{ }$ & 855 & 258 & 130 \\
+ 
+\end{tabular}
+
+Table 10: Maximum batch size per device under different experimental settings.
+
+
+Figure 5: NarrativeQA with variant sequence length.
+- Using the Analyzer from Lucene ${ }^{9}$ can significantly enhance the effectiveness of BM25. Lucene analyzer includes multiple steps typically including tokenization, stemming, stopword removal, etc, achieving better results than directly using the tokenzier of XLMRoBERTa. Additionally, it's worth noting that the vocabulary size of the tokenizer from XLM-RoBERTa is limited, resulting in fewer
+\begin{tabular}{lllll}
+  Method & \multicolumn{5}{l}{ Tokenizer MIRACL } & MKQA & MLDR \\
+  BM25 & Analyzer & 38.5 & 40.9 & 64.1 \\
+BM25 & XLM-R & 31.9 & 39.9 & 53.6 \\
+M3(Sparse) & XLM-R & 53.9 & 45.3 & 62.2 \\
+M3(All) & XLM-R & 71.5 & 75.5 & 65.0 \\
+ 
+\end{tabular}
+
+Table 11: Comparison with the BM25 methods using different tokenizers.
+unique tokens after encoding documents (for example, on the MLDR dataset, the tokenizer of XLM-RoBERTa produces 1056 unique terms per article, while Lucene's analyzer generates 1451 unique terms, which is over $37 \%$ more and will increase retrieval latency).
+- M3 outperforms BM25 models using the same tokenizer on all datasets, indicating that the learned weights are significantly better than the weights calculated by BM25.
+- The sparse retrieval of M3 outperforms BM25 on MIRACL and MKQA datasets. In long document retrieval (MLDR), M3's sparse doesn't surpass BM25 but achieves competitive performance. This suggests that BM25 remains a highly competitive baseline model. Exploring tokenizers that perform better for sparse representation is a worthwhile topic for future research.
+
+\footnotetext{
+9. https://github.com/apache/lucene/tree/main/lucene/analysis/common/src/java/org/apache/lucene/analysis
+}",0.9220915032679738,0.019787644787644786,0.04854368932038835,661.0949039459229
+paper/2402.03216v4,paper,15,moderate,Does the M3 model outperform BM25 on the MIRACL dataset when using the same tokenizer?,"Figure 4: Language and sequence length distribution of unsupervised data
+\begin{tabular}{cocc}
+\multirow{2}{*}{ Use Spiit-batch } & \multicolumn{3}{c}{ Max Length } \\
+\cline {2 - 4} & 1024 & 4096 & 8192 \\
+Sitimes$ & 262 & 25 & 6 \\
+Ssari{ }$ & B55 & 258 & 130 \\
+\end{ tabular}
+Table 10: Maximum batch size per device under different experimental settings.
+XLMROBERTa. Additionally, i's worth noting that the vocabulary size of the tokenizer from
+XLM-RoBERTa is limited, resulting in fewer
+\begin{tabular}{ iti}
+Method & \muiticotumn(5}{{}{ Tokenizer MIRACL } & MKQA & MLDR \\
+BM25 & Analyzer & 38.5 & 40.9 & 64.1 \\
+BM25 & XLM-R & 31.9 & 39.98 53.6 \
+M3(Sparse) & XLM-R & 53.9 & 45.3 & 62.2 \\
+M3(All) & XLM-R & 71.5 & 75.5 & 65.0 \\
+\end{tabular)
+Table 11: Comparison with the BM25 methods using different tokenizers.
+unique tokens after encoding documents (lor example, on the MLDR dataset. the tokenizer of
+XLM-ROBERTa produces 1056 unique terms per article, while Lucene’s analyzer generates
+1451 unique terms, which is over $37 \%$ more and will increase retrieval latency).
+“Ma outpertorms BM25 models using the same tokenizer on ail datasets, indicating that the
+pertormance. This suggests that BM2S remains a highly competitive baseline model. Expionng
+tokenizers that perform better for sparse representation is a worthwhile topic for fulure
+research.
+\footnotetext{
+9.
+nttps./gtthub.comvapache/ucene/tree/mair/Wucene’analysisicommon’sre/java/org/apacne/ucen
+e/analysis","Figure 4: Language and sequence length distribution of unsupervised data
+\begin{tabular}{cccc}
+  \multirow{2}{*}{ Use Split-batch } & \multicolumn{3}{c}{ Max Length } \\
+\cline { 2 - 4 } & 1024 & 4096 & 8192 \\
+ $\times$ & 262 & 25 & 6 \\
+$\sqrt{ }$ & 855 & 258 & 130 \\
+ 
+\end{tabular}
+
+Table 10: Maximum batch size per device under different experimental settings.
+
+
+Figure 5: NarrativeQA with variant sequence length.
+- Using the Analyzer from Lucene ${ }^{9}$ can significantly enhance the effectiveness of BM25. Lucene analyzer includes multiple steps typically including tokenization, stemming, stopword removal, etc, achieving better results than directly using the tokenzier of XLMRoBERTa. Additionally, it's worth noting that the vocabulary size of the tokenizer from XLM-RoBERTa is limited, resulting in fewer
+\begin{tabular}{lllll}
+  Method & \multicolumn{5}{l}{ Tokenizer MIRACL } & MKQA & MLDR \\
+  BM25 & Analyzer & 38.5 & 40.9 & 64.1 \\
+BM25 & XLM-R & 31.9 & 39.9 & 53.6 \\
+M3(Sparse) & XLM-R & 53.9 & 45.3 & 62.2 \\
+M3(All) & XLM-R & 71.5 & 75.5 & 65.0 \\
+ 
+\end{tabular}
+
+Table 11: Comparison with the BM25 methods using different tokenizers.
+unique tokens after encoding documents (for example, on the MLDR dataset, the tokenizer of XLM-RoBERTa produces 1056 unique terms per article, while Lucene's analyzer generates 1451 unique terms, which is over $37 \%$ more and will increase retrieval latency).
+- M3 outperforms BM25 models using the same tokenizer on all datasets, indicating that the learned weights are significantly better than the weights calculated by BM25.
+- The sparse retrieval of M3 outperforms BM25 on MIRACL and MKQA datasets. In long document retrieval (MLDR), M3's sparse doesn't surpass BM25 but achieves competitive performance. This suggests that BM25 remains a highly competitive baseline model. Exploring tokenizers that perform better for sparse representation is a worthwhile topic for future research.
+
+\footnotetext{
+9. https://github.com/apache/lucene/tree/main/lucene/analysis/common/src/java/org/apache/lucene/analysis
+}",0.8097797356828194,0.31032818532818535,0.36893203883495146,484.7860336303711
+paper/2402.03216v4,paper,15,severe,Does the M3 model outperform BM25 on the MIRACL dataset when using the same tokenizer?,"ress arpa i macnn a seen eR
+4 shina (2-418 ORS 6 RE B HSE : aon
+Samest 6 BOF ABIES
+sewcrt 19 8 814 8 OB HES
+pie 10: Maxie bac 1 sine pi aecine aniter atlereet pape ES SES
+sadeSpacset & RLM Ak S22 E453 3ea2%
+Mead BER 71S TESA BOS","Figure 4: Language and sequence length distribution of unsupervised data
+\begin{tabular}{cccc}
+  \multirow{2}{*}{ Use Split-batch } & \multicolumn{3}{c}{ Max Length } \\
+\cline { 2 - 4 } & 1024 & 4096 & 8192 \\
+ $\times$ & 262 & 25 & 6 \\
+$\sqrt{ }$ & 855 & 258 & 130 \\
+ 
+\end{tabular}
+
+Table 10: Maximum batch size per device under different experimental settings.
+
+
+Figure 5: NarrativeQA with variant sequence length.
+- Using the Analyzer from Lucene ${ }^{9}$ can significantly enhance the effectiveness of BM25. Lucene analyzer includes multiple steps typically including tokenization, stemming, stopword removal, etc, achieving better results than directly using the tokenzier of XLMRoBERTa. Additionally, it's worth noting that the vocabulary size of the tokenizer from XLM-RoBERTa is limited, resulting in fewer
+\begin{tabular}{lllll}
+  Method & \multicolumn{5}{l}{ Tokenizer MIRACL } & MKQA & MLDR \\
+  BM25 & Analyzer & 38.5 & 40.9 & 64.1 \\
+BM25 & XLM-R & 31.9 & 39.9 & 53.6 \\
+M3(Sparse) & XLM-R & 53.9 & 45.3 & 62.2 \\
+M3(All) & XLM-R & 71.5 & 75.5 & 65.0 \\
+ 
+\end{tabular}
+
+Table 11: Comparison with the BM25 methods using different tokenizers.
+unique tokens after encoding documents (for example, on the MLDR dataset, the tokenizer of XLM-RoBERTa produces 1056 unique terms per article, while Lucene's analyzer generates 1451 unique terms, which is over $37 \%$ more and will increase retrieval latency).
+- M3 outperforms BM25 models using the same tokenizer on all datasets, indicating that the learned weights are significantly better than the weights calculated by BM25.
+- The sparse retrieval of M3 outperforms BM25 on MIRACL and MKQA datasets. In long document retrieval (MLDR), M3's sparse doesn't surpass BM25 but achieves competitive performance. This suggests that BM25 remains a highly competitive baseline model. Exploring tokenizers that perform better for sparse representation is a worthwhile topic for future research.
+
+\footnotetext{
+9. https://github.com/apache/lucene/tree/main/lucene/analysis/common/src/java/org/apache/lucene/analysis
+}",0.2252830188679245,0.9266409266409267,0.9870550161812298,300.2197742462158
+paper/2409.01704v1,paper,13,mild,Is the original GOT model sufficient to handle high-resolution images in dual-page paper reading mode?,"Prompt: OCR with format upon the patch reference:
+Output:
+Figure 7: Dynamic resolution of GOT for high-resolution images. In the dual-page
+paper reading mode shown in the figure (from [21]), the input resolution of the
+original GOT is not sufficient to handle it. Therefore, we adapt dynamic resolution
+technology to make the model no longer limited to the size of the image.","Prompt: OCR with format upon the patch reference:
+
+
+Output:
+
+
+Figure 7: Dynamic resolution of GOT for high-resolution images. In the dual-page paper reading mode shown in the figure (from [21]), the input resolution of the original GOT is not sufficient to handle it. Therefore, we adapt dynamic resolution technology to make the model no longer limited to the size of the image.",0.9524193548387097,0.018469656992084433,0.0,268.76306533813477
+paper/2409.01704v1,paper,13,moderate,Is the original GOT model sufficient to handle high-resolution images in dual-page paper reading mode?,"Prompt: OCR with format upon the patch reference:
+Output:
+Figure 7: Dynamic resolution of GOT tor high-resolution images. in the dual-page
+paper reading mode shown in the figure (from (21), the input resolution of the
+original GOT is not sufficient to handle it. Therefore, we adapt dynamic resolution
+technology to make the model no longer limited to the size of the image.","Prompt: OCR with format upon the patch reference:
+
+
+Output:
+
+
+Figure 7: Dynamic resolution of GOT for high-resolution images. In the dual-page paper reading mode shown in the figure (from [21]), the input resolution of the original GOT is not sufficient to handle it. Therefore, we adapt dynamic resolution technology to make the model no longer limited to the size of the image.",0.9135483870967742,0.029023746701846966,0.04838709677419355,249.10998344421387
+paper/2409.01704v1,paper,13,severe,Is the original GOT model sufficient to handle high-resolution images in dual-page paper reading mode?,,"Prompt: OCR with format upon the patch reference:
+
+
+Output:
+
+
+Figure 7: Dynamic resolution of GOT for high-resolution images. In the dual-page paper reading mode shown in the figure (from [21]), the input resolution of the original GOT is not sufficient to handle it. Therefore, we adapt dynamic resolution technology to make the model no longer limited to the size of the image.",,1.0,1.0,176.9542694091797
+paper/2310.11511v1,paper,25,mild,Why is retrieval considered helpful for the instruction 'Explain the process of cellular respiration in plants'?,"Instructions
+Given an instruction, please make a judgment on whether finding some external documents from the
+web (e.g., Wikipedia) helps to generate a better response. Please answer [Yes] or $[N o]$ and write an
+explanation.
+Demonstrations
+Instruction Give three tips for staying healthy.
+Need retrieval? [Yes]
+Explanation There might be some online sources listing three tips for staying healthy or some reliable
+sources to explain the effects of different behaviors on health. So retrieving documents is helpful to
+improve the response to this query.
+Instruction Describe a time when you had to make a difficult decision. Need retrieval? [No]
+Explanation This instruction is asking about some personal experience and thus it does not require one
+to find some external documents.
+Instruction Write a short story in third person narration about a protagonist who has to make an
+important career decision.
+Need retrieval? [No)
+Explanation This instruction asks us to write a short story, which does not require external evidence to
+verify.
+Instruction What is the capital of France?
+Need retrieval? [Yes]
+Explanation While the instruction simply asks us to answer the capital of France, which is a widely
+known fact, retrieving web documents for this question can still help.
+Instruction Find the area of a circle given its radius. Radius $=4$ Need retrieval? [No]
+Explanation This is a math question and although we may be able to find some documents describing
+a formula, it is unlikely to find a document exactly mentioning the answer.
+Instruction Arrange the words in the given sentence to form a grammatically correct sentence. quickly
+the brown fox jumped
+Need retrieval? [No]
+Explanation This task doesn't require any external evidence, as it is a simple grammatical question.
+Instruction Explain the process of cellular respiration in plants. Need retrieval? [Yes]
+Explanation This instruction asks for a detailed description of a scientific concept, and is highly likely
+that we can find a reliable and useful document to support the response.
+Table 8: Instructions and demonstrations for Retrieve aspect given the input only.","Instructions
+
+
+Given an instruction, please make a judgment on whether finding some external documents from the web (e.g., Wikipedia) helps to generate a better response. Please answer [Yes] or $[N o]$ and write an explanation.
+
+Demonstrations
+
+Instruction Give three tips for staying healthy.
+Need retrieval? [Yes]
+Explanation There might be some online sources listing three tips for staying healthy or some reliable sources to explain the effects of different behaviors on health. So retrieving documents is helpful to improve the response to this query.
+
+Instruction Describe a time when you had to make a difficult decision. Need retrieval? [No]
+Explanation This instruction is asking about some personal experience and thus it does not require one to find some external documents.
+
+Instruction Write a short story in third person narration about a protagonist who has to make an important career decision.
+Need retrieval? [No]
+Explanation This instruction asks us to write a short story, which does not require external evidence to verify.
+
+Instruction What is the capital of France?
+Need retrieval? [Yes]
+Explanation While the instruction simply asks us to answer the capital of France, which is a widely known fact, retrieving web documents for this question can still help.
+
+Instruction Find the area of a circle given its radius. Radius $=4$ Need retrieval? [No]
+Explanation This is a math question and although we may be able to find some documents describing a formula, it is unlikely to find a document exactly mentioning the answer.
+
+Instruction Arrange the words in the given sentence to form a grammatically correct sentence. quickly the brown fox jumped
+Need retrieval? [No]
+Explanation This task doesn't require any external evidence, as it is a simple grammatical question.
+
+Instruction Explain the process of cellular respiration in plants. Need retrieval? [Yes]
+Explanation This instruction asks for a detailed description of a scientific concept, and is highly likely that we can find a reliable and useful document to support the response.
+
+Table 8: Instructions and demonstrations for Retrieve aspect given the input only.",0.9460479041916168,0.010717614165890028,0.0029940119760479044,647.5300788879395
+paper/2310.11511v1,paper,25,moderate,Why is retrieval considered helpful for the instruction 'Explain the process of cellular respiration in plants'?,"instructions
+Given an instruction, please make a judgment on whether finding some extemal documents fom the
+web (e.g, Wikipedia) helps to generate a better response. Please answer [Yes) or SN o}$ and wrie an
+explanation.
+Demonstrations
+Instruction Give three tips for staying healthy.
+Explanation There might be some onfine sources fisting three tips for staying Healthy or some reliable
+sources to explain the ettects of dierent behaviors on health. So retrieving documents is helplul to
+instruction Describe a ime when you had to make a dificult decision. Need retrieval? (No}
+Explanation This instruction is asking about some personal experience and thus it does not requze One
+to find some external documents.
+instruction Write a short story in thied person narration about a protagonist who has 10 make an
+important career decision.
+Need retrieval? [No]
+Explanation Ths instruction asks us to wite a short story, which dows not require exiemnal evidence 19
+verity.
+instruction What is the capital of France?
+Need retrieval? [Yes]
+Explanation White the instruction simply asks us to answer the capital of France, which s a widely
+known tact. retrieving web documents for this question can still help,
+instruction Find the avea of a circle given its radius. Radius $=4$ Need retrieval? {No}
+Caplanation This is @ math question and although we may be able to find some documents describing
+a formula, it is unlikely {0 find a document exactly mentioning the answer.
+Instruction Arrange the words in the given sentence to form a grammatically Correct sentence, QuUcHly
+the brown fox jumped
+Need retrieval? [No}
+Explanation This task doesn require any extemal evidence, as it a simple grammatical qvesion.
+instruction Explain the process of celular respiration in plants. Need retrieval? [Yes]
+Explanation This instruction asks tr a detailed description ot a cientic concept, and is OMy Wely
+that we can find a reliable and useful document to support the response.
+Table 8: instructions and demonstrations for Retrieve aspect given the input only.","Instructions
+
+
+Given an instruction, please make a judgment on whether finding some external documents from the web (e.g., Wikipedia) helps to generate a better response. Please answer [Yes] or $[N o]$ and write an explanation.
+
+Demonstrations
+
+Instruction Give three tips for staying healthy.
+Need retrieval? [Yes]
+Explanation There might be some online sources listing three tips for staying healthy or some reliable sources to explain the effects of different behaviors on health. So retrieving documents is helpful to improve the response to this query.
+
+Instruction Describe a time when you had to make a difficult decision. Need retrieval? [No]
+Explanation This instruction is asking about some personal experience and thus it does not require one to find some external documents.
+
+Instruction Write a short story in third person narration about a protagonist who has to make an important career decision.
+Need retrieval? [No]
+Explanation This instruction asks us to write a short story, which does not require external evidence to verify.
+
+Instruction What is the capital of France?
+Need retrieval? [Yes]
+Explanation While the instruction simply asks us to answer the capital of France, which is a widely known fact, retrieving web documents for this question can still help.
+
+Instruction Find the area of a circle given its radius. Radius $=4$ Need retrieval? [No]
+Explanation This is a math question and although we may be able to find some documents describing a formula, it is unlikely to find a document exactly mentioning the answer.
+
+Instruction Arrange the words in the given sentence to form a grammatically correct sentence. quickly the brown fox jumped
+Need retrieval? [No]
+Explanation This task doesn't require any external evidence, as it is a simple grammatical question.
+
+Instruction Explain the process of cellular respiration in plants. Need retrieval? [Yes]
+Explanation This instruction asks for a detailed description of a scientific concept, and is highly likely that we can find a reliable and useful document to support the response.
+
+Table 8: Instructions and demonstrations for Retrieve aspect given the input only.",0.7898148148148149,0.07642124883504194,0.19461077844311378,517.4257755279541
+paper/2310.11511v1,paper,25,severe,Why is retrieval considered helpful for the instruction 'Explain the process of cellular respiration in plants'?,"scan eg, Wrntnatay Henge te gorse # ne TeRPET OS Piomne seven (YS RS Gh tard wth OP
+nen ed ese ee sneha a ali
+Saat ce enrernonn em sone os
+«cn taeen senna mens oon aces OES reais
+ses i ee eee DOTA gt Daa ptt : a ;
+spacers Wiig De ent OF acces parvans mane gen 0 sempre whe SAE 27S: =<
+eet agement aroma
+“peated ot RUBE?
+spine TT namo once teem to eons rinmenanen TT
+mete te ec cemen em manueene sn <
+ee aaueee senior are x","Instructions
+
+
+Given an instruction, please make a judgment on whether finding some external documents from the web (e.g., Wikipedia) helps to generate a better response. Please answer [Yes] or $[N o]$ and write an explanation.
+
+Demonstrations
+
+Instruction Give three tips for staying healthy.
+Need retrieval? [Yes]
+Explanation There might be some online sources listing three tips for staying healthy or some reliable sources to explain the effects of different behaviors on health. So retrieving documents is helpful to improve the response to this query.
+
+Instruction Describe a time when you had to make a difficult decision. Need retrieval? [No]
+Explanation This instruction is asking about some personal experience and thus it does not require one to find some external documents.
+
+Instruction Write a short story in third person narration about a protagonist who has to make an important career decision.
+Need retrieval? [No]
+Explanation This instruction asks us to write a short story, which does not require external evidence to verify.
+
+Instruction What is the capital of France?
+Need retrieval? [Yes]
+Explanation While the instruction simply asks us to answer the capital of France, which is a widely known fact, retrieving web documents for this question can still help.
+
+Instruction Find the area of a circle given its radius. Radius $=4$ Need retrieval? [No]
+Explanation This is a math question and although we may be able to find some documents describing a formula, it is unlikely to find a document exactly mentioning the answer.
+
+Instruction Arrange the words in the given sentence to form a grammatically correct sentence. quickly the brown fox jumped
+Need retrieval? [No]
+Explanation This task doesn't require any external evidence, as it is a simple grammatical question.
+
+Instruction Explain the process of cellular respiration in plants. Need retrieval? [Yes]
+Explanation This instruction asks for a detailed description of a scientific concept, and is highly likely that we can find a reliable and useful document to support the response.
+
+Table 8: Instructions and demonstrations for Retrieve aspect given the input only.",0.16817204301075267,0.8560111835973905,0.9910179640718563,439.8646354675293
+textbook/eng-88486.pdf_102,textbook,0,mild,What kind of plot is used to obtain the activation energy $E_{A}$ and coefficient $D_{o}$ for the diffusion coefficient in semiconductors?,"# 4.4: Fick's First Law
+We talked about diffusion in the context of diodes, and described Fick's First Law of Diffusion
+for some particle concentration $N(x,\,t)$
+$$
+\operatorname{Flux}=(-D){\frac{\mathrm{d}N(x,t)}{\mathrm{d}x}}\qquad\operatorname{ Fick's}\o
+peratorname{ First}\operatorname{Law)}\,\operatorname{of}\operatorname|Dittusion}
+$$
+$D$ is the diffusion coefficient and has units of cm/sec
+In a semiconductor, impurities move about either interstitially, which means they travel around
+in-between the lattice sites (Figure 4.4.1), or they move by substitutional diffusion, which
+means they hop from lattice site to lattice site (Figure 4.4.2). Substitutional diffusion is only
+possible if the lattice has a number of vacancies, or empty lattice sites, scattered throughout
+the crystal, so that there are places into which the impurity can move. Moving interstitially
+requires energy to get over the potential barrier of the regions between the lattice sites. Energy
+is required to form the vacancies for substitutional diffusion. Thus, for either form of diffusion,
+the diffusion coefficient $D$_, is a strong function of temperature.
+Figure 4.4.1: Interstitial diffusion
+Figure 4.4.2: Substitutional diffusion
+To a very good degree of accuracy, one can describe the temperature dependence of the
+diffusion coefficient with an activation energy $E_{A}$ such that:
+$$
+D(T)=D_{o}e*{-\frac{E_{a}}{k T}}
+$$
+The activation energy $E_{A}$ and coefficient $D_{o}$ are obtained from a plot of the
+natural log of $D$ vs. $\frac{1}{k T}$ (Figure 4.4.3). The slope gives $E_{A}$ and the
+projection to infinite $T$ $\left(\frac{1}{T}\rightarrowO\right)$ gives $\In(D_{o})$
+Figure 4.4.3: Arrhenius plot of diffusion constant
+The continuity equation holds for motion of impurities just like it does for anything else, so the
+divergence of the flux, $\operatorname({div}(F)$ must equal the negative of the time rate of
+ehanne of the concentration of the impurities. or. in one dimension:","# 4.4: Fick's First Law  
+
+We talked about diffusion in the context of diodes, and described Fick's First Law of Diffusion for some particle concentration  $N(x,\,t)$  
+
+$$
+\operatorname{Flux}=(-D){\frac{\mathrm{d}N(x,t)}{\mathrm{d}x}}\qquad\operatorname{Fick's}\operatorname{First}\operatorname{Law}\,\operatorname{of}\operatorname{Diffusion}
+$$  
+
+$D$  is the diffusion coefficient and has units of cm/sec  
+
+In a semiconductor, impurities move about either interstitially, which means they travel around in-between the lattice sites (Figure 4.4.1), or they move by substitutional diffusion, which means they hop from lattice site to lattice site (Figure 4.4.2). Substitutional diffusion is only possible if the lattice has a number of vacancies, or empty lattice sites, scattered throughout the crystal, so that there are places into which the impurity can move. Moving interstitially requires energy to get over the potential barrier of the regions between the lattice sites. Energy is required to form the vacancies for substitutional diffusion. Thus, for either form of diffusion, the diffusion coefficient  $D$  , is a strong function of temperature.  
+
+  
+Figure 4.4.1: Interstitial diffusion  
+
+  
+Figure 4.4.2: Substitutional diffusion  
+
+To a very good degree of accuracy, one can describe the temperature dependence of the diffusion coefficient with an activation energy  $E_{A}$  such that:  
+
+$$
+D(T)=D_{o}e^{-\frac{E_{a}}{k T}}
+$$  
+
+The activation energy  $E_{A}$   and coefficient  $D_{o}$   are obtained from a plot of the natural log of  $D$  vs.  $\frac{1}{k T}$  (Figure 4.4.3). The slope gives  $E_{A}$   and the projection to infinite  $T$   $\left(\frac{1}{T}\rightarrow0\right)$  gives  $\ln(D_{o})$  
+
+  
+Figure 4.4.3: Arrhenius plot of diffusion constant  
+
+The continuity equation holds for motion of impurities just like it does for anything else, so the divergence of the flux, $\operatorname{div}(F)$  must equal the negative of the time rate of change of the concentration of the impurities, or, in one dimension:",0.9288,0.0469437652811736,0.047619047619047616,634.9961757659912
+textbook/eng-88486.pdf_102,textbook,0,moderate,What kind of plot is used to obtain the activation energy $E_{A}$ and coefficient $D_{o}$ for the diffusion coefficient in semiconductors?,"# 4.4: Fick's First Law
+We talked about diffusion in the context of diodes, and described Fick's First Law of Difusion
+for some particle concentration SN(x\0S
+$s
+<operatomame(Fhux)=(-D\iract mathem|d}N¢x.}fsmathem(d}x})qquad operatorname(FicksI'0
+peratorname(First}\operatorname|Law}\,\operatornamet of} Diffusion}
+$$
+$0$ is the diffusion coefficient and has units of cm/sec
+in-between the lattice (Figure 4.4.1), or they move by substitutional diffusion, which
+means they hop from lattice site to lattice site (Figure 4.4.2). Substitutional cftusion is only
+possible it the lattice has a number of vacancies, or empty latice sites, scattered througnov!
+requires energy to get over the potential barrier of the regions between the lattice shes, Energy
+ic required to form the vacancies for substitutional diffusion. Thus, for either form of diflusion,
+the diffusion coefficient $O$ _ is a strong function of temperature.
+Figure 4.4.1: Interstitial diffusion
+Figure 4.4.2: Substitutional diffusion
+To a very good degree of accuracy, one can describe the temperature dependence of ine
+dittusion coetticient with an activation energy $E_{A)}$ such that:
+$$
+D(T)=D_{o}e”{-\fraofE_{a}}k )}
+$$
+The activation energy SE_{A}$ and coefficient $0_{o}$ are obtained from a pilot of the
+natural log of $D$ vs. $itrac{1}{k T)S (Figure 4.4.3). The slope gives SE_{A)$ andthe
+projection to infinite $T$ $Sieft(\irac{1}{T}\rightarrowO\nigh)$_ gives Sin(D_{o}$
+Figure 4.4.3: Arrhenius plot of diffusion constant
+The continuity equation holds for motion of impurities just like it does for anything else, So tne
+divergence of the flux, $\operatorname{div}(F)S must equal the negative of the time rate o!","# 4.4: Fick's First Law  
+
+We talked about diffusion in the context of diodes, and described Fick's First Law of Diffusion for some particle concentration  $N(x,\,t)$  
+
+$$
+\operatorname{Flux}=(-D){\frac{\mathrm{d}N(x,t)}{\mathrm{d}x}}\qquad\operatorname{Fick's}\operatorname{First}\operatorname{Law}\,\operatorname{of}\operatorname{Diffusion}
+$$  
+
+$D$  is the diffusion coefficient and has units of cm/sec  
+
+In a semiconductor, impurities move about either interstitially, which means they travel around in-between the lattice sites (Figure 4.4.1), or they move by substitutional diffusion, which means they hop from lattice site to lattice site (Figure 4.4.2). Substitutional diffusion is only possible if the lattice has a number of vacancies, or empty lattice sites, scattered throughout the crystal, so that there are places into which the impurity can move. Moving interstitially requires energy to get over the potential barrier of the regions between the lattice sites. Energy is required to form the vacancies for substitutional diffusion. Thus, for either form of diffusion, the diffusion coefficient  $D$  , is a strong function of temperature.  
+
+  
+Figure 4.4.1: Interstitial diffusion  
+
+  
+Figure 4.4.2: Substitutional diffusion  
+
+To a very good degree of accuracy, one can describe the temperature dependence of the diffusion coefficient with an activation energy  $E_{A}$  such that:  
+
+$$
+D(T)=D_{o}e^{-\frac{E_{a}}{k T}}
+$$  
+
+The activation energy  $E_{A}$   and coefficient  $D_{o}$   are obtained from a plot of the natural log of  $D$  vs.  $\frac{1}{k T}$  (Figure 4.4.3). The slope gives  $E_{A}$   and the projection to infinite  $T$   $\left(\frac{1}{T}\rightarrow0\right)$  gives  $\ln(D_{o})$  
+
+  
+Figure 4.4.3: Arrhenius plot of diffusion constant  
+
+The continuity equation holds for motion of impurities just like it does for anything else, so the divergence of the flux, $\operatorname{div}(F)$  must equal the negative of the time rate of change of the concentration of the impurities, or, in one dimension:",0.8034177215189874,0.219559902200489,0.2893772893772894,497.53689765930176
+textbook/eng-88486.pdf_102,textbook,0,severe,What kind of plot is used to obtain the activation energy $E_{A}$ and coefficient $D_{o}$ for the diffusion coefficient in semiconductors?,"te nowy sen tn cn mn eat cen en
+i hace cnet we: aneaicn erate 36 (NS BRP SE
+SatpD ele weet AE
+* oS es
+oe veswancn ergy HEN “gee coattcaent, $O_ S088 wes shined orm gre ei
+cane og ot S06 va, SEM TS igure 4a ie The eps give AS wae
+propecten to einen 478 dancin ty Tynanearencovnes vee HO. 10 ss
+: rene wremmenriememm yee ene ESTAS
+- suecnrgarcn th oe is. FROMM TCE arash cue tom engine of He tome 88","# 4.4: Fick's First Law  
+
+We talked about diffusion in the context of diodes, and described Fick's First Law of Diffusion for some particle concentration  $N(x,\,t)$  
+
+$$
+\operatorname{Flux}=(-D){\frac{\mathrm{d}N(x,t)}{\mathrm{d}x}}\qquad\operatorname{Fick's}\operatorname{First}\operatorname{Law}\,\operatorname{of}\operatorname{Diffusion}
+$$  
+
+$D$  is the diffusion coefficient and has units of cm/sec  
+
+In a semiconductor, impurities move about either interstitially, which means they travel around in-between the lattice sites (Figure 4.4.1), or they move by substitutional diffusion, which means they hop from lattice site to lattice site (Figure 4.4.2). Substitutional diffusion is only possible if the lattice has a number of vacancies, or empty lattice sites, scattered throughout the crystal, so that there are places into which the impurity can move. Moving interstitially requires energy to get over the potential barrier of the regions between the lattice sites. Energy is required to form the vacancies for substitutional diffusion. Thus, for either form of diffusion, the diffusion coefficient  $D$  , is a strong function of temperature.  
+
+  
+Figure 4.4.1: Interstitial diffusion  
+
+  
+Figure 4.4.2: Substitutional diffusion  
+
+To a very good degree of accuracy, one can describe the temperature dependence of the diffusion coefficient with an activation energy  $E_{A}$  such that:  
+
+$$
+D(T)=D_{o}e^{-\frac{E_{a}}{k T}}
+$$  
+
+The activation energy  $E_{A}$   and coefficient  $D_{o}$   are obtained from a plot of the natural log of  $D$  vs.  $\frac{1}{k T}$  (Figure 4.4.3). The slope gives  $E_{A}$   and the projection to infinite  $T$   $\left(\frac{1}{T}\rightarrow0\right)$  gives  $\ln(D_{o})$  
+
+  
+Figure 4.4.3: Arrhenius plot of diffusion constant  
+
+The continuity equation holds for motion of impurities just like it does for anything else, so the divergence of the flux, $\operatorname{div}(F)$  must equal the negative of the time rate of change of the concentration of the impurities, or, in one dimension:",0.2461627906976744,0.8704156479217604,0.989010989010989,382.4880123138428
+textbook/phys-863.pdf_95,textbook,0,mild,What phase is observed in hydrated lipid bilayers between the 'gel' phase and the 'fluid' phase?,"# 3.5: The Ripple Phase
+Lipids consist of hydrophilic polar head groups attached to hydrocarbon chains
+and arrange themselves in bilayers to make biological membrane structures. At
+lower temperatures, the bilayer is in a $L_{\beta*{\prime}}$ ‘gel’ phase and there is
+a transition to ‘fluid’ phase, $L_{\alpha}$ at higher temperatures due to an increase
+in mobility of individual lipids in the bilayer. As the ripple phase
+$P_{\beta‘{\prime}}$ is observed in hydrated lipid bilayers between the
+$L_{\beta""{\prime}}$ and $L_{\alpha}$ phase. This phase is characterized by
+corrugations of the membrane surface with well-defined periodicity with an axis
+parallel to the mean bilayer plane [1]. The molecular origin of ripple-phase
+formation has traditionally been associated with the lipid headgroup region and
+hence lipids can be classified into ripple-forming and non-ripple forming lipids
+based on their headgroups. One of the lipid families belonging to the
+ripple-forming class is phosphatidyl cholines and has been studied in extensive
+detail [1].
+Scheme above shows different physical states adopted by a lipid bilayer in an
+aqueous medium [2].
+# Thermodynamics and Existence
+The existence of the ripple phase at first sight is paradoxical on thermodynamic
+grounds since it involves an apparent lowering of symmetry (from $L_{\beta},$ to
+$P_{\beta’{\prime}}$) on increasing the temperature. Some models suggest that
+ripples exist because of periodic local spontaneous curvature in the lipid bilayers
+formed due to electrostatic coupling between water molecules and the polar
+headgroups or coupling between membrane curvature and molecular tilt. It has
+also been speculated that ripples form to relieve packing frustrations that arise
+whenever the relationship between head-group cross sectional area and
+cross-sectional area of the apolar tails exceeds a certain threshold [1]. However,
+there is not one conclusive theory to explain ripple phase formation.
+# Phase Diagram Depicting Ripple Phase
+Concentration (% $\mathsf{H}_{2}\mathsf{O})$","# 3.5: The Ripple Phase  
+
+Lipids consist of hydrophilic polar head groups attached to hydrocarbon chains and arrange themselves in bilayers to make biological membrane structures. At lower temperatures, the bilayer is in a $L_{\beta^{\prime}}$ 'gel' phase and there is a transition to 'fluid' phase, $L_{\alpha}$ at higher temperatures due to an increase in mobility of individual lipids in the bilayer. As the ripple phase $P_{\beta^{\prime}}$ is observed in hydrated lipid bilayers between the $L_{\beta^{\prime}}$ and $L_{\alpha}$ phase. This phase is characterized by corrugations of the membrane surface with well-defined periodicity with an axis parallel to the mean bilayer plane [1]. The molecular origin of ripple-phase formation has traditionally been associated with the lipid headgroup region and hence lipids can be classified into ripple-forming and non-ripple forming lipids based on their headgroups. One of the lipid families belonging to the ripple-forming class is phosphatidyl cholines and has been studied in extensive detail [1].  
+
+  
+Scheme above shows different physical states adopted by a lipid bilayer in an aqueous medium [2].  
+
+# Thermodynamics and Existence  
+
+The existence of the ripple phase at first sight is paradoxical on thermodynamic grounds since it involves an apparent lowering of symmetry (from $L_{\beta},$ to $P_{\beta^{\prime}}$) on increasing the temperature. Some models suggest that ripples exist because of periodic local spontaneous curvature in the lipid bilayers formed due to electrostatic coupling between water molecules and the polar headgroups or coupling between membrane curvature and molecular tilt. It has also been speculated that ripples form to relieve packing frustrations that arise whenever the relationship between head-group cross sectional area and cross-sectional area of the apolar tails exceeds a certain threshold [1]. However, there is not one conclusive theory to explain ripple phase formation.  
+
+# Phase Diagram Depicting Ripple Phase  
+
+  
+Concentration (% $\mathsf{H}_{2}\mathsf{O})$",0.9373809523809524,0.026608611514271893,0.02040816326530612,678.2028675079346
+textbook/phys-863.pdf_95,textbook,0,moderate,What phase is observed in hydrated lipid bilayers between the 'gel' phase and the 'fluid' phase?,"# 3.5: The Ripple Phase
+Lipids consist of hydrophilic polar head groups attached to hydrocarbon chains
+and arrange themselves in bilayers 10 make biological membrane structures. At
+lower temperatures, the bilayer is ina $L_{\beta’{\prime}}$ ‘gel’ phase and there is
+a transition to ‘fluid’ phase, $L_f\alpha}$ at higher temperatures due to an increase
+in mobility of individual lipids in the bilayer. As the ripple phase
+$P_{\beta’{\prime}}$ is observed in hydrated lipid bilayers between the
+$L_{beta’{\prime}}$ and $L_{\alpha}$ phase. This phase is characterized by
+corrugations of the membrane surface with well-defined periodicity with an axis
+parallel to the mean bilayer plane {1}. The molecular origin of rippie-phase
+formation has traditionally been associated with the lipid headgroup region and
+hence lipids can be classified into ripple-forming and non-ripple forming lipids
+based on their headgroups. One of the lipid families belonging to the
+rippie-forming class is phosphatidy! cholines and has been studied in extensive
+detail {1}.
+Scheme above shows different physical states adopted by a lipid bilayer in an
+aqueous medium [2].
+# Thermodynamics and Existence
+The existence of the ripple phase at first sight is paradoxical on thermodynamic
+grounds since it involves an apparent lowering of symmetry (from $L_f{\beta},$ to
+$P_{\beta*{\prime}}$) on increasing the temperature. Some models suggest that
+ripples exist because of periodic focal spontaneous curvature in the lipid bilayers
+tormed due to electrostatic coupling between water molecules and the polar
+headgroups or coupling between membrane curvature and molecular til. It has
+also been speculated that ripples form to relieve packing frustrations that arise
+whenever the relationship between head-group cross sectional area and
+cross-sectional area of the apolar tails exceeds a certain threshold {1]. However,
+there is not one conclusive theory to explain ripple phase formation.
+# Phase Diagram Depicting Ripple Phase
+Aanrantration (% SumathstH} (2}\mathst{O})s","# 3.5: The Ripple Phase  
+
+Lipids consist of hydrophilic polar head groups attached to hydrocarbon chains and arrange themselves in bilayers to make biological membrane structures. At lower temperatures, the bilayer is in a $L_{\beta^{\prime}}$ 'gel' phase and there is a transition to 'fluid' phase, $L_{\alpha}$ at higher temperatures due to an increase in mobility of individual lipids in the bilayer. As the ripple phase $P_{\beta^{\prime}}$ is observed in hydrated lipid bilayers between the $L_{\beta^{\prime}}$ and $L_{\alpha}$ phase. This phase is characterized by corrugations of the membrane surface with well-defined periodicity with an axis parallel to the mean bilayer plane [1]. The molecular origin of ripple-phase formation has traditionally been associated with the lipid headgroup region and hence lipids can be classified into ripple-forming and non-ripple forming lipids based on their headgroups. One of the lipid families belonging to the ripple-forming class is phosphatidyl cholines and has been studied in extensive detail [1].  
+
+  
+Scheme above shows different physical states adopted by a lipid bilayer in an aqueous medium [2].  
+
+# Thermodynamics and Existence  
+
+The existence of the ripple phase at first sight is paradoxical on thermodynamic grounds since it involves an apparent lowering of symmetry (from $L_{\beta},$ to $P_{\beta^{\prime}}$) on increasing the temperature. Some models suggest that ripples exist because of periodic local spontaneous curvature in the lipid bilayers formed due to electrostatic coupling between water molecules and the polar headgroups or coupling between membrane curvature and molecular tilt. It has also been speculated that ripples form to relieve packing frustrations that arise whenever the relationship between head-group cross sectional area and cross-sectional area of the apolar tails exceeds a certain threshold [1]. However, there is not one conclusive theory to explain ripple phase formation.  
+
+# Phase Diagram Depicting Ripple Phase  
+
+  
+Concentration (% $\mathsf{H}_{2}\mathsf{O})$",0.8919727891156463,0.040638606676342524,0.0782312925170068,661.5960597991943
+textbook/phys-863.pdf_95,textbook,0,severe,What phase is observed in hydrated lipid bilayers between the 'gel' phase and the 'fluid' phase?,"a aa Homers one P= :
+See as ae Soa RET ENS
+cont ivi pe. ee Dany. Aa TS a","# 3.5: The Ripple Phase  
+
+Lipids consist of hydrophilic polar head groups attached to hydrocarbon chains and arrange themselves in bilayers to make biological membrane structures. At lower temperatures, the bilayer is in a $L_{\beta^{\prime}}$ 'gel' phase and there is a transition to 'fluid' phase, $L_{\alpha}$ at higher temperatures due to an increase in mobility of individual lipids in the bilayer. As the ripple phase $P_{\beta^{\prime}}$ is observed in hydrated lipid bilayers between the $L_{\beta^{\prime}}$ and $L_{\alpha}$ phase. This phase is characterized by corrugations of the membrane surface with well-defined periodicity with an axis parallel to the mean bilayer plane [1]. The molecular origin of ripple-phase formation has traditionally been associated with the lipid headgroup region and hence lipids can be classified into ripple-forming and non-ripple forming lipids based on their headgroups. One of the lipid families belonging to the ripple-forming class is phosphatidyl cholines and has been studied in extensive detail [1].  
+
+  
+Scheme above shows different physical states adopted by a lipid bilayer in an aqueous medium [2].  
+
+# Thermodynamics and Existence  
+
+The existence of the ripple phase at first sight is paradoxical on thermodynamic grounds since it involves an apparent lowering of symmetry (from $L_{\beta},$ to $P_{\beta^{\prime}}$) on increasing the temperature. Some models suggest that ripples exist because of periodic local spontaneous curvature in the lipid bilayers formed due to electrostatic coupling between water molecules and the polar headgroups or coupling between membrane curvature and molecular tilt. It has also been speculated that ripples form to relieve packing frustrations that arise whenever the relationship between head-group cross sectional area and cross-sectional area of the apolar tails exceeds a certain threshold [1]. However, there is not one conclusive theory to explain ripple phase formation.  
+
+# Phase Diagram Depicting Ripple Phase  
+
+  
+Concentration (% $\mathsf{H}_{2}\mathsf{O})$",0.266,0.9709724238026125,0.9931972789115646,287.8997325897217
+"textbook/[Svetoslav_Savchev,_Titu_Andreescu]_Mathematical_M(z-lib.org).pdf_181",textbook,0,mild,What property proves that a three-dimensional point set is a ball if any plane section of the set is a circular disc?,"# Solutions
+1. This sum has just one possible value: 500,500. It is easy to guess the answer: If at
+each step we remove one pebble from the same pile, the sum will be
+$$
+1000+999+998+\cdots+2+1=500,500.
+$$
+There are different ways to prove that the same result will be obtained in all cases. Here
+is probably the shortest one. Imagine that initially each pebble is connected to each
+other pebble by a thread. When partitioning some pile into two smaller ones, assume
+that all the threads connecting pebbles that go to different piles are being cut. The
+number of these threads is exactly equal to the product of the number of pebbles in the
+smaller piles. Hence in all cases the sum in question will be equal to the total number of
+threads, that is, to $1001\cdot1000/2=500,500$.
+1. Project the discs onto the common line $I$ of the two planes. We obtain two line
+segments with lengths equal to the corresponding diameters. But these line segments
+are obliged to coincide, since each of them may be regarded as the orthogonal
+projection of the set itself onto $I$.
+There are sets with the described property that are not spheres, for example, the
+common part of three right circular cylinders with pairwise perpendicular axes passing
+through a common point. It is another story that if any plane section of a
+three-dimensional point set is a circular disc, then the set is a ball.
+3. Color the squares of the grid with n colors as shown in the left-hand figure below.
+Note that the main diagonal squares are exactly the ones colored with 1.
+$
+\begin{tabular}{|clc|c|c|c|cl} 1& 2&3 & & &$n$\ $nF&1&2&3R&\ &$NSR1E
+2&38&\ &&$N$FR1R%2&3\ 3&R&$NFR1&2\ 2&3 &&&$NFH1\
+\end{tabular}\quad\begin{tabular}{|c|c|c|c|c|c|} 2 & 3 & &&$nF&1\ 1828388 S
+$n$\ $n$&1&2&3&&\ &GHNFR1&2%34K\ & & $n$ &1&28&3\
+\end{tabular}\quad\begin{tabular}{|c|c|c|c|c|c|} 3 & & & $n$ & 1 & 2\ 2&3 && & $n$ &
+1\ 1&2&3&&& $n$\ $N$FR&1&%2R3R&\ &$N$K1K2%38\ &&GNSR1E
+2 &3\ \end{tabular}\end{table}
+$","# Solutions  
+
+1. This sum has just one possible value: 500,500. It is easy to guess the answer: If at each step we remove one pebble from the same pile, the sum will be  
+
+$$
+1000+999+998+\cdots+2+1=500,500.
+$$  
+
+There are different ways to prove that the same result will be obtained in all cases. Here is probably the shortest one. Imagine that initially each pebble is connected to each other pebble by a thread. When partitioning some pile into two smaller ones, assume that all the threads connecting pebbles that go to different piles are being cut. The number of these threads is exactly equal to the product of the number of pebbles in the smaller piles. Hence in all cases the sum in question will be equal to the total number of threads, that is, to  $1001\cdot1000/2=500,500$.
+
+1. Project the discs onto the common line  $l$  of the two planes. We obtain two line segments with lengths equal to the corresponding diameters. But these line segments are obliged to coincide, since each of them may be regarded as the orthogonal projection of the set itself onto $l$.  
+
+There are sets with the described property that are not spheres, for example, the common part of three right circular cylinders with pairwise perpendicular axes passing through a common point. It is another story that if any plane section of a three-dimensional point set is a circular disc, then the set is a ball.  
+
+3. Color the squares of the grid with n colors as shown in the left-hand figure below. Note that the main diagonal squares are exactly the ones colored with 1.  
+
+$
+ \begin{tabular}{|c|c|c|c|c|c|}  1 & 2 & 3 & & & $n$ \  $n$ & 1 & 2 & 3 & & \   & $n$ & 1 & 2 & 3 & \   & & $n$ & 1 & 2 & 3 \  3 & & & $n$ & 1 & 2 \  2 & 3 & & & $n$ & 1 \  \end{tabular}\quad\begin{tabular}{|c|c|c|c|c|c|}  2 & 3 & & & $n$ & 1 \  1 & 2 & 3 & & & $n$ \  $n$ & 1 & 2 & 3 & & \   & $n$ & 1 & 2 & 3 & \   & & $n$ & 1 & 2 & 3 \  \end{tabular}\quad\begin{tabular}{|c|c|c|c|c|c|}  3 & & & $n$ & 1 & 2 \  2 & 3 & & & $n$ & 1 \  1 & 2 & 3 & & & $n$ \  $n$ & 1 & 2 & 3 & & \   & $n$ & 1 & 2 & 3 & \   & & $n$ & 1 & 2 & 3 \  \end{tabular}\end{table}
+$",0.8841230769230769,0.11173974540311174,0.3400447427293065,737.9331588745117
+"textbook/[Svetoslav_Savchev,_Titu_Andreescu]_Mathematical_M(z-lib.org).pdf_181",textbook,0,moderate,What property proves that a three-dimensional point set is a ball if any plane section of the set is a circular disc?,"# Solutions
++ This sum has just one possible value: 500,500. It is easy to guess the answer: It at
+each step we remove one pebble from the same pile, the sum will be
+$$
+1000+999+998+\cdots+2+1=500,500.
+$$
+There are different ways to prove that the same result will be obtained in all cases. Here
+is probably the shortest one. Imagine that intially each pebble is connected to each
+other pebble by a thread, When partitioning some pile into two smaller ones, assume
+that ail the threads connecting pebbles that go to different piles are being cut. The
+number of these threads is exactly equal to the product of the number of pebbles in the
+emailer piles. Hence in all cases the sum in question will be equal fo the total number of
+threads, that is, to $1001\cdot1 000/2=500,500S.
+1. Project the discs onto the common line SIS of the two planes. We obtain two line
+segments with lengths equal to the corresponding diameters. But these line segments
+are obliged to coincide, since each of them may be regarded as the orthogonal
+projection of the set itself onto $1$.
+There are sets with the described property that are not spheres, for example, the
+common part of three right circular cylinders with pairwise perpendicular axes passing
+through a common point. Its another story that if any plane section of @
+three-dimensional point set is a circular disc, then the set is a ball.
+53. Color the squares of the grid with n colors as shown in the left-hand figure Delow.
+Note that the main diagonal squares are exactly the ones colored with 1.
+$
+\begin{tabular}{jcicicicicic|) 1&2&388&$n$\ $n$8182E388\ &$n$&18
+2&38&\ && $n$&18283\ 3888 $NS8182\ 283888 SnSh1\
+\end{tabular}\quad\begin{tabular|{icje|cicicicl} 28388 $NS81\ 1828988
+$n$\ $nP$S&182KRIKS\ &$n$&182838\ & &$n$&148283\
+\end{tabular} \quadibegin{tabular}{iejcicicicic\} 3&&&SNSK1KR2\ 2&38KSSNSS
+1\ 182&3&8&&$n$\ $n$818285988\ &$n$81&2838\ &&SNSEIE
+2&3) \end{tabular}\end{tabie}
+$","# Solutions  
+
+1. This sum has just one possible value: 500,500. It is easy to guess the answer: If at each step we remove one pebble from the same pile, the sum will be  
+
+$$
+1000+999+998+\cdots+2+1=500,500.
+$$  
+
+There are different ways to prove that the same result will be obtained in all cases. Here is probably the shortest one. Imagine that initially each pebble is connected to each other pebble by a thread. When partitioning some pile into two smaller ones, assume that all the threads connecting pebbles that go to different piles are being cut. The number of these threads is exactly equal to the product of the number of pebbles in the smaller piles. Hence in all cases the sum in question will be equal to the total number of threads, that is, to  $1001\cdot1000/2=500,500$.
+
+1. Project the discs onto the common line  $l$  of the two planes. We obtain two line segments with lengths equal to the corresponding diameters. But these line segments are obliged to coincide, since each of them may be regarded as the orthogonal projection of the set itself onto $l$.  
+
+There are sets with the described property that are not spheres, for example, the common part of three right circular cylinders with pairwise perpendicular axes passing through a common point. It is another story that if any plane section of a three-dimensional point set is a circular disc, then the set is a ball.  
+
+3. Color the squares of the grid with n colors as shown in the left-hand figure below. Note that the main diagonal squares are exactly the ones colored with 1.  
+
+$
+ \begin{tabular}{|c|c|c|c|c|c|}  1 & 2 & 3 & & & $n$ \  $n$ & 1 & 2 & 3 & & \   & $n$ & 1 & 2 & 3 & \   & & $n$ & 1 & 2 & 3 \  3 & & & $n$ & 1 & 2 \  2 & 3 & & & $n$ & 1 \  \end{tabular}\quad\begin{tabular}{|c|c|c|c|c|c|}  2 & 3 & & & $n$ & 1 \  1 & 2 & 3 & & & $n$ \  $n$ & 1 & 2 & 3 & & \   & $n$ & 1 & 2 & 3 & \   & & $n$ & 1 & 2 & 3 \  \end{tabular}\quad\begin{tabular}{|c|c|c|c|c|c|}  3 & & & $n$ & 1 & 2 \  2 & 3 & & & $n$ & 1 \  1 & 2 & 3 & & & $n$ \  $n$ & 1 & 2 & 3 & & \   & $n$ & 1 & 2 & 3 & \   & & $n$ & 1 & 2 & 3 \  \end{tabular}\end{table}
+$",0.8329276315789474,0.15794436586515795,0.4228187919463087,656.1830043792725
+"textbook/[Svetoslav_Savchev,_Titu_Andreescu]_Mathematical_M(z-lib.org).pdf_181",textbook,0,severe,What property proves that a three-dimensional point set is a ball if any plane section of the set is a circular disc?,"t Trem yt ce pn i £90,500, & i eony te guess the anew? tat
+song deg -oameicatbere T SOOO
+ca ea ancien or eacne meee AA
+a crea oe, ac el al em
+ee vncing pra wine Sie nL
+On seam saarte ma See Ne IE
+svedeoprannnrmperer nes ST ace aaene ans
+peepee amet eT
+emgecamuamicwersin) TAZ ETRE SIA gaa tezasea: Seats
+e398) Me EThEE\ SEEAWGETED) FEDER OOH
+vecditabaiaryquacoegnipacase’ {FCCRIESS oe gan asa ss 18285884
+pa HSS TAZE TESS Pere oe te ESHPRIETRR ;
+vexcdivaiae cpap tena RID pba GS 182: RESRRS TSE
+ee ee eget aze3as) VOORTRTESE anodes","# Solutions  
+
+1. This sum has just one possible value: 500,500. It is easy to guess the answer: If at each step we remove one pebble from the same pile, the sum will be  
+
+$$
+1000+999+998+\cdots+2+1=500,500.
+$$  
+
+There are different ways to prove that the same result will be obtained in all cases. Here is probably the shortest one. Imagine that initially each pebble is connected to each other pebble by a thread. When partitioning some pile into two smaller ones, assume that all the threads connecting pebbles that go to different piles are being cut. The number of these threads is exactly equal to the product of the number of pebbles in the smaller piles. Hence in all cases the sum in question will be equal to the total number of threads, that is, to  $1001\cdot1000/2=500,500$.
+
+1. Project the discs onto the common line  $l$  of the two planes. We obtain two line segments with lengths equal to the corresponding diameters. But these line segments are obliged to coincide, since each of them may be regarded as the orthogonal projection of the set itself onto $l$.  
+
+There are sets with the described property that are not spheres, for example, the common part of three right circular cylinders with pairwise perpendicular axes passing through a common point. It is another story that if any plane section of a three-dimensional point set is a circular disc, then the set is a ball.  
+
+3. Color the squares of the grid with n colors as shown in the left-hand figure below. Note that the main diagonal squares are exactly the ones colored with 1.  
+
+$
+ \begin{tabular}{|c|c|c|c|c|c|}  1 & 2 & 3 & & & $n$ \  $n$ & 1 & 2 & 3 & & \   & $n$ & 1 & 2 & 3 & \   & & $n$ & 1 & 2 & 3 \  3 & & & $n$ & 1 & 2 \  2 & 3 & & & $n$ & 1 \  \end{tabular}\quad\begin{tabular}{|c|c|c|c|c|c|}  2 & 3 & & & $n$ & 1 \  1 & 2 & 3 & & & $n$ \  $n$ & 1 & 2 & 3 & & \   & $n$ & 1 & 2 & 3 & \   & & $n$ & 1 & 2 & 3 \  \end{tabular}\quad\begin{tabular}{|c|c|c|c|c|c|}  3 & & & $n$ & 1 & 2 \  2 & 3 & & & $n$ & 1 \  1 & 2 & 3 & & & $n$ \  $n$ & 1 & 2 & 3 & & \   & $n$ & 1 & 2 & 3 & \   & & $n$ & 1 & 2 & 3 \  \end{tabular}\end{table}
+$",0.1788,0.8604431871758604,0.9932885906040269,573.0099678039551

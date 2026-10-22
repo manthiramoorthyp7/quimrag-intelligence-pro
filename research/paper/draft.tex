@@ -1,0 +1,153 @@
+% Unpublished student project draft -- NOT submitted anywhere, NOT peer-reviewed.
+% Content mirrors research/paper/draft.md (the authoritative source); this is a
+% structural LaTeX skeleton, not a second independently-written draft, so the
+% two never drift into contradicting each other.
+\documentclass[conference]{IEEEtran}
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\begin{document}
+
+\title{Evidence-Adaptive Retrieval for OCR-Resilient Document Question Answering}
+\author{\IEEEauthorblockN{Manthira Moorthy P, Vijay S K}
+\IEEEauthorblockA{IV ECE-A \\ Mentor: Dr. V. Karthikeyan, AP(Sl.G.)}}
+
+\maketitle
+
+\begin{abstract}
+Retrieval-augmented QA systems, including the QuIM-RAG baseline this project extends
+(Saha et al., IEEE Access 2024), retrieve top-$k$ passages and generate an answer
+unconditionally regardless of retrieval confidence. We extend an existing OCR-aware
+hybrid-retrieval prototype with real BM25 lexical scoring, real per-chunk OCR
+confidence, a 2-stage residual vector quantizer, and Evidence-Adaptive Retrieval \&
+Verification (EAR): a logistic combination of four zero-extra-inference signals --
+dense/BM25 agreement, OCR confidence, cross-passage numeric contradiction, and query
+complexity -- calibrated on held-out data to decide whether to answer, retrieve more,
+inspect structure, or abstain. On a stratified 420-question subset of OHR-Bench,
+restricting answers to EAR's confident decisions raises top-1 retrieval accuracy from
+71.2\% to 78.3\% (62.8\% coverage; 95\% bootstrap CI [+2.5, +12.0] points). We also
+report, without softening, two findings that complicate a simple ``our method wins''
+narrative: real BM25 alone outperforms the existing hybrid fusion on this benchmark,
+and our RVQ implementation's compression gains come at a Recall@5 cost production
+ANN systems avoid via techniques not implemented here.
+\end{abstract}
+
+\section{Introduction and Motivation}
+% See research/PROJECT_AUDIT.md and research/paper/draft.md Section 1 for full text.
+Real-world document QA over scanned, OCR'd, and noisy documents is where hybrid
+retrieval is most likely to retrieve the wrong evidence, yet most RAG pipelines
+answer regardless of retrieval confidence.
+
+\section{Related Work}
+% Full annotated table: research/PAPER_REVIEW.md
+The closest published baseline is Saha et al.~\cite{saha2024quimrag}, evaluated on a
+private corpus with no OCR noise, no lexical retrieval path, and no abstention
+mechanism. Recent work on RAG abstention and retrieval-agreement-as-signal is
+surveyed in \texttt{research/PATENTABILITY\_ASSESSMENT.md}.
+
+\section{Research Gap}
+% research/RESEARCH_GAP_ANALYSIS.md
+
+\section{Problem Formulation}
+Given query $q$ and evidence $E_k(q)$ retrieved for it, we seek a decision function
+$f(q, E_k(q)) \rightarrow \{\text{answer}, \text{expand}, \text{inspect}, \text{abstain}\}$
+that improves expected correctness of answered queries over the unfiltered baseline.
+
+\section{Proposed Method: Evidence-Adaptive Retrieval (EAR)}
+% Full equations and pseudocode: research/PROPOSED_CONTRIBUTION.md
+\begin{equation}
+p = \sigma(w_0 + w_1 a + w_2 o + w_3 x + w_4 c)
+\end{equation}
+where $a$ = dense/BM25 rank-agreement, $o$ = OCR confidence, $x$ = contradiction, $c$
+= query complexity, and $w$ is fit by logistic regression on a calibration split.
+
+\section{System Architecture}
+% Diagram source: research/paper/draft.md Section 6 (ASCII pipeline diagram)
+\begin{figure}[h]
+\centering
+% \includegraphics[width=\columnwidth]{architecture.png}
+\caption{Ingestion through EAR decision to answer/expand/inspect/abstain. See
+research/paper/draft.md Section 6 for the pipeline diagram (not yet rendered as a
+standalone figure file).}
+\end{figure}
+
+\section{Experimental Setup}
+\texttt{research/run\_benchmark.py} against \texttt{research/data/ohrbench\_adapter.py}.
+
+\section{Baselines}
+Dense-only, real BM25-only, Hybrid RRF, Hybrid+rerank, Hybrid+rewriting,
+Hybrid+rewriting+rerank.
+
+\section{Dataset}
+OHR-Bench~\cite{zhang2024ohrbench}, a stratified 420-QA-pair subset, 6 domains, seed
+42, 40/60 calibration/evaluation split.
+
+\section{Evaluation Metrics}
+% research/METRIC_INVENTORY.md
+
+\section{Results and Statistical Analysis}
+% Full tables: research/BASELINE_COMPARISON.md Sections 1-2
+\begin{table}[h]
+\centering
+\caption{Baseline retrieval comparison (k=5, n=252)}
+\begin{tabular}{lccc}
+\toprule
+Config & nDCG@5 & MRR@5 & $p$ vs.\ Dense \\
+\midrule
+Dense only & 0.477 & 0.726 & -- \\
+BM25 (real) & 0.528 & 0.837 & 0.000 \\
+Hybrid (RRF) & 0.515 & 0.780 & 0.000 \\
+Hybrid + rerank & 0.574 & 0.870 & 0.000 \\
+Hybrid + rewriting & 0.453 & 0.694 & 0.059 \\
+Hybrid + rewriting + rerank & 0.573 & 0.875 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+EAR: 71.2\% $\rightarrow$ 78.3\% top-1 accuracy at 62.8\% coverage, 95\% CI
+[+2.5, +12.0] points (5{,}000-resample bootstrap).
+
+\section{Ablation Studies}
+% research/BASELINE_COMPARISON.md Section 2 -- leave-one-signal-out, refit per ablation.
+
+\section{Error Analysis}
+Not performed at the per-query qualitative level in this build; see
+\texttt{research/RESEARCH\_GAP\_ANALYSIS.md}.
+
+\section{Computational Cost Analysis}
+% research/BASELINE_COMPARISON.md latency columns
+
+\section{Limitations}
+% research/RESEARCH_GAP_ANALYSIS.md, inline notes in research/BASELINE_COMPARISON.md
+
+\section{Threats to Validity}
+Single benchmark, single seed, single embedding model; results may not transfer
+without re-calibration.
+
+\section{Reproducibility Statement}
+\texttt{.venv/bin/python research/data/ohrbench\_adapter.py \&\& .venv/bin/python
+research/run\_benchmark.py} (seed=42; \textasciitilde6 minutes on the development
+machine). Raw logs: \texttt{research/experiments/20261014T185643Z.json}.
+
+\section{Conclusion and Future Work}
+A calibrated, zero-extra-inference sufficiency score measurably improves selective
+answer accuracy, but the ablation shows this is driven mostly by one signal
+(agreement), not uniformly by all four as hypothesized.
+
+\bibliographystyle{IEEEtran}
+\begin{thebibliography}{9}
+\bibitem{saha2024quimrag} B. Saha, U. Saha, and M. Z. Malik, ``QuIM-RAG: Advancing
+Retrieval-Augmented Generation With Inverted Question Matching for Enhanced QA
+Performance,'' IEEE Access, vol. 12, pp. 185401--185410, 2024.
+\bibitem{zhang2024ohrbench} J. Zhang et al., ``OCR Hinders RAG: Evaluating the
+Cascading Impact of OCR on Retrieval-Augmented Generation,'' arXiv:2412.02592, 2024.
+\bibitem{jegou2011pq} H. J\'egou, M. Douze, and C. Schmid, ``Product Quantization for
+Nearest Neighbor Search,'' IEEE TPAMI, vol. 33, no. 1, pp. 117--128, 2011.
+\bibitem{robertson2009bm25} S. Robertson and H. Zaragoza, ``The Probabilistic
+Relevance Framework: BM25 and Beyond,'' Foundations and Trends in IR, vol. 3, no. 4,
+pp. 333--389, 2009.
+\end{thebibliography}
+
+\end{document}
