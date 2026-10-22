@@ -133,13 +133,103 @@ def fig4_risk_coverage():
     plt.close(fig)
 
 
+def fig5_reliability_diagram():
+    d = json.load(open(os.path.join(HERE, "advanced_stats.json")))
+    ece = d["expected_calibration_error"]
+    bins = ece["bins"]
+    pred = [b["mean_predicted_p"] for b in bins]
+    obs = [b["observed_accuracy"] for b in bins]
+    ns = [b["n"] for b in bins]
+
+    fig, ax = plt.subplots(figsize=(5.8, 4.3))
+    ax.plot([0, 1], [0, 1], linestyle="--", color=MUTED, linewidth=1.3, label="Perfect calibration", zorder=1)
+    ax.plot(pred, obs, marker="o", color=ACCENT, linewidth=2, zorder=3, label="EAR sufficiency score")
+    for p, o, n in zip(pred, obs, ns):
+        ax.annotate(f"n={n}", (p, o), textcoords="offset points", xytext=(6, -3), fontsize=7.5, color=MUTED)
+    ax.set_xlabel("Mean predicted probability (bin)")
+    ax.set_ylabel("Observed accuracy (bin)")
+    ax.set_xlim(0.2, 0.9)
+    ax.set_ylim(0.2, 0.9)
+    ax.set_title(f"Reliability diagram, corrected evaluation split\nECE = {ece['ece']:.4f} (5 equal-frequency bins)",
+                 fontsize=10)
+    ax.legend(fontsize=8, loc="upper left")
+    ax.grid(color="#E5E8EC", zorder=0)
+    fig.tight_layout()
+    fig.savefig(os.path.join(HERE, "fig5_reliability_diagram.png"), dpi=200)
+    plt.close(fig)
+
+
+def fig6_per_signal_auc():
+    d = json.load(open(os.path.join(HERE, "advanced_stats.json")))
+    sig = d["per_signal_roc_auc"]
+    feats = ["agreement", "ocr_confidence", "contradiction", "complexity"]
+    labels = ["agreement", "ocr_confidence\n(constant --\nno AUC)", "contradiction", "complexity\n(wrong\ndirection)"]
+    aucs = [sig[f]["auc"] if sig[f].get("auc") == sig[f].get("auc") else 0.0 for f in feats]  # NaN -> 0 bar
+    colors = []
+    for f in feats:
+        r = sig[f]
+        if "note" in r:
+            colors.append(MUTED)
+        elif not r.get("direction_matches_hypothesis", True):
+            colors.append(WARN)
+        else:
+            colors.append(ACCENT)
+
+    fig, ax = plt.subplots(figsize=(6.2, 4.2))
+    bars = ax.bar(labels, aucs, color=colors, zorder=3)
+    ax.axhline(0.5, color=MUTED, linestyle="--", linewidth=1.2, zorder=2, label="Chance (AUC=0.5)")
+    for b, f in zip(bars, feats):
+        r = sig[f]
+        txt = "constant" if "note" in r else f"{r['auc']:.3f}"
+        ax.text(b.get_x() + b.get_width() / 2, (b.get_height() or 0.02) + 0.02, txt, ha="center", fontsize=9)
+    ax.set_ylabel("ROC-AUC (signal alone vs. top-1 correctness)")
+    ax.set_ylim(0, 0.85)
+    ax.set_title("Per-signal ROC-AUC, corrected evaluation split (n=247)\n"
+                  "purple = expected direction · red = reversed direction",
+                  fontsize=9.5)
+    ax.legend(fontsize=8, loc="upper right")
+    ax.grid(axis="y", color="#E5E8EC", zorder=0)
+    fig.tight_layout()
+    fig.savefig(os.path.join(HERE, "fig6_per_signal_auc.png"), dpi=200)
+    plt.close(fig)
+
+
+def fig7_ear_v1_v2_reliability():
+    d = json.load(open(os.path.join(HERE, "ear_v2_results.json")))
+    v1, v2 = d["ear_v1"], d["ear_v2"]
+
+    fig, ax = plt.subplots(figsize=(5.8, 4.3))
+    ax.plot([0, 1], [0, 1], linestyle="--", color=MUTED, linewidth=1.3, label="Perfect calibration", zorder=1)
+    for res, color, label in [(v1, "#B8B0E8", f"EAR v1 (4 signals, ECE={v1['ece']:.3f})"),
+                               (v2, ACCENT, f"EAR v2 (3 signals + isotonic, ECE={v2['ece']:.3f})")]:
+        bins = res["reliability_bins"]
+        pred = [b["mean_predicted_p"] for b in bins]
+        obs = [b["observed_accuracy"] for b in bins]
+        ax.plot(pred, obs, marker="o", color=color, linewidth=2, zorder=3, label=label)
+    ax.set_xlabel("Mean predicted probability (bin)")
+    ax.set_ylabel("Observed accuracy (bin)")
+    ax.set_xlim(0.15, 0.95)
+    ax.set_ylim(0.15, 0.95)
+    ax.set_title("EAR v1 vs. EAR v2 reliability, corrected evaluation split", fontsize=10)
+    ax.legend(fontsize=7.5, loc="upper left")
+    ax.grid(color="#E5E8EC", zorder=0)
+    fig.tight_layout()
+    fig.savefig(os.path.join(HERE, "fig7_ear_v1_v2_reliability.png"), dpi=200)
+    plt.close(fig)
+
+
 if __name__ == "__main__":
     fig1_baseline_comparison()
     fig2_ear_before_after()
     fig3_rvq_recovery()
     if os.path.exists(os.path.join(HERE, "advanced_stats.json")):
         fig4_risk_coverage()
-        print("Wrote fig1-3 + fig4_risk_coverage.png")
+        fig5_reliability_diagram()
+        fig6_per_signal_auc()
+        print("Wrote fig1-3 + fig4_risk_coverage, fig5_reliability_diagram, fig6_per_signal_auc")
     else:
         print("Wrote fig1_baseline_comparison.png, fig2_ear_before_after.png, fig3_rvq_recovery.png "
-              "(skipped fig4: run compute_advanced_stats.py first)")
+              "(skipped fig4-6: run compute_advanced_stats.py first)")
+    if os.path.exists(os.path.join(HERE, "ear_v2_results.json")):
+        fig7_ear_v1_v2_reliability()
+        print("Wrote fig7_ear_v1_v2_reliability")

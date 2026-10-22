@@ -206,5 +206,88 @@
   "cohens_h": {
     "coverage_vs_full": -2.3354785046575666,
     "accuracy_answered_vs_baseline": 0.1277645326361425
+  },
+  "overall_roc_auc": 0.6734743750872784,
+  "per_signal_roc_auc": {
+    "agreement": {
+      "auc": 0.6653400363077782,
+      "discriminative_power": 0.6653400363077782,
+      "direction_matches_hypothesis": true
+    },
+    "ocr_confidence": {
+      "auc": NaN,
+      "note": "signal is constant on this split"
+    },
+    "contradiction": {
+      "auc": 0.48268398268398266,
+      "discriminative_power": 0.5173160173160174,
+      "direction_matches_hypothesis": true
+    },
+    "complexity": {
+      "auc": 0.6547968160871387,
+      "discriminative_power": 0.6547968160871387,
+      "direction_matches_hypothesis": false
+    }
+  },
+  "expected_calibration_error": {
+    "ece": 0.09605997446990566,
+    "n_bins": 5,
+    "bins": [
+      {
+        "n": 50,
+        "mean_predicted_p": 0.4549092065725979,
+        "observed_accuracy": 0.3,
+        "prob_range": [
+          0.4199946848141223,
+          0.5562934655423922
+        ]
+      },
+      {
+        "n": 50,
+        "mean_predicted_p": 0.5844323200906971,
+        "observed_accuracy": 0.6,
+        "prob_range": [
+          0.5562934655423922,
+          0.617242825412934
+        ]
+      },
+      {
+        "n": 49,
+        "mean_predicted_p": 0.6430031762207328,
+        "observed_accuracy": 0.7755102040816326,
+        "prob_range": [
+          0.620629237922077,
+          0.6761880710943546
+        ]
+      },
+      {
+        "n": 49,
+        "mean_predicted_p": 0.7018723018587408,
+        "observed_accuracy": 0.7755102040816326,
+        "prob_range": [
+          0.676484748299048,
+          0.7274557407227902
+        ]
+      },
+      {
+        "n": 49,
+        "mean_predicted_p": 0.7775891386911401,
+        "observed_accuracy": 0.673469387755102,
+        "prob_range": [
+          0.7274557407227902,
+          0.86751527370946
+        ]
+      }
+    ]
+  },
+  "power_analysis": {
+    "n_answer": 38,
+    "n_baseline": 247,
+    "alpha": 0.05,
+    "target_power": 0.8,
+    "minimum_detectable_h": 0.48818675496489095,
+    "observed_h": 0.1277645326361425,
+    "observed_effect_as_fraction_of_mde": 0.26171241095086856,
+    "underpowered_for_observed_effect": 1.0
   }
 }

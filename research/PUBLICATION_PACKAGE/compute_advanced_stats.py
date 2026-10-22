@@ -23,6 +23,23 @@ Dense/Hybrid retrievers on the existing evaluation split, to compute:
 5. Cohen's h effect size for the EAR coverage proportion shift and for the
    accuracy-on-answered vs. baseline proportion difference, to separate
    PRACTICAL from STATISTICAL significance.
+6. Per-signal ROC-AUC: each of EAR's four raw signals, treated individually
+   as a predictor of top-1 correctness, scored by sklearn.metrics.roc_auc_score
+   -- this is the signal-level diagnostic every prior document in this
+   project (STATISTICAL_ANALYSIS.md, the Deliverable 2 validation plan, the
+   reviewer critique) flagged as "not implemented, any split" and named as
+   the single highest-priority follow-up. Implemented here for the first
+   time.
+7. Expected Calibration Error (ECE) and reliability-diagram data for the
+   combined sufficiency score p -- bins queries by predicted probability and
+   compares each bin's mean prediction to its observed accuracy, which the
+   single Brier-score number (item 2) cannot show on its own (two models can
+   share a Brier score while being mis-calibrated in opposite directions).
+8. A post-hoc power / minimum-detectable-effect (MDE) analysis for the
+   corrected EAR comparison, using the same arcsine-stabilized (Cohen's h)
+   framework as item 5 -- answers the specific question Section 7 of the
+   paper raises but does not quantify: was this evaluation merely
+   underpowered to detect an effect the size actually observed?
 
 Usage: HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python research/PUBLICATION_PACKAGE/compute_advanced_stats.py
 """
@@ -39,6 +56,7 @@ sys.path.insert(0, ROOT + "/data")
 import numpy as np
 import pandas as pd
 from scipy import stats
+from sklearn.metrics import roc_auc_score
 
 import ohrbench_adapter_v2 as A2  # noqa: E402
 from quimrag.core import QuIMRAG  # noqa: E402
@@ -141,6 +159,81 @@ def mcnemar_test(dense_correct, hybrid_correct):
             "statistic": float(chi2), "p_value": p, "method": "continuity-corrected chi-square"}
 
 
+def per_signal_roc_auc(sel: pd.DataFrame) -> dict:
+    """ROC-AUC of each raw EAR signal, used alone, as a predictor of
+    top1_correct. AUC=0.5 means no better than chance; AUC<0.5 means the
+    signal is informative but in the OPPOSITE direction of what was fit
+    (common for contradiction/complexity, where high values are hypothesized
+    to indicate LOWER correctness) -- reported as-is, with a `direction_ok`
+    flag rather than silently flipping the sign, so the raw finding is
+    visible, not papered over."""
+    y = sel["top1_correct"].values
+    out = {}
+    expect_positive = {"agreement": True, "ocr_confidence": True, "contradiction": False, "complexity": False}
+    for feat in EAR.FEATURES:
+        x = sel[feat].values
+        if len(set(x)) < 2:  # a constant signal has no ROC curve
+            out[feat] = {"auc": float("nan"), "note": "signal is constant on this split"}
+            continue
+        auc = float(roc_auc_score(y, x))
+        hypothesis_holds = (auc >= 0.5) if expect_positive[feat] else (auc <= 0.5)
+        out[feat] = {
+            "auc": auc,
+            "discriminative_power": max(auc, 1 - auc),
+            "direction_matches_hypothesis": hypothesis_holds,
+        }
+    return out
+
+
+def expected_calibration_error(probs: np.ndarray, correct: np.ndarray, n_bins: int = 5) -> dict:
+    """Quantile-binned (equal-frequency) ECE -- fixed-width bins would leave
+    several of the 5 bins nearly empty given how concentrated EAR's
+    probabilities are on this split (see the reliability diagram), so
+    equal-frequency binning is used to keep every bin's accuracy estimate
+    comparably stable, at the cost of bins not having round probability
+    boundaries."""
+    probs = np.asarray(probs)
+    correct = np.asarray(correct)
+    order = np.argsort(probs)
+    probs_sorted, correct_sorted = probs[order], correct[order]
+    bins = np.array_split(np.arange(len(probs_sorted)), n_bins)
+    rows, ece = [], 0.0
+    for b in bins:
+        if len(b) == 0:
+            continue
+        bin_probs = probs_sorted[b]
+        bin_correct = correct_sorted[b]
+        mean_pred = float(bin_probs.mean())
+        mean_obs = float(bin_correct.mean())
+        weight = len(b) / len(probs_sorted)
+        ece += weight * abs(mean_pred - mean_obs)
+        rows.append({"n": len(b), "mean_predicted_p": mean_pred, "observed_accuracy": mean_obs,
+                     "prob_range": [float(bin_probs.min()), float(bin_probs.max())]})
+    return {"ece": float(ece), "n_bins": n_bins, "bins": rows}
+
+
+def power_analysis(n_answer: int, n_baseline: int, observed_h: float, alpha: float = 0.05, power: float = 0.80) -> dict:
+    """Post-hoc minimum-detectable-effect (MDE) analysis in Cohen's h units,
+    using the standard arcsine-stabilized two-proportion formula (the same
+    transform already used for Cohen's h elsewhere, so this is a direct,
+    consistent extension, not a different, unrelated test):
+        h_min = (z_{alpha/2} + z_{power}) * sqrt(1/n1 + 1/n2)
+    This is an approximation (the actual test used was a paired bootstrap on
+    a selected subset, not an independent two-proportion z-test), stated
+    explicitly as approximate -- its purpose is to give an order-of-magnitude
+    answer to 'was this sample size even capable of detecting the observed
+    effect', not a precise substitute for the bootstrap CI already reported."""
+    z_alpha = stats.norm.ppf(1 - alpha / 2)
+    z_power = stats.norm.ppf(power)
+    h_min = (z_alpha + z_power) * math.sqrt(1 / n_answer + 1 / n_baseline)
+    return {
+        "n_answer": n_answer, "n_baseline": n_baseline, "alpha": alpha, "target_power": power,
+        "minimum_detectable_h": h_min, "observed_h": observed_h,
+        "observed_effect_as_fraction_of_mde": observed_h / h_min if h_min else float("nan"),
+        "underpowered_for_observed_effect": abs(observed_h) < h_min,
+    }
+
+
 def main():
     calib_rows, eval_rows, overlap = A2.build_and_save_v2(os.path.join(ROOT, "data"))
     assert overlap["doc_overlap_count"] == 0 and overlap["page_overlap_count"] == 0
@@ -195,6 +288,26 @@ def main():
     print(f"Cohen's h (coverage vs full-coverage) = {h_coverage:.4f}")
     print(f"Cohen's h (accuracy-on-answered vs baseline) = {h_accuracy:.4f}")
 
+    # 6. Per-signal ROC-AUC
+    signal_auc = per_signal_roc_auc(sel)
+    overall_auc = float(roc_auc_score(sel["top1_correct"].values, sel["probability"].values))
+    print(f"Overall (combined score) ROC-AUC = {overall_auc:.4f}")
+    for feat, r in signal_auc.items():
+        print(f"  signal {feat}: {r}")
+
+    # 7. Expected Calibration Error + reliability diagram data
+    ece = expected_calibration_error(sel["probability"].values, sel["top1_correct"].values, n_bins=5)
+    print(f"Expected Calibration Error (5 equal-frequency bins) = {ece['ece']:.4f}")
+    for b in ece["bins"]:
+        print(f"  n={b['n']:3d}  mean_predicted_p={b['mean_predicted_p']:.3f}  observed_accuracy={b['observed_accuracy']:.3f}")
+
+    # 8. Power / minimum-detectable-effect analysis
+    power = power_analysis(n_answer=k_answer, n_baseline=n, observed_h=h_accuracy)
+    print(f"Power analysis: minimum detectable h at n={k_answer}/{n}, alpha=0.05, power=0.80 "
+          f"-> h_min={power['minimum_detectable_h']:.4f} vs observed |h|={abs(h_accuracy):.4f} "
+          f"({'UNDERPOWERED' if power['underpowered_for_observed_effect'] else 'adequately powered'} "
+          f"for the observed effect size)")
+
     out = {
         "risk_coverage": {"aurc": rc["aurc"], "full_coverage_risk_baseline": rc["full_coverage_risk_baseline"],
                            "n": rc["n"], "coverage_curve": rc["coverage_curve"], "risk_curve": rc["risk_curve"]},
@@ -204,6 +317,10 @@ def main():
         "coverage_wilson_ci": {"k": k_answer, "n": n, "point": k_answer / n, "ci95": list(wilson)},
         "mcnemar_dense_vs_hybrid": mcnemar,
         "cohens_h": {"coverage_vs_full": h_coverage, "accuracy_answered_vs_baseline": h_accuracy},
+        "overall_roc_auc": overall_auc,
+        "per_signal_roc_auc": signal_auc,
+        "expected_calibration_error": ece,
+        "power_analysis": power,
     }
     with open(OUT, "w") as f:
         json.dump(out, f, indent=2, default=float)

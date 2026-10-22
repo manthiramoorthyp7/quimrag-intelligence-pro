@@ -1,0 +1,103 @@
+{
+  "ear_v1": {
+    "features": [
+      "agreement",
+      "ocr_confidence",
+      "contradiction",
+      "complexity"
+    ],
+    "coverage": 0.15384615384615385,
+    "accuracy_on_answer": 0.6842105263157895,
+    "baseline_accuracy": 0.6234817813765182,
+    "improvement_ci_95": [
+      -0.08299758391014753,
+      0.19715165317138988
+    ],
+    "ece": 0.09605997446990566,
+    "brier": 0.2116950338194888,
+    "reliability_bins": [
+      {
+        "n": 50,
+        "mean_predicted_p": 0.4549092065725979,
+        "observed_accuracy": 0.3
+      },
+      {
+        "n": 50,
+        "mean_predicted_p": 0.5844323200906971,
+        "observed_accuracy": 0.6
+      },
+      {
+        "n": 49,
+        "mean_predicted_p": 0.6430031762207328,
+        "observed_accuracy": 0.7755102040816326
+      },
+      {
+        "n": 49,
+        "mean_predicted_p": 0.7018723018587408,
+        "observed_accuracy": 0.7755102040816326
+      },
+      {
+        "n": 49,
+        "mean_predicted_p": 0.7775891386911401,
+        "observed_accuracy": 0.673469387755102
+      }
+    ]
+  },
+  "ear_v2": {
+    "features": [
+      "agreement",
+      "contradiction",
+      "complexity"
+    ],
+    "coef": [
+      1.6958041663246295,
+      -0.02895105074533515,
+      1.2933495076416341
+    ],
+    "intercept": -0.3196124621485045,
+    "threshold_abstain": 0.47368421052631576,
+    "threshold_answer": 0.8,
+    "coverage": 0.13765182186234817,
+    "accuracy_on_answer": 0.6764705882352942,
+    "baseline_accuracy": 0.6234817813765182,
+    "improvement_ci_95": [
+      -0.10031488978857395,
+      0.19771950910931158
+    ],
+    "roc_auc": 0.6724270353302612,
+    "ece": 0.04590774771349175,
+    "brier": 0.20803224660394048,
+    "decision_counts": {
+      "expand_retrieval": 186,
+      "answer": 34,
+      "abstain": 27
+    },
+    "reliability_bins": [
+      {
+        "n": 50,
+        "mean_predicted_p": 0.2676579906438657,
+        "observed_accuracy": 0.24
+      },
+      {
+        "n": 50,
+        "mean_predicted_p": 0.6495078031212483,
+        "observed_accuracy": 0.66
+      },
+      {
+        "n": 49,
+        "mean_predicted_p": 0.6938775510204082,
+        "observed_accuracy": 0.7142857142857143
+      },
+      {
+        "n": 49,
+        "mean_predicted_p": 0.7454185755935028,
+        "observed_accuracy": 0.7959183673469388
+      },
+      {
+        "n": 49,
+        "mean_predicted_p": 0.8358615206772088,
+        "observed_accuracy": 0.7142857142857143
+      }
+    ]
+  }
+}

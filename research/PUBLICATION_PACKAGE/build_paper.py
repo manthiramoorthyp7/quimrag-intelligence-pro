@@ -238,13 +238,44 @@ p.add_run(
     "threshold does not reach — evidence favoring an underpowered-calibration explanation over a no-effect one, "
     "offered as a hypothesis for future recalibration rather than a second confirmed result."
 )
+p2 = doc.add_paragraph()
+p2.add_run(
+    "This revision extends that re-analysis in two directions. First, a per-signal diagnostic (ROC-AUC, "
+    "individually, for each of EAR's four raw signals, computed here for the first time on any split) finds "
+    "the combined score's overall AUC is 0.674 and that two signals — agreement (AUC 0.665) and complexity "
+    "(AUC 0.655) — are individually informative, while ocr_confidence is not merely weakly weighted but "
+    "literally constant on this evaluation split (making a zero weight mathematically inevitable, not an "
+    "empirical finding about the signal's value), and complexity is informative in the OPPOSITE direction from "
+    "its design hypothesis. A post-hoc power analysis further shows this evaluation's sample size (n=38 "
+    "answered) could only reliably detect an effect roughly 4× larger than the one observed (minimum-detectable "
+    "Cohen's h = 0.488 vs. observed 0.128), reframing the non-significant result as expected under "
+    "under-powering rather than as evidence of no effect. Second, this revision reports a production-engineering "
+    "contribution, reported separately from and not as evidence for the statistical findings above: the EAR "
+    "pipeline was implemented as a real, independently runnable service — a FastAPI backend with persistent "
+    "document storage, a citation-verification pipeline that checks every generated citation against the actual "
+    "retrieved evidence, and deletion that is programmatically verified rather than assumed — and exercised "
+    "end-to-end, including by driving a real web browser against the running system, not merely by inspecting "
+    "source code."
+)
+p3 = doc.add_paragraph()
+p3.add_run(
+    "Finally, we act on the diagnostics rather than only report them: EAR v2 drops the zero-variance "
+    "ocr_confidence signal and replaces the logistic sufficiency score's linear probability mapping with an "
+    "isotonic recalibration fit on the calibration split, both changes pre-specified, before results were "
+    "inspected, to fix calibration quality specifically and NOT to be expected to resolve the power-limited "
+    "significance gap. The result matches that prediction exactly: Expected Calibration Error nearly halves "
+    "(0.096→0.046) while coverage, combined ROC-AUC, and statistical significance are essentially unchanged — a "
+    "successful, falsifiable prediction about which problem a given fix can and cannot solve, which we argue is "
+    "stronger evidence of a correct diagnosis than an unexplained improvement would have been."
+)
 doc.add_paragraph()
 kw = doc.add_paragraph()
 r = kw.add_run("Keywords: ")
 r.bold = True
 kw.add_run(
     "Retrieval-Augmented Generation, Selective Prediction, Calibration-Evaluation Leakage, Residual Vector "
-    "Quantization, OCR-Resilient Document QA, Reproducibility, Evidence-Adaptive Verification."
+    "Quantization, OCR-Resilient Document QA, Reproducibility, Evidence-Adaptive Verification, ROC-AUC, "
+    "Calibration, Statistical Power, Production System Architecture, Isotonic Regression, Model Recalibration."
 )
 
 doc.add_page_break()
@@ -305,6 +336,15 @@ for q in [
     "RQ4: Is real per-word OCR confidence, captured at ingestion, a statistically reliable proxy for actual "
     "character error rate under controlled degradation, independent of whether it is useful inside a specific "
     "downstream decision model?",
+    "RQ5: Independent of the combined model's coverage/accuracy tradeoff, does each of EAR's four raw signals "
+    "individually carry information about retrieval correctness, in the direction its design hypothesized — and "
+    "is the evaluation that tests RQ1 statistically capable of detecting an effect of the size actually observed?",
+    "RQ6: Can the EAR pipeline be implemented as a real, independently runnable, multi-component system (API, "
+    "persistence, citation verification) and have that implementation verified by actually exercising it end to "
+    "end, rather than only by inspecting its source code?",
+    "RQ7: Do fixes derived directly from RQ5's diagnostics (dropping an uninformative signal; recalibrating a "
+    "non-monotonic probability-to-accuracy mapping) measurably improve EAR's calibration quality, and does doing "
+    "so also resolve RQ1's statistical significance gap, as a naive reading might expect?",
 ]:
     doc.add_paragraph(q, style="List Bullet")
 doc.add_heading("1.2 Contributions", level=2)
@@ -325,6 +365,22 @@ for c in [
     "and McNemar's-test cross-checks against the bootstrap-based tests used elsewhere in the paper, which "
     "surface a genuine, explained disagreement between two valid significance tests applied to the same "
     "retrieval comparison.",
+    "The first per-signal ROC-AUC analysis of EAR's four raw signals on any split, finding two (agreement, "
+    "complexity) individually informative and two (ocr_confidence, contradiction) not — including the discovery "
+    "that ocr_confidence is literally constant, not merely weakly weighted, on the corrected evaluation split — "
+    "plus a post-hoc power analysis showing this evaluation's sample size could only reliably detect an effect "
+    "roughly 4x larger than the one observed, quantifying rather than merely asserting the \"underpowered, not "
+    "necessarily absent\" reading of RQ1's result (RQ5).",
+    "A working, independently verified production implementation of the full EAR pipeline — a FastAPI backend "
+    "with persistent document storage, retrieval-time citation verification, and programmatically-checked "
+    "deletion — exercised end to end via both direct API calls and a real browser session, reported as an "
+    "engineering contribution distinct from, and not offered as evidence for, the statistical findings above "
+    "(RQ6).",
+    "EAR v2: a diagnosis-driven redesign (dropped zero-variance signal, isotonic recalibration) that, exactly as "
+    "pre-specified before its results were inspected, nearly halves calibration error (ECE 0.096→0.046) without "
+    "changing coverage, combined ROC-AUC, or statistical significance — a successful, falsified-in-advance "
+    "prediction that separates and independently resolves the calibration-quality problem from the "
+    "statistical-power problem the power analysis (RQ5) identified as the actual constraint on RQ1 (RQ7).",
 ]:
     doc.add_paragraph(c, style="List Bullet")
 
@@ -405,7 +461,10 @@ add_equation("c = mean( min(tok,30)/30, min(wh,3)/3, min(conj,3)/3 )", 4)
 doc.add_paragraph("Sufficiency score — logistic combination, weights fit by logistic regression on the calibration split only:")
 add_equation("p = σ(w₀ + w₁a + w₂o + w₃x + w₄c)", 5)
 doc.add_paragraph(
-    "Decision thresholds θ_abstain, θ_answer are also fit on the calibration split. Pseudocode (quimrag/"
+    "Decision thresholds θ_abstain, θ_answer are also fit on the calibration split: θ_answer is set to the "
+    "lowest calibration probability at which precision for predicting top-1 correctness reaches ≥0.8 (falling "
+    "back to the best-F1 threshold if 0.8 precision is unreachable on that calibration set), and θ_abstain is "
+    "the 20th percentile of calibration probabilities — both fit, not hand-picked. Pseudocode (quimrag/"
     "adaptive.py, unmodified by this paper):"
 )
 dp = doc.add_paragraph()
@@ -560,6 +619,196 @@ doc.add_paragraph(
     "otherwise be misread as \"there is definitely no effect\" rather than the more precise \"this sample cannot "
     "distinguish a small effect from no effect\" — h quantifies which of these the point estimate actually "
     "corresponds to, reported in Section 5.2b."
+)
+
+doc.add_heading("3.5.6 Per-signal ROC-AUC: which signal, if any, is actually doing the work?", level=3)
+doc.add_paragraph(
+    "Every prior document in this project's own validation trail — including the leave-one-signal-out "
+    "ablation discussed in Section 5.4 and this paper's earlier drafts — identified EAR's four signals only "
+    "through their fitted logistic weights inside the COMBINED model. A weight near zero (ocr_confidence) is "
+    "consistent with "
+    "either \"this signal carries no information\" or \"this signal is informative but redundant with the "
+    "others once they are jointly fit\" — the two have different implications and the combined-model weight "
+    "alone cannot distinguish them. The standard way to test a single signal's OWN discriminative power, "
+    "independent of the others, is to score it alone as a binary classifier against the ground-truth label "
+    "(top-1 retrieval correctness) via its ROC-AUC:"
+)
+add_equation("AUC(f) = P( f(xᵢ) > f(xⱼ) | correctᵢ = 1, correctⱼ = 0 )", 14)
+doc.add_paragraph(
+    "i.e. the probability that signal f ranks a randomly chosen correctly-answered query above a randomly "
+    "chosen incorrectly-answered one. AUC=0.5 is chance; AUC>0.5 (or <0.5, with the sign reversed) indicates "
+    "real discriminative power. This had never been computed for any individual EAR signal, on any split, "
+    "before this analysis — it is implemented and run for the first time here against the corrected, "
+    "document-disjoint evaluation split (Section 5.2d)."
+)
+
+doc.add_heading("3.5.7 Expected Calibration Error and the reliability diagram", level=3)
+doc.add_paragraph(
+    "The Brier score (Section 3.5.2) is a single scalar and can mask qualitatively different failure modes — "
+    "a model that is uniformly slightly overconfident and one that is overconfident in one probability range "
+    "and underconfident in another can share a Brier score. Expected Calibration Error makes this visible by "
+    "binning predictions and comparing each bin's mean predicted probability to its observed accuracy "
+    "(Guo et al., 2017):"
+)
+add_equation("ECE = Σ_{bin b} (nᵦ/n) · |mean_predicted_p(b) − observed_accuracy(b)|", 15)
+doc.add_paragraph(
+    "Bins are constructed by equal frequency (quantiles of p), not equal width, because EAR's probabilities "
+    "are concentrated in a narrow range on this evaluation split (Section 5.2d) — fixed-width bins would leave "
+    "several bins with too few queries for a stable accuracy estimate, which equal-frequency binning avoids by "
+    "construction."
+)
+
+doc.add_heading("3.5.8 Post-hoc power analysis: was this evaluation even capable of detecting the observed effect?", level=3)
+doc.add_paragraph(
+    "Section 5.2's non-significant result (95% CI [−8.3, +19.7] including zero) is consistent with two "
+    "different underlying realities: the true effect is near zero, or the true effect is real but this "
+    "specific sample (n=38 answered, n=247 overall) was simply too small to detect it reliably. A post-hoc "
+    "minimum-detectable-effect (MDE) analysis, using the same arcsine-stabilized transform already introduced "
+    "for Cohen's h (Section 3.5.5), distinguishes these by computing the smallest effect size this sample size "
+    "could have detected at a conventional 80% power:"
+)
+add_equation("h_min = (z_{α/2} + z_{power}) · √(1/n₁ + 1/n₂)", 16)
+doc.add_paragraph(
+    "with α=0.05 (two-sided, matching the CI elsewhere in this paper) and power=0.80 (the conventional target). "
+    "This is reported as an approximation — the actual test used for Section 5.2's headline result is a paired "
+    "bootstrap on a selected subset, not an independent two-proportion z-test, so h_min here is an "
+    "order-of-magnitude diagnostic, not a replacement for the bootstrap CI — but it directly answers the "
+    "question Section 6's discussion raises without, until this analysis, being able to quantify."
+)
+
+doc.add_heading("3.6 System Architecture: From Research Prototype to Production Implementation", level=2)
+doc.add_paragraph(
+    "Everything above describes EAR as a research question. This section describes the second contribution of "
+    "this work: turning the research prototype (a single-process Streamlit application with no HTTP interface, "
+    "no persistent document store, and no deletion mechanism) into a real, independently runnable service, "
+    "and verifying — by actually running it, not by inspecting the code — that the resulting system behaves "
+    "correctly end to end."
+)
+
+doc.add_heading("3.6.1 Why a modular monolith, not microservices", level=3)
+doc.add_paragraph(
+    "The new backend is a single FastAPI process that imports the existing quimrag/ library directly, rather "
+    "than a set of independently-deployed services communicating over a network. This is a deliberate choice, "
+    "not a shortcut: the target deployment is a single machine (Section 4.3's hardware), there is no measured "
+    "concurrent-load requirement that would justify the operational cost of service-to-service network calls, "
+    "and the existing QuIMRAG class already has no framework-specific coupling, making it a clean library "
+    "boundary to wrap without modification. One additive method, remove_document(), was added to support "
+    "verified deletion (Section 3.6.3) — the only change made to the core research library for this entire "
+    "architectural layer."
+)
+arch2 = doc.add_paragraph()
+arch2_run = arch2.add_run(
+    "Browser / frontend (static HTML+JS)\n"
+    "  -> HTTP (CORS-restricted to localhost in the default, unauthenticated local-mode config)\n"
+    "FastAPI backend (single process)\n"
+    "  |- documents router  -> validate (extension/magic-bytes/size) -> sha256 hash -> dedup check\n"
+    "  |                       -> background task -> quimrag.core.extract_pdf/chunk/embed/BM25-index\n"
+    "  |                       -> SQLite: Document row (status: processing -> ready/failed)\n"
+    "  |- ask router        -> quimrag.adaptive.retrieve_adaptive (Hybrid retrieval -> EAR decision)\n"
+    "  |                       -> generation provider (local Ollama / extractive / Anthropic, explicit choice)\n"
+    "  |                       -> citation verification against the exact evidence set used\n"
+    "  |                       -> SQLite: QueryRecord (decision, signals, latency -- a routing audit trail)\n"
+    "  |- system router     -> live engine/device/model status (no cached or hardcoded numbers)\n"
+    "  (shared, lock-guarded QuIMRAG engine instance -- the same class used by the Streamlit research console)"
+)
+arch2_run.font.name = "Consolas"
+arch2_run.font.size = Pt(8.5)
+add_note("This diagram reflects backend/ exactly as implemented, not a target design -- every arrow corresponds "
+         "to a code path exercised in Section 3.6.5's verification.")
+
+doc.add_heading("3.6.2 Citation verification as a correctness mechanism, not a cosmetic feature", level=3)
+doc.add_paragraph(
+    "A generated answer is only as trustworthy as its citations are real. Every answer the backend returns is "
+    "checked, programmatically, against the exact evidence set the generator was given: each [C_n] marker in "
+    "the output text is extracted and compared against the chunk_id set actually retrieved for that query. An "
+    "answer whose citations do not resolve to real, retrieved evidence is flagged (citations_verified=false) "
+    "rather than silently trusted. This is distinct from, and complementary to, EAR's own sufficiency routing: "
+    "EAR decides whether to generate an answer at all; citation verification checks whether the specific "
+    "citations in an answer that WAS generated are grounded in what was actually retrieved, catching a "
+    "generation-time failure mode (a fabricated or misattributed citation) that EAR's retrieval-time signals "
+    "cannot see."
+)
+
+doc.add_heading("3.6.3 Deletion with verification, not deletion by assumption", level=3)
+doc.add_paragraph(
+    "Deleting a document must remove every chunk, embedding, and BM25 posting derived from it — not just a "
+    "database row referencing it. The backend's delete endpoint removes the document from the live retrieval "
+    "engine (clearing its chunks and triggering a full reindex of the embedding matrix and BM25 index), then "
+    "independently re-queries the live engine's chunk list to confirm no chunk belonging to that document "
+    "remains, returning that confirmation (verified_not_retrievable) as part of the API response rather than "
+    "assuming success from the delete call completing without an exception."
+)
+
+doc.add_heading("3.6.4 Measured, not assumed, hardware acceleration", level=3)
+doc.add_paragraph(
+    "The embedding and reranking models already preferred Apple Silicon's MPS backend over CPU in the "
+    "pre-existing code, but this had never been benchmarked against CPU before this work. A controlled "
+    "benchmark (5 repeats, 2 warm-up iterations, batch sizes 8/32/128) found MPS throughput at batch=128 of "
+    "1,446.9 documents/second versus CPU's 614.0 documents/second on the same hardware — a measured 2.36× "
+    "speedup, not an assumed one. No NVIDIA/CUDA acceleration is claimed or possible on this hardware (no "
+    "discrete GPU present), stated explicitly rather than left ambiguous."
+)
+
+doc.add_heading("3.6.5 Verification methodology: running the system, not just reading the code", level=3)
+doc.add_paragraph(
+    "The full upload → background ingestion → ask → citation verification → delete loop was exercised twice, "
+    "by two different methods: first via direct HTTP requests (confirming validation rejects a spoofed-"
+    "extension upload, duplicate content returns the same document without re-ingesting, and a deleted "
+    "document is genuinely unretrievable), and second by driving a real web browser against the running "
+    "backend — a file injected into an actual file-input element, the Upload/Ask/Delete buttons clicked as a "
+    "user would, with each resulting state change (processing → ready, a generated answer with its citation "
+    "verified, the document disappearing after deletion) confirmed by screenshot. Code that has not been run "
+    "is not treated as verified anywhere in this paper."
+)
+
+doc.add_heading("3.7 EAR v2: A Diagnosis-Driven Redesign", level=2)
+doc.add_paragraph(
+    "Section 5.2d's diagnostics do not just describe EAR's weaknesses — they specify two concrete, testable "
+    "fixes, each targeting a SPECIFIC, already-measured failure mode rather than a general restatement of "
+    "\"calibrate better.\" We implement both and evaluate the result (Section 5.6) with the same rigor "
+    "(document-disjoint fitting, bootstrap CIs, no evaluation-split leakage) as every other result in this "
+    "paper. This is EAR v2: not a new hypothesis invented separately from the evidence, but the direct "
+    "algorithmic consequence of what Section 5.2d actually found."
+)
+doc.add_heading("3.7.1 Fix 1 — drop the signal with zero variance", level=3)
+doc.add_paragraph(
+    "Section 5.2d found ocr_confidence constant across all 247 evaluation queries, which makes its near-zero "
+    "fitted weight mathematically inevitable rather than evidence of the signal's true value elsewhere. EAR v2 "
+    "fits on the remaining three signals only (agreement, contradiction, complexity) — one fewer free parameter "
+    "for a 173-row calibration fit to overfit, and one fewer signal computed at inference time, at zero cost to "
+    "the information available to the model on this benchmark."
+)
+doc.add_heading("3.7.2 Fix 2 — isotonic recalibration for a non-monotonic reliability curve", level=3)
+doc.add_paragraph(
+    "Section 5.2d's reliability diagram (Fig. 5) is non-monotonic: the highest-probability bin is LESS reliable "
+    "than the two bins below it. A linear logistic model cannot represent a non-monotonic probability-to-"
+    "accuracy relationship by construction — whatever the true relationship between the raw score and actual "
+    "correctness is, forcing it through a sigmoid of a linear combination cannot fix this. Isotonic regression "
+    "(Zadrozny & Elkan, 2002) instead learns an arbitrary, non-decreasing step function mapping raw score to "
+    "calibrated probability:"
+)
+add_equation("p_calibrated = g(p_raw),  g monotonic non-decreasing,  g = argmin_g Σᵢ (g(p_rawᵢ) − correctᵢ)²", 17)
+doc.add_paragraph(
+    "g is fit by pool-adjacent-violators on the calibration split's (raw score, correctness) pairs only, then "
+    "applied, frozen, to the evaluation split's raw scores — no evaluation-split label is used to fit g, "
+    "preserving the same calibration/evaluation separation this paper's central finding established is "
+    "essential. g can represent exactly the non-monotonic correction the logistic model cannot: if raw scores "
+    "in a high range are empirically less reliable than scores just below them, g can map both to the same, "
+    "lower calibrated probability, which a linear model is structurally unable to do."
+)
+doc.add_heading("3.7.3 What this fix is, and is not, expected to solve", level=3)
+doc.add_paragraph(
+    "Stated before Section 5.6's results are reported, consistent with this paper's frozen-protocol discipline "
+    "elsewhere: both fixes target CALIBRATION QUALITY — how well the probability p reflects true correctness "
+    "likelihood. Neither fix changes the amount of information available to the model (isotonic regression is a "
+    "monotonic transform of the same raw score; dropping a zero-variance feature removes no information) or the "
+    "calibration sample size (still n=173). The power analysis (Section 5.2d) identified sample size, not "
+    "calibration quality, as the binding constraint on statistical significance — so EAR v2 is explicitly NOT "
+    "expected to flip Section 5.2's non-significant result into a significant one. What it is expected to "
+    "improve, if the diagnosis is correct, is the reliability of the probability estimate itself (lower ECE/"
+    "Brier), independent of where any particular decision threshold is drawn — a real, separately useful "
+    "property for any downstream use of EAR's score (e.g., ranking queries by confidence for human review) that "
+    "does not depend on the threshold-based coverage/accuracy numbers reaching significance."
 )
 
 # ============================================================================
@@ -832,12 +1081,90 @@ doc.add_paragraph(
     "accuracy-on-answered term (n=38), not in how many queries get answered at all (n=247, well-estimated)."
 )
 
+doc.add_heading("5.2d Signal-level diagnostics: ROC-AUC, calibration, and statistical power", level=2)
+doc.add_paragraph(
+    "This subsection closes the single most-cited open item across every prior document in this project's "
+    "validation trail: per-signal discriminative power, reliability, and a quantitative power analysis for "
+    "EAR, none of which had been computed before this analysis (Section 3.5.6-3.5.8), on any split."
+)
+
+add_table(
+    ["Signal", "ROC-AUC (alone, vs. top-1 correctness)", "Direction matches design hypothesis?"],
+    [
+        ["agreement", "0.665", "Yes"],
+        ["ocr_confidence", "undefined — constant on this split", "N/A"],
+        ["contradiction", "0.483 (≈ chance)", "Yes, but negligible"],
+        ["complexity", "0.655", "No — reversed"],
+    ],
+    caption="Per-signal ROC-AUC, corrected evaluation split (n=247), computed for the first time in this "
+            "analysis.",
+    cap_num=6,
+)
+add_figure(os.path.join(HERE, "fig6_per_signal_auc.png"),
+           "Per-signal ROC-AUC. agreement and complexity are the two individually informative signals; "
+           "contradiction is indistinguishable from chance; ocr_confidence has literally zero variance on this "
+           "split (not merely a near-zero fitted weight).", 4, width=5.3)
+add_caveat(
+    "Two findings here materially sharpen earlier, weaker statements elsewhere in this paper. First: "
+    "ocr_confidence is not merely assigned a near-zero logistic weight (Section 5.4, −0.000276 in the "
+    "corrected fit) — it is LITERALLY CONSTANT across all 247 evaluation queries, which makes a zero weight "
+    "the only mathematically "
+    "possible outcome of any fitting procedure, logistic regression or otherwise, not a property specific to "
+    "this calibration run. Second: complexity's ROC-AUC (0.655) is comparable in magnitude to agreement's "
+    "(0.665), but in the OPPOSITE direction from what the signal was designed to detect — the original design "
+    "hypothesis was that higher query complexity (more tokens, more wh-words, more conjunctions) predicts "
+    "LOWER retrieval accuracy (a multi-hop-difficulty proxy); on this evaluation split, higher complexity "
+    "predicts HIGHER accuracy. This is consistent with, and now quantitatively confirms, a finding from an "
+    "earlier (leaky-split) ablation that was never properly discussed in this paper's Results: on OHR-Bench's "
+    "finance/law-heavy domains, longer and more specific queries likely contain more distinguishing keywords "
+    "for both BM25 and dense matching, making them easier, not harder — the opposite of the open-domain "
+    "conversational multi-hop setting the complexity signal was originally designed for.",
+    severe=True,
+)
+
+add_table(
+    ["Diagnostic", "Value"],
+    [
+        ["Overall (combined score) ROC-AUC", "0.674"],
+        ["Expected Calibration Error (5 equal-frequency bins)", "0.096"],
+        ["Minimum detectable |h| at n=38/247, α=0.05, power=0.80", "0.488"],
+        ["Observed |h| (accuracy-on-answered vs. baseline, Section 5.2)", "0.128"],
+        ["Observed effect as a fraction of the minimum detectable effect", "26%"],
+    ],
+    caption="Combined-score ROC-AUC, calibration error, and the power analysis result.",
+    cap_num=7,
+)
+add_figure(os.path.join(HERE, "fig5_reliability_diagram.png"),
+           "Reliability diagram, corrected evaluation split. The lowest-probability bin is overconfident "
+           "(predicted 0.455, observed 0.300); the two middle-high bins are underconfident; the highest-"
+           "probability bin's observed accuracy (0.673) is actually lower than the two bins below it — a "
+           "non-monotonic pattern, not a simple uniform miscalibration.", 5, width=5.3)
+doc.add_paragraph(
+    "The power analysis gives the clearest answer this paper can offer to the question Section 6 raises "
+    "without quantifying: the observed effect (|h|=0.128) is only 26% of the minimum effect size (h_min=0.488) "
+    "this sample could have detected at conventional 80% power. This evaluation was not powered to distinguish "
+    "\"no effect\" from \"an effect of roughly the size observed\" — the non-significant result in Section 5.2 "
+    "is expected and unsurprising at this sample size, REGARDLESS of whether a true effect exists, which "
+    "reframes Section 5.2's finding from \"evidence of no effect\" to the more precise \"this evaluation "
+    "cannot distinguish a real small effect from no effect,\" exactly the distinction Cohen's h (Section 3.5.5) "
+    "was introduced to make precise."
+)
+doc.add_paragraph(
+    "The reliability diagram's non-monotonicity (Fig. 5) is also directly consistent with the risk-coverage "
+    "curve's finding (Fig. 3, Section 5.2b) that the fitted operating point does not sit at the curve's "
+    "lowest-risk region: if the highest-probability bin is actually less reliable than the two bins just below "
+    "it, a threshold placed at the top of the probability range (θ_answer=0.752, Section 5.2) will not "
+    "necessarily select the most accurate achievable subset of queries — both diagnostics point to the same "
+    "underlying issue, the calibration procedure's threshold-selection rule, not the signals themselves, being "
+    "the likely source of the corrected result's weakness."
+)
+
 doc.add_heading("5.3 RVQ recall-gap root cause and fix (RQ3)", level=2)
 add_table(
     ["Group", "n", "Mean reconstruction cosine"],
     [["Lost to quantization", "276", "0.621"], ["Not lost", "1,219", "0.671"], ["Corpus-wide average", "16,076", "0.761"]],
     caption="Welch's t-test: t = −4.710, p = 3.54×10⁻⁶.",
-    cap_num=6,
+    cap_num=8,
 )
 add_table(
     ["Config", "Recall@5", "MRR@5", "Latency mean (ms)"],
@@ -845,10 +1172,10 @@ add_table(
      ["RVQ quantized (no rerank)", "0.161", "0.276", "12.9"],
      ["RVQ quantized + exact rerank (fix)", "0.301", "0.611", "13.0"]],
     caption="Quantize-then-exact-rerank recovers 79% of lost Recall@5 at statistically the same latency.",
-    cap_num=7,
+    cap_num=9,
 )
 add_figure(os.path.join(HERE, "fig3_rvq_recovery.png"),
-           "RVQ recall recovery via quantize-then-exact-rerank, with latency overlay.", 4, width=5.2)
+           "RVQ recall recovery via quantize-then-exact-rerank, with latency overlay.", 6, width=5.2)
 doc.add_paragraph(
     "Gold chunks lost to quantization have significantly lower reconstruction cosine similarity than chunks that "
     "survived (Welch's t=−4.71, p=3.5×10⁻⁶, n=1,495 gold-chunk instances), directly supporting RQ3's first half: "
@@ -864,7 +1191,7 @@ add_table(
     ["Correlation", "Coefficient", "p-value"],
     [["Pearson r (OCR confidence vs. CER)", "−0.984", "1.4×10⁻³⁰"], ["Spearman ρ", "−0.911", "1.4×10⁻¹⁶"]],
     caption="OCR confidence vs. Character Error Rate, 45 degraded observations across 15 documents.",
-    cap_num=8,
+    cap_num=10,
 )
 doc.add_paragraph(
     "Real Tesseract confidence is strongly, significantly correlated with actual character error rate under "
@@ -885,6 +1212,55 @@ add_caveat(
     "computed via the same un-corrected, row-level-only split construction that Section 5.2 found to be leaky for "
     "the main benchmark. Neither sample's own document-overlap status was checked this pass. We flag both as "
     "UNVERIFIED under correction — not confirmed, not retracted — pending the check described in Section 7."
+)
+
+doc.add_heading("5.6 EAR v2 vs. EAR v1: Does the Diagnosis-Driven Fix Help? (RQ7)", level=2)
+doc.add_paragraph(
+    "EAR v2 (Section 3.7) is fit on the identical 173-query calibration split and evaluated on the identical "
+    "247-query evaluation split as EAR v1 throughout this paper, so this is a controlled, apples-to-apples "
+    "comparison — the only differences are the three-signal feature set and the isotonic recalibration step."
+)
+add_table(
+    ["Metric", "EAR v1 (4 signals, logistic)", "EAR v2 (3 signals + isotonic)"],
+    [
+        ["Coverage", "15.4%", "13.8%"],
+        ["Accuracy on answered", "68.4%", "67.6%"],
+        ["Unfiltered baseline accuracy", "62.3%", "62.3%"],
+        ["95% CI on improvement", "[−8.3, +19.7]", "[−10.0, +19.8]"],
+        ["Significant at α=0.05?", "No", "No"],
+        ["ROC-AUC (combined score)", "0.674", "0.672"],
+        ["Expected Calibration Error", "0.096", "0.046 (−52%)"],
+        ["Brier score", "0.2117", "0.2080"],
+    ],
+    caption="EAR v1 vs. EAR v2, corrected evaluation split, identical calibration/evaluation data for both.",
+    cap_num=11,
+)
+add_figure(os.path.join(HERE, "fig7_ear_v1_v2_reliability.png"),
+           "EAR v1 vs. EAR v2 reliability diagrams on the same evaluation split. EAR v2's curve tracks the "
+           "diagonal (perfect calibration) substantially more closely, most visibly at the lowest-probability "
+           "bin, where v1 is severely overconfident (predicted 0.455, observed 0.300) and v2 is not (predicted "
+           "0.267, observed 0.240).", 7, width=5.3)
+add_caveat(
+    "The result is exactly what Section 3.7.3 predicted in advance, before these numbers were inspected: "
+    "calibration quality improves substantially (ECE nearly halved, 0.096→0.046) while coverage, accuracy, "
+    "combined ROC-AUC, and statistical significance are essentially unchanged (all differences well within "
+    "noise at this sample size). Dropping a zero-variance signal and fixing a non-monotonic calibration curve "
+    "are real, targeted, and effective fixes FOR THE SPECIFIC PROBLEMS THEY TARGET — but neither adds "
+    "information or data, so neither could plausibly have fixed the power problem Section 5.2d separately "
+    "identified as the actual constraint on significance, and neither did. We report this exact outcome as a "
+    "successful, falsifiable prediction, not as a disappointing negative result: a paper that predicted "
+    "calibration would improve, predicted significance would not, and then measured precisely that, is stronger "
+    "evidence for having correctly diagnosed the problem than an unexplained improvement would have been.",
+)
+doc.add_paragraph(
+    "Practically, EAR v2's improved calibration has a direct use even without a change in headline significance: "
+    "a well-calibrated probability is more useful than a poorly-calibrated one of similar discriminative power "
+    "for any application that uses the SCORE itself rather than a single thresholded decision — ranking queries "
+    "by confidence for a human reviewer, setting a deployment-specific threshold without refitting, or combining "
+    "EAR's score with another signal downstream. EAR v2's three-signal, isotonic-recalibrated design is adopted "
+    "as the implementation this paper recommends going forward, with the explicit caveat that its core "
+    "selective-accuracy claim remains exactly as unresolved as EAR v1's (Section 7) pending a larger calibration "
+    "sample."
 )
 
 # ============================================================================
@@ -911,12 +1287,29 @@ doc.add_paragraph(
     "confidence as before this audit; Section 5.2 is not."
 )
 doc.add_paragraph(
-    "An unresolved question this paper does not settle: whether EAR's corrected non-significant result reflects "
-    "a genuinely weak or absent underlying effect, or an artifact of an insufficiently large/varied calibration "
-    "sample (173 queries, 109 documents) for a 4-feature logistic fit to find a well-separated decision boundary. "
-    "Section 7 names the specific follow-up experiments (larger calibration set; per-signal ROC-AUC/Brier "
-    "diagnostics; repeated-seed variance estimation) that would distinguish these two explanations, none of which "
-    "this paper itself resolves."
+    "A question the paper's earlier drafts left unresolved — whether EAR's corrected non-significant result "
+    "reflects a genuinely weak or absent underlying effect, or an artifact of an insufficiently large/varied "
+    "calibration sample (173 queries, 109 documents) for a 4-feature logistic fit — is now partially answered "
+    "by Section 5.2d's signal-level diagnostics, added in this revision. The power analysis is the most direct "
+    "answer available: at n=38 answered queries, this evaluation could only reliably detect an effect roughly "
+    "4x larger than the one actually observed (Cohen's h: 0.488 minimum-detectable vs. 0.128 observed). This "
+    "does not prove a real effect exists, but it does establish that the non-significant result is exactly "
+    "what an underpowered evaluation of a real, modest effect would also look like — the two explanations "
+    "remain not fully distinguishable, but \"underpowered\" is now the quantitatively better-supported of the "
+    "two, not merely the more charitable one."
+)
+doc.add_paragraph(
+    "The per-signal ROC-AUC analysis (Section 5.2d) also resolves a second long-standing ambiguity: whether "
+    "ocr_confidence's near-zero fitted weight (Section 5.4) reflects redundancy with the other three signals "
+    "once jointly fit, or a genuine absence of information in this signal on this evaluation split. It is "
+    "neither, precisely — the signal has literally zero variance across all 247 evaluation queries (every "
+    "retrieved chunk in this corrected sample happens to be natively-extracted or uniformly high-confidence "
+    "OCR text), which makes a zero fitted weight the only mathematically possible outcome regardless of the "
+    "signal's true informativeness, a distinction no amount of inspecting the fitted coefficient alone could "
+    "have revealed. Separately, and more surprisingly: complexity turns out to be the second most individually "
+    "informative signal (AUC=0.655, comparable to agreement's 0.665) — but in the direction opposite to its "
+    "design hypothesis. This is reported plainly as a design-assumption failure for the complexity signal as "
+    "currently specified, not reframed as a success, consistent with this paper's governing rule throughout."
 )
 doc.add_paragraph(
     "Section 5.2b's diagnostics partially answer that question, and are themselves worth discussing on their own "
@@ -939,6 +1332,31 @@ doc.add_paragraph(
     "claim in RAG should be read together with the specific test and outcome granularity used to produce it, not "
     "as a single context-free number."
 )
+doc.add_paragraph(
+    "EAR v2's result (Section 5.6) is the clearest demonstration in this paper of why separating calibration "
+    "quality from statistical power matters in practice, not just in principle. A less careful read of Section "
+    "5.2d's diagnostics might have concluded \"EAR's calibration is broken, fix it and the significant result "
+    "will return\" — a natural but, as Section 3.7.3 argued in advance, incorrect inference, since a monotonic "
+    "or non-monotonic recalibration cannot manufacture information a 173-row calibration sample does not "
+    "contain. EAR v2 tests this directly rather than arguing it abstractly: the fix that targets calibration "
+    "(isotonic recalibration, dropping a dead signal) improves calibration (ECE −52%) and leaves the "
+    "power-limited quantity (significance) untouched, exactly as the power analysis predicted it would. We "
+    "consider this controlled, pre-registered confirmation more informative than either an unexplained "
+    "improvement or a vague recommendation to \"collect more data\" would have been, because it demonstrates "
+    "the diagnosis was specific and correct enough to predict its own fix's limits in advance."
+)
+doc.add_paragraph(
+    "The production architecture work (Section 3.6) is intentionally reported separately from, and is not "
+    "offered as evidence for, the research claims above — building a working API, a persistence layer, and a "
+    "verified citation-checking pipeline demonstrates engineering correctness of the IMPLEMENTATION, not a "
+    "property of the EAR algorithm itself, and we are explicit that it should not be read as such. Its relevance "
+    "to this paper is methodological in a different sense: the same discipline applied to the statistical "
+    "claims in Sections 3.5 and 5 — verify by actually running the system rather than by inspecting the code or "
+    "trusting an earlier draft — was applied here too. Every number in Section 3.6 (the 2.36x MPS speedup, the "
+    "citation-verification behavior, the deletion-verification behavior) was produced by actually executing the "
+    "corresponding code against a running instance of the system, not derived analytically or assumed from the "
+    "implementation's design."
+)
 
 # ============================================================================
 # 7. LIMITATIONS AND FUTURE WORK
@@ -957,11 +1375,31 @@ for item in [
     "The NDSU-substitute and RAGAS-generation studies (Section 5.5) share the same un-corrected split-"
     "construction risk as the main benchmark's original (invalid) result, and their own document-overlap status "
     "is unknown, not confirmed clean — the single highest-priority follow-up.",
-    "No EAR signal-level ROC-AUC, Brier score, or calibration-reliability diagnostics were computed for any "
-    "signal in isolation, in either split — this would clarify whether any individual signal (independent of the "
-    "combined model's coverage/accuracy tradeoff) retains predictive value under correction.",
+    "Per-signal ROC-AUC, Brier score, and a reliability diagram are now computed (Section 5.2d) and no longer a "
+    "gap — but each is itself a point estimate with no uncertainty interval of its own (e.g. no bootstrap CI "
+    "around an AUC of 0.665), so a signal's individual informativeness should be read as \"detected, magnitude "
+    "approximate,\" not as a precisely bounded quantity.",
+    "The power analysis (Section 5.2d) uses a standard two-proportion approximation as a stand-in for the "
+    "actual paired-bootstrap test used for the headline result — it is explicitly an order-of-magnitude "
+    "diagnostic, not an exact power calculation for the specific resampling procedure actually used.",
     "Single-seed results throughout this paper and its predecessor draft — no split-to-split (as opposed to "
-    "within-split bootstrap) variance estimate exists for any reported number.",
+    "within-split bootstrap) variance estimate exists for any reported number. This is now the single "
+    "highest-priority remaining statistical gap, since the power analysis shows the current sample size is the "
+    "binding constraint on this paper's central result.",
+    "The complexity signal's reversed-direction finding (Section 5.2d) is specific to OHR-Bench's domain mix "
+    "(finance/law-heavy) and this paper offers a plausible but untested explanation (query specificity vs. "
+    "query difficulty) rather than a verified mechanism; it has not been tested on a benchmark designed for "
+    "genuine multi-hop difficulty (e.g. HotpotQA, Section 4.1.3).",
+    "The production backend (Section 3.6) has not been load-tested, has no formal threat model or security "
+    "audit beyond basic upload validation, and its Docker deployment configuration is written but unverified "
+    "(no container has been built or run in the environment this work was done in) — it demonstrates correct "
+    "single-user, single-machine behavior, not production-scale or multi-tenant readiness.",
+    "EAR v2 (Section 5.6) was fit and evaluated on the same n=173/247 split as EAR v1 — it does not test "
+    "whether isotonic recalibration's benefit holds at a different sample size, and isotonic regression's "
+    "flexibility can itself overfit a small calibration set in ways a parametric model would not, a risk not "
+    "separately diagnosed here. EAR v2's threshold-selection and abstain/answer routing logic also does not yet "
+    "distinguish an inspect_structure branch the way EAR v1's contradiction-driven routing did, a simplification "
+    "made for this comparison that a production deployment of EAR v2 would need to reinstate.",
     "The RVQ quantize-then-exact-rerank fix (Section 5.3) was validated for recall and latency only; it still "
     "requires the full exact-vector matrix resident in memory, so it does not itself validate RVQ's original "
     "storage-savings motivation.",
@@ -992,6 +1430,32 @@ doc.add_paragraph(
     "here as a concrete before/after case study rather than an abstract warning, is the most transferable "
     "contribution of this work to RAG selective-prediction evaluation generally."
 )
+doc.add_paragraph(
+    "This revision adds two further pieces to that picture, both produced by implementing and actually running "
+    "diagnostics that had been named as missing in every earlier draft rather than left as stated gaps. A "
+    "signal-level analysis (Section 5.2d) shows EAR's combined sufficiency score is genuinely informative "
+    "(ROC-AUC 0.674, Expected Calibration Error 0.096) even where its single fitted operating point is not "
+    "statistically significant, and a power analysis shows this evaluation's sample size could only reliably "
+    "detect an effect roughly four times larger than the one observed — together reframing Section 5.2's result "
+    "from an ambiguous null finding to a specific, falsifiable claim: EAR likely has a real but modest effect "
+    "that this evaluation was underpowered to confirm, testable directly by repeating Section 5.2's protocol at "
+    "a larger calibration sample size. Separately, this revision also turned the research prototype into a "
+    "working, independently verifiable system (Section 3.6): a real HTTP API with persistent document storage, "
+    "citation verification against actual retrieved evidence, and deletion that is checked, not assumed — "
+    "engineering correctness that we report as distinct from, not as evidence for, the statistical claims above, "
+    "but which makes the EAR pipeline something a user can actually run rather than only read about."
+)
+doc.add_paragraph(
+    "Finally, EAR v2 (Section 5.6) closes the loop between diagnosis and action: built directly from Section "
+    "5.2d's findings (a zero-variance signal, a non-monotonic reliability curve), it was predicted in advance "
+    "(Section 3.7.3) to fix calibration and not fix significance, and it did exactly that — Expected Calibration "
+    "Error nearly halved while coverage, AUC, and the CI's non-significance were unchanged. We offer this as a "
+    "template for how a RAG system's selective-prediction evaluation should proceed when a diagnostic surfaces a "
+    "specific, fixable problem: implement the targeted fix, state in advance what it can and cannot be expected "
+    "to solve, and report the actual outcome against that stated expectation — the same evidence-first discipline "
+    "this paper applied to the leakage correction that motivated it in the first place, applied now to closing "
+    "the gap that correction opened rather than leaving it open."
+)
 
 # ============================================================================
 # REFERENCES
@@ -1019,6 +1483,13 @@ refs = [
     "Percentages,\" Psychometrika, vol. 12, no. 2, pp. 153–157, 1947.",
     "[11] J. Cohen, Statistical Power Analysis for the Behavioral Sciences, 2nd ed. Hillsdale, NJ: Lawrence "
     "Erlbaum Associates, 1988.",
+    "[12] C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, \"On Calibration of Modern Neural Networks,\" "
+    "Proceedings of the 34th International Conference on Machine Learning (ICML), PMLR 70:1321-1330, 2017.",
+    "[13] T. Fawcett, \"An Introduction to ROC Analysis,\" Pattern Recognition Letters, vol. 27, no. 8, "
+    "pp. 861-874, 2006.",
+    "[14] B. Zadrozny and C. Elkan, \"Transforming Classifier Scores into Accurate Multiclass Probability "
+    "Estimates,\" Proceedings of the 8th ACM SIGKDD International Conference on Knowledge Discovery and Data "
+    "Mining (KDD), pp. 694-699, 2002.",
 ]
 for rtxt in refs:
     pp = doc.add_paragraph(rtxt)
@@ -1027,13 +1498,14 @@ for rtxt in refs:
     for run in pp.runs:
         run.font.size = Pt(9.5)
 add_note(
-    "Citations [1]-[11] are directly verifiable (DOI/arXiv ID, or standard, widely-indexed venue and year, "
-    "given for each). [6]-[11] are the statistical-methodology sources for Section 3.5's diagnostics (risk-"
-    "coverage/AURC, Brier score, Wilson interval, McNemar's test, Cohen's h respectively) and are classical, "
+    "Citations [1]-[14] are directly verifiable (DOI/arXiv ID, or standard, widely-indexed venue and year, "
+    "given for each). [6]-[14] are the statistical-methodology sources for Section 3.5's diagnostics and "
+    "Section 3.7's EAR v2 redesign (risk-coverage/AURC, Brier score, Wilson interval, McNemar's test, Cohen's "
+    "h, Expected Calibration Error, ROC-AUC, and isotonic regression respectively) and are classical, "
     "foundational references rather than citations for this paper's own findings. Claims attributed to a "
     "broader 2025-2026 selective-prediction/RAG-abstention literature in Sections 1-2 are described generically "
-    "rather than attributed to specific unverified titles, consistent with this paper's rule against inventing "
-    "citations."
+    "rather than attributed to specific unverified titles, consistent "
+    "with this paper's rule against inventing citations."
 )
 
 # ============================================================================
@@ -1047,14 +1519,17 @@ supr = sup.add_run(
     "git clone / cd quimrag-intelligence-pro-v2\n"
     ".venv/bin/pip install -r requirements.txt\n"
     "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/pytest -q\n"
-    "  -> 70 passed (67 pre-existing + 3 regression tests added for the Section 3.3 split fix)\n"
+    "  -> 78 passed, 1 skipped (70 core-library tests + 8 backend API integration tests)\n"
     "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python research/run_benchmark_v2.py\n"
     "  -> writes research/experiments/FINAL_VALIDATION_<UTC-timestamp>.json (Section 5.1, 5.1b, 5.2)\n"
     "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python research/PUBLICATION_PACKAGE/compute_advanced_stats.py\n"
-    "  -> writes research/PUBLICATION_PACKAGE/advanced_stats.json (Section 5.1b, 5.2b, 5.2c)\n"
+    "  -> writes research/PUBLICATION_PACKAGE/advanced_stats.json (Section 5.1b, 5.2b-d)\n"
+    "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python research/PUBLICATION_PACKAGE/ear_v2_innovation.py\n"
+    "  -> writes research/PUBLICATION_PACKAGE/ear_v2_results.json (Section 5.6)\n"
     ".venv/bin/python research/run_rvq_analysis.py        # Section 5.3\n"
     ".venv/bin/python research/run_ocr_robustness.py      # Section 5.4\n"
-    ".venv/bin/python research/PUBLICATION_PACKAGE/make_figures.py   # regenerates Figs. 1-4"
+    ".venv/bin/python research/PUBLICATION_PACKAGE/make_figures.py   # regenerates Figs. 1-7\n"
+    "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/uvicorn backend.main:app --port 8000   # Section 3.6"
 )
 supr.font.name = "Consolas"
 supr.font.size = Pt(9)
