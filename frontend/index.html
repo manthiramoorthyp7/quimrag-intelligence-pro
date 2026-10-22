@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuIM-RAG Intelligence Pro</title>
+<style>
+  :root {
+    --accent: #6C5CE7; --dark: #1F2430; --muted: #6B7280; --bg: #FAFAFC;
+    --card: #FFFFFF; --border: #E5E8EC; --good: #2E9E6E; --warn: #B03A2E; --amber: #B8860B;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--dark); margin: 0; }
+  header { padding: 20px 28px; border-bottom: 1px solid var(--border); background: var(--card); display: flex; justify-content: space-between; align-items: center; }
+  header h1 { font-size: 18px; margin: 0; color: var(--accent); }
+  #status-pill { font-size: 12px; padding: 4px 10px; border-radius: 999px; background: #F0F0FB; color: var(--accent); }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 20px 80px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-bottom: 20px; }
+  .card h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0 0 14px; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  input[type=text] { flex: 1; min-width: 200px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; }
+  button { background: var(--accent); color: white; border: none; padding: 10px 16px; border-radius: 8px; font-size: 14px; cursor: pointer; }
+  button:disabled { background: #C9C4F0; cursor: not-allowed; }
+  button.secondary { background: transparent; color: var(--warn); border: 1px solid var(--warn); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; }
+  .status-ready { color: var(--good); } .status-processing { color: var(--amber); } .status-failed { color: var(--warn); }
+  .empty { color: var(--muted); font-size: 13px; padding: 10px 0; }
+  .decision-badge { display: inline-block; font-size: 12px; padding: 3px 10px; border-radius: 999px; font-weight: 600; }
+  .decision-answer { background: #E6F7EF; color: var(--good); }
+  .decision-abstain { background: #FBEAE8; color: var(--warn); }
+  .decision-expand_retrieval, .decision-inspect_structure { background: #FFF6E5; color: var(--amber); }
+  .answer-box { background: #F7F6FD; border-left: 3px solid var(--accent); padding: 12px 14px; border-radius: 6px; margin-top: 12px; font-size: 14px; line-height: 1.5; }
+  .signal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr)); gap: 8px; margin-top: 10px; font-size: 12px; }
+  .signal { background: #F7F7F9; border-radius: 6px; padding: 8px; }
+  .signal .label { color: var(--muted); }
+  .signal .value { font-size: 15px; font-weight: 600; }
+  .evidence-item { border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-top: 8px; font-size: 13px; }
+  .evidence-item .meta { color: var(--muted); font-size: 11px; margin-bottom: 4px; }
+  .citation-flag { font-size: 12px; margin-top: 10px; }
+  .ok { color: var(--good); } .bad { color: var(--warn); }
+  .loading { opacity: .6; }
+</style>
+</head>
+<body>
+<header>
+  <h1>QuIM-RAG Intelligence Pro</h1>
+  <span id="status-pill">checking backend...</span>
+</header>
+<main>
+  <section class="card">
+    <h2>Document Library</h2>
+    <div class="row">
+      <input type="file" id="file-input" accept=".pdf,.txt,.md">
+      <button id="upload-btn">Upload</button>
+    </div>
+    <div id="upload-error" class="bad" style="font-size:13px;margin-top:8px;"></div>
+    <table style="margin-top:14px;">
+      <thead><tr><th>Filename</th><th>Status</th><th>Pages</th><th>Chunks</th><th></th></tr></thead>
+      <tbody id="doc-rows"></tbody>
+    </table>
+    <div id="doc-empty" class="empty" style="display:none;">No documents uploaded yet.</div>
+  </section>
+
+  <section class="card">
+    <h2>Ask QuIM</h2>
+    <div class="row">
+      <input type="text" id="query-input" placeholder="Ask a question about your uploaded documents...">
+      <button id="ask-btn">Ask</button>
+    </div>
+    <div id="ask-result"></div>
+  </section>
+</main>
+
+<script>
+// Same-origin if this page is itself served by the backend (port 8000);
+// otherwise assume the backend is on localhost:8000 (the documented default
+// -- see docs/production/INSTALLATION.md).
+const API = location.port === "8000" ? "" : `${location.protocol === "file:" ? "http:" : location.protocol}//${location.hostname || "127.0.0.1"}:8000`;
+const $ = (id) => document.getElementById(id);
+
+async function api(path, opts = {}) {
+  const res = await fetch(`${API}${path}`, opts);
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({ detail: res.statusText }));
+    throw new Error(body.detail || `HTTP ${res.status}`);
+  }
+  return res.json();
+}
+
+async function refreshHealth() {
+  try {
+    const h = await api("/health");
+    $("status-pill").textContent = `${h.device} · ${h.documents_indexed} docs · ${h.chunks_indexed} chunks`;
+  } catch (e) {
+    $("status-pill").textContent = "backend unreachable";
+  }
+}
+
+async function refreshDocuments() {
+  const data = await api("/documents");
+  const rows = $("doc-rows");
+  rows.innerHTML = "";
+  $("doc-empty").style.display = data.documents.length ? "none" : "block";
+  for (const d of data.documents) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${d.filename}</td>
+      <td class="status-${d.status}">${d.status}${d.error_message && d.status === "failed" ? " — " + d.error_message : ""}</td>
+      <td>${d.page_count ?? "—"}</td>
+      <td>${d.chunk_count ?? "—"}</td>
+      <td><button class="secondary" data-id="${d.id}">Delete</button></td>`;
+    rows.appendChild(tr);
+  }
+  rows.querySelectorAll("button[data-id]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      btn.disabled = true;
+      const result = await api(`/documents/${btn.dataset.id}`, { method: "DELETE" });
+      console.log("delete verified:", result.verified_not_retrievable);
+      await refreshDocuments();
+      await refreshHealth();
+    });
+  });
+}
+
+$("upload-btn").addEventListener("click", async () => {
+  const file = $("file-input").files[0];
+  $("upload-error").textContent = "";
+  if (!file) { $("upload-error").textContent = "Choose a file first."; return; }
+  const fd = new FormData();
+  fd.append("file", file);
+  $("upload-btn").disabled = true;
+  try {
+    await api("/documents", { method: "POST", body: fd });
+    await refreshDocuments();
+    // poll briefly for ingestion to finish so the table shows "ready" without a manual refresh
+    for (let i = 0; i < 20; i++) {
+      await new Promise((r) => setTimeout(r, 500));
+      await refreshDocuments();
+    }
+    await refreshHealth();
+  } catch (e) {
+    $("upload-error").textContent = e.message;
+  } finally {
+    $("upload-btn").disabled = false;
+  }
+});
+
+$("ask-btn").addEventListener("click", async () => {
+  const q = $("query-input").value.trim();
+  if (!q) return;
+  $("ask-btn").disabled = true;
+  $("ask-result").innerHTML = `<div class="empty">Thinking…</div>`;
+  try {
+    const r = await api("/ask", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: q }),
+    });
+    renderAnswer(r);
+  } catch (e) {
+    $("ask-result").innerHTML = `<div class="bad">${e.message}</div>`;
+  } finally {
+    $("ask-btn").disabled = false;
+  }
+});
+
+function renderAnswer(r) {
+  const sig = r.signals;
+  const evidenceHtml = r.evidence.map((e) => `
+    <div class="evidence-item">
+      <div class="meta">[${e.chunk_id}] · ${e.document} · page ${e.page} · ${e.source}${e.ocr_confidence != null ? " · OCR conf " + e.ocr_confidence.toFixed(2) : ""} · score ${e.score.toFixed(3)}</div>
+      ${e.text.length > 280 ? e.text.slice(0, 280) + "…" : e.text}
+    </div>`).join("") || `<div class="empty">No evidence retrieved.</div>`;
+
+  $("ask-result").innerHTML = `
+    <span class="decision-badge decision-${r.decision}">${r.decision.replace("_", " ")}</span>
+    <span style="font-size:12px;color:var(--muted);margin-left:8px;">p=${r.probability.toFixed(3)} · ${r.latency_ms.toFixed(0)}ms${r.generation_provider ? " · " + r.generation_provider : ""}</span>
+    <div style="font-size:12px;color:var(--muted);margin-top:6px;">${r.reason}</div>
+    <div class="signal-grid">
+      <div class="signal"><div class="label">agreement</div><div class="value">${sig.agreement.toFixed(2)}</div></div>
+      <div class="signal"><div class="label">ocr_confidence</div><div class="value">${sig.ocr_confidence.toFixed(2)}</div></div>
+      <div class="signal"><div class="label">contradiction</div><div class="value">${sig.contradiction.toFixed(2)}</div></div>
+      <div class="signal"><div class="label">complexity</div><div class="value">${sig.complexity.toFixed(2)}</div></div>
+    </div>
+    ${r.answer ? `<div class="answer-box">${r.answer}</div>
+      <div class="citation-flag ${r.citations_verified ? "ok" : "bad"}">${r.citations_verified ? "✓ citations verified against retrieved evidence" : "✗ one or more citations could not be verified"}</div>`
+      : `<div class="answer-box" style="border-color:var(--muted);">No answer generated — decision was "${r.decision}".</div>`}
+    <h2 style="margin-top:18px;">Evidence</h2>
+    ${evidenceHtml}
+  `;
+}
+
+refreshHealth();
+refreshDocuments();
+setInterval(refreshHealth, 8000);
+</script>
+</body>
+</html>

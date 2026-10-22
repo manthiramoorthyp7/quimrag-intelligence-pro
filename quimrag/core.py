@@ -84,6 +84,18 @@ class QuIMRAG:
     self.chunks.append({"chunk_id":f"C{len(self.chunks)+1}","document":name,"page":pno,"text":part,
                          "source":m.get("source","native"),"ocr_confidence":m.get("ocr_confidence")})
   if embed:self.reindex()
+ def remove_document(self,name,embed=True):
+  """Removes a document and every chunk derived from it (and, after reindex(),
+  every vector/BM25 posting derived from those chunks) -- used by the backend's
+  delete endpoint, which must be able to verify no trace of a deleted document's
+  content remains retrievable. Returns the number of chunks removed."""
+  if name not in self.documents:return 0
+  del self.documents[name]
+  before=len(self.chunks)
+  self.chunks=[c for c in self.chunks if c["document"]!=name]
+  removed=before-len(self.chunks)
+  if embed:self.reindex()
+  return removed
  def reindex(self):
   """(Re)embeds every chunk from scratch. Called automatically by add_document(embed=True,
   the default, used by the live UI); callers bulk-loading many documents (e.g. a benchmark

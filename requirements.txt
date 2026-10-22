@@ -17,3 +17,7 @@ requests>=2.31
 bert-score>=0.3.12
 python-docx>=1.2.0
 reportlab>=4.0
+fastapi>=0.115
+uvicorn>=0.30
+sqlalchemy>=2.0
+python-multipart>=0.0.9

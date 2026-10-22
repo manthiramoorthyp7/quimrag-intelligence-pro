@@ -1,0 +1,49 @@
+# Execution Log — Production Platform Workstream
+
+Persistent tracker for the 17-phase production-engineering mandate. **Read this first** in any session continuing this work — it is the source of truth for what is actually done (verified, not just written) vs. pending, so work resumes from real state rather than restarting or duplicating.
+
+Status legend: ✅ done & verified · 🔶 partially done · ⬜ not started · 🚫 not possible in this environment (with reason)
+
+| Phase | Summary | Status | Notes |
+|---|---|---|---|
+| 1 | Audit existing project | ✅ | `INITIAL_AUDIT.md`, `BASELINE_PERFORMANCE.md`, `ARCHITECTURE_DECISIONS.md` written from real inspection. Git initialized (was zero-commit), branch `production-platform` created from root commit `602ab43`. Tests re-run fresh: 70/70. Real MPS-vs-CPU benchmark run. |
+| 2 | Identify base paper + dataset | ✅ (prior session) | Already done exhaustively in `research/FINAL_VALIDATION/ORIGINAL_PAPER_PROTOCOL.md` and `DATASET_SELECTION.md` (OHR-Bench, qas_v2.json, full justification + comparison table against BEIR/NQ/HotpotQA/MS MARCO/SQuAD in `research/PUBLICATION_PACKAGE/`). Not repeated here — this phase's deliverables already exist and are current. |
+| 3 | Production architecture | 🔶 | Decisions documented in `ARCHITECTURE_DECISIONS.md`. **FastAPI backend (`backend/`) built and verified end-to-end**: `/health`, `/documents` (upload/list/get/delete), `/ask`, `/system/stats`. SQLite persistence, CORS, optional API-key auth, structured 500-handler. A minimal real frontend (`frontend/index.html`) built and verified in an actual browser (upload → ask → citation display → delete, screenshots confirm each step). Full 9-page product surface (Command Center dashboard, Retrieval Lab, Explainability Explorer, Benchmark & Evaluation UI, Administration, System Configuration pages): **not started** — only the Document Library + Ask QuIM workflow exists in the frontend so far. |
+| 4 | Ingestion pipeline | ✅ (for the scope built) | `backend/ingestion.py`: file validation (extension allowlist, magic-byte check against MIME spoofing, size/page-count limits), sha256 content hashing + duplicate detection (verified: identical re-upload returns the same document, no re-ingestion), background processing via FastAPI BackgroundTasks, per-document status (processing/ready/failed/deleted) persisted to SQLite, audit records per ingest/delete event, and **deletion with verification** (`remove_document()` added to `quimrag/core.py`, confirmed by a live post-delete query against the engine's chunk list, not just trusting a row update). Not built: retry/backoff policy, a durable task queue (uses in-process BackgroundTasks, fine at this scale, documented as a scope choice), cancellation, dead-letter handling, index versioning/re-indexing on config change. |
+| 5 | Production-grade EAR | 🔶 | EAR's algorithm itself is implemented, tested (`tests/test_adaptive.py`), and was extensively re-validated this session (`research/FINAL_VALIDATION/`, `research/PUBLICATION_PACKAGE/`) — including the document-leakage fix, risk-coverage/AURC/Brier diagnostics, and a regression test for the split construction. **New this session**: `/ask` exposes the real decision/probability/reason/signals in every response (verified via real queries, both abstain-eligible and answer-eligible), and every call is persisted to a `query_records` table as a routing audit record (decision, all 4 signal values, latency, reason). Still missing for "production-grade": a typed/versioned EAR config object (currently the raw `EARModel` JSON file), structured reason CODES (currently a free-text string), and live signal-level monitoring/alerting. |
+| 6 | GPU detection + optimization | 🔶 | Detection: already existed, now benchmarked for the first time (`BASELINE_PERFORMANCE.md`). CUDA path: 🚫 not verifiable, no NVIDIA GPU on this machine (stated, not hidden). Further optimization (batching tuning, quantization, ONNX) not yet attempted — no baseline bottleneck has been identified yet that would justify it. |
+| 7 | Retrieval/generation performance | 🔶 | Retrieval latency measured (`BASELINE_PERFORMANCE.md` §3). Generation latency last measured in a prior session, not re-verified this session. Caching, provider-abstraction interfaces: not yet built. |
+| 8 | Security/privacy/multi-tenant isolation | ⬜ | Threat model, security checklist, privacy/data-flow docs not yet written. No multi-tenant isolation exists or is claimed (see `ARCHITECTURE_DECISIONS.md` §1 for the scoping decision). |
+| 9 | Automated testing | 🔶 | 70 unit/integration tests exist and pass for the core library. **New this session**: `tests/test_backend_api.py` (8 tests) covers upload validation (bad extension, spoofed PDF, empty file), duplicate detection, and the full upload→ingest→ask→delete-with-verification loop, run against the real FastAPI app via `TestClient` — 78 passed, 1 skipped. One real bug caught and fixed during this work: a test-isolation issue from content-hash-based dedup (not a backend bug — the dedup worked correctly and exposed a test design flaw, fixed by giving each test unique content). Also manually verified end-to-end in a real browser (see Phase 3). Not yet done: dedicated browser-automation E2E test (manual verification only, not automated), load testing, GPU-specific tests. |
+| 10 | Base-paper benchmark validation | ✅ (prior session) | Already done to a high standard this session in `research/FINAL_VALIDATION/` and `research/PUBLICATION_PACKAGE/` — frozen protocol, corrected document-disjoint split, statistical rigor (bootstrap CIs, Bonferroni correction, McNemar's test, AURC, Brier score), honest negative-result reporting. Not repeated here. |
+| 11 | Performance targets / SLOs | ⬜ | Not yet defined — doing so before any load test exists would be guessing, not measuring. |
+| 12 | Production deployment | 🔶 | `Dockerfile` (Streamlit console, now non-root + healthcheck), `Dockerfile.api` (new, multi-stage, non-root, healthcheck), `docker-compose.yml` (api + frontend + optional `console`/`postgres` profiles, named volume for data persistence) all written. **`docker compose config` validated the YAML is syntactically correct; `docker` itself is not installed in this environment, so no image has actually been built or run** — stated explicitly in `INSTALLATION.md` §4, not hidden. No cloud deployment attempted or claimed — no cloud account/credentials available. |
+| 13 | CI/CD, observability | ⬜ | No CI config exists yet. Not started this session. |
+| 14 | Product documentation | 🔶 | `INITIAL_AUDIT.md`, `BASELINE_PERFORMANCE.md`, `ARCHITECTURE_DECISIONS.md`, `EXECUTION_LOG.md` (this file), `INSTALLATION.md` written and accurate as of this session. Remaining named docs (`API.md`, `CONFIGURATION.md`, `SECURITY_CHECKLIST.md`, `THREAT_MODEL.md`, `PRIVACY_AND_DATA_FLOW.md`, `TEST_STRATEGY.md`, `VALIDATION_REPORT.md`, `DEPLOYMENT.md`, `BACKUP_AND_RECOVERY.md`, `TROUBLESHOOTING.md`, `RELEASE_NOTES.md`, `GPU_OPTIMIZATION.md`) not yet written. |
+| 15 | Updated research paper | ✅ (prior session, different scope) | `research/PUBLICATION_PACKAGE/QuIM_EAR_Revalidation_Paper.docx/.pdf` already reflects the corrected EAR finding, RVQ/OCR confirmed results, and new statistical diagnostics. A further revision folding in this session's production-engineering findings (Phase 15's exact ask: `research/FINAL_VALIDATION/QuIM_RAG_Production_Research_Paper.docx`) is a distinct, not-yet-done deliverable — tracked separately below. |
+| 16 | Final deliverables list | ⬜ | Tracked item-by-item as each phase above completes; not assembled yet. |
+| 17 | Definition of done | ⬜ | Cannot be claimed until the phases above that are ⬜/🔶 are closed out or explicitly descoped with the user's awareness. |
+
+## Session 1 completed, verified work (summary)
+
+1. ✅ FastAPI backend wrapping `quimrag/` — all core endpoints built and hit with real requests.
+2. ✅ SQLite schema (`Document`, `AuditRecord`, `QueryRecord`) via SQLAlchemy, auto-created on startup.
+3. ✅ Minimal frontend wired to the real API; full upload→ask→cite→delete loop verified in an actual browser with screenshots at each step, not just curl.
+4. ✅ 8 new backend integration tests, all passing alongside the pre-existing 70.
+5. 🔶 Docker artifacts written, YAML-validated, NOT build-tested (no Docker in this environment).
+6. ✅ This log updated with real, not aspirational, status after each step.
+
+## Next actions for a future session, in priority order
+
+1. Build out more of the frontend product surface (Explainability Explorer and Benchmark & Evaluation are the next-highest-value pages, since their backing logic — EAR signal inspection, `compare_configs` — already exists in `quimrag/`).
+2. Write the remaining `docs/production/*.md` files (security/threat-model docs are the most load-bearing ones still missing).
+3. If Docker becomes available: actually build and run `docker compose up`, fix whatever breaks, then mark Phase 12 done rather than "written."
+4. Add structured EAR reason codes + a typed config object (Phase 5 polish).
+5. CI config (Phase 13) — start with lint + the existing pytest suite, which is cheap and immediately valuable.
+6. Revisit Phase 15 (a further research-paper revision folding in this session's production-engineering findings) only after the above settles, since its accuracy depends on what's actually built by then.
+
+## Known blockers / things that cannot be done in this environment
+
+- **No NVIDIA/CUDA GPU** — any CUDA-specific benchmark or claim is impossible here (Phase 6).
+- **No cloud account or credentials in this session** — cloud deployment (Phase 12) cannot be executed, only prepared/documented, per the prompt's own instruction.
+- **No existing multi-user base** — multi-tenant load testing (Phase 9) has nothing real to load-test against until auth/isolation (Phase 8) is built.

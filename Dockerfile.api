@@ -1,0 +1,27 @@
+# Production FastAPI backend (backend/) -- see docs/production/ARCHITECTURE_DECISIONS.md.
+# Multi-stage: build deps in a layer with build tools, copy the venv-equivalent
+# into a slim runtime layer, run as non-root, expose a real health check.
+FROM python:3.11-slim AS builder
+RUN apt-get update && apt-get install -y --no-install-recommends gcc tesseract-ocr-eng tesseract-ocr && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
+
+FROM python:3.11-slim
+RUN apt-get update && apt-get install -y --no-install-recommends tesseract-ocr && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /install /usr/local
+WORKDIR /app
+COPY quimrag/ ./quimrag/
+COPY backend/ ./backend/
+COPY research/data/ear_calibration_v2.json ./research/data/ear_calibration_v2.json
+RUN useradd -m -u 1000 quimrag \
+    && mkdir -p /app/data/uploads \
+    && chown -R quimrag:quimrag /app
+USER quimrag
+ENV HF_HUB_OFFLINE=1 \
+    TRANSFORMERS_OFFLINE=1 \
+    DATABASE_URL=sqlite:////app/data/quimrag.db \
+    QUIMRAG_UPLOAD_DIR=/app/data/uploads
+EXPOSE 8000
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')" || exit 1
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]

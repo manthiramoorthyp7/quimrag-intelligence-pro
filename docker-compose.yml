@@ -1,0 +1,81 @@
+# Practical initial deployment (docs/production/ARCHITECTURE_DECISIONS.md).
+# Default profile: API + static frontend, SQLite (a named volume, so
+# documents survive container recreation -- Phase 12: "Do not rely on local
+# temporary files as the only copy of user documents"). Ollama is expected
+# to run on the HOST machine (not containerized here) -- set OLLAMA_HOST
+# below for your platform. An optional `postgres` profile adds Postgres +
+# pgvector for anyone who wants that path instead of SQLite (see
+# ARCHITECTURE_DECISIONS.md #3 for why SQLite is the default, not Postgres).
+#
+# Usage:
+#   docker compose up --build                       # API + frontend, SQLite
+#   docker compose --profile postgres up --build     # + Postgres/pgvector
+#   docker compose --profile console up --build      # + Streamlit research console
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:////app/data/quimrag.db
+      - QUIMRAG_UPLOAD_DIR=/app/data/uploads
+      # macOS/Windows Docker Desktop: host.docker.internal resolves to the
+      # host machine, where Ollama is expected to be running (`ollama serve`).
+      # On Linux, replace with the host's actual reachable address.
+      - OLLAMA_HOST=${OLLAMA_HOST:-http://host.docker.internal:11434}
+      - QUIMRAG_API_KEY=${QUIMRAG_API_KEY:-}
+      - QUIMRAG_GENERATION_PROVIDER=${QUIMRAG_GENERATION_PROVIDER:-local}
+    volumes:
+      - quimrag_data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+
+  frontend:
+    image: nginx:1.27-alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    environment:
+      - OLLAMA_HOST=${OLLAMA_HOST:-http://host.docker.internal:11434}
+    profiles: ["console"]
+    restart: unless-stopped
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      - POSTGRES_DB=quimrag
+      - POSTGRES_USER=quimrag
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in your .env, do not use a default}
+    ports:
+      - "5432:5432"
+    volumes:
+      - quimrag_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quimrag"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    profiles: ["postgres"]
+    restart: unless-stopped
+
+volumes:
+  quimrag_data:
+  quimrag_postgres_data:

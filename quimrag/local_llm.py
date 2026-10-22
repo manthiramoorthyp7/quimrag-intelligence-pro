@@ -1,10 +1,17 @@
-"""Local LLM generation and judging via Ollama (http://localhost:11434) --
-no API key, no cost, fully offline. Mirrors quimrag.llm_answer.generate_answer's
-grounded, citation-enforcing prompt, but runs locally against whatever models
-`ollama list` reports installed."""
+"""Local LLM generation and judging via Ollama (http://localhost:11434 by
+default) -- no API key, no cost, fully offline. Mirrors
+quimrag.llm_answer.generate_answer's grounded, citation-enforcing prompt,
+but runs locally against whatever models `ollama list` reports installed."""
+import os
+
 import requests
 
-OLLAMA_HOST = "http://localhost:11434"
+# Overridable via OLLAMA_HOST so a containerized backend can reach Ollama
+# running on the host machine (e.g. "http://host.docker.internal:11434" on
+# Docker Desktop for Mac/Windows) -- "localhost" inside a container refers
+# to the container itself, not the host, so this must be configurable for
+# docker-compose deployment to actually work, not just for local dev.
+OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
 DEFAULT_MODEL = "llama3.2:latest"
 FAST_MODEL = "llama3.2:1b"
 

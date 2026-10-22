@@ -13,3 +13,9 @@ build/
 !.env.example
 *.log
 data/benchmarks/*/raw/
+
+# Root-level data/ is the backend's runtime state (SQLite DB, uploaded
+# files) -- anchored to the repo root so this does NOT match research/data/,
+# which holds real, versioned project artifacts (OHR-Bench adapter output,
+# the EAR calibration model, etc.) and must stay tracked.
+/data/
