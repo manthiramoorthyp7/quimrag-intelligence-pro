@@ -1,2 +1,3 @@
 -r requirements.txt
 pytest>=8.0
+httpx>=0.27  # required by fastapi.testclient.TestClient (tests/test_backend_api.py) -- was previously an undeclared transitive dependency
