@@ -111,6 +111,14 @@ class QuIMRAG:
   if not self.chunks:return []
   texts=[c["text"] for c in self.chunks]
   if self.model:
+   if self.matrix is None or len(self.matrix)!=len(self.chunks):
+    raise RuntimeError(f"retrieve() called with self.matrix out of sync with self.chunks "
+                        f"({len(self.chunks)} chunks vs matrix sized for "
+                        f"{0 if self.matrix is None else len(self.matrix)}) -- self.chunks was mutated "
+                        f"without calling reindex(). Found during robustness testing "
+                        f"(research/eval_expanded/run_robustness_suite.py); not reachable via the production "
+                        f"add_document/remove_document API, which always reindexes, but a clear error here is "
+                        f"better than the confusing IndexError this used to raise two lines down.")
    dense=cosine_similarity(self.model.encode([q],normalize_embeddings=True),self.matrix)[0]
   else:
    self.vectorizer=TfidfVectorizer(ngram_range=(1,2),max_features=16000);self.matrix=self.vectorizer.fit_transform(texts).toarray()

@@ -1,0 +1,1 @@
+{"coef": [0.39693155536289215, 0.07230993511142729, -0.4413047130838934, -0.08783118484614826, -0.8293377258021017, 0.041872088811015194], "intercept": -1.2684465826698101, "threshold": 0.1846, "features": ["inv_n_support", "has_number", "claim_len_norm", "mean_retrieval_score", "query_probability", "query_contradiction"]}
