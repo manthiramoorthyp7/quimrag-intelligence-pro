@@ -1,0 +1,69 @@
+{
+  "run_id": "ocr_robustness_20261023T010419Z",
+  "sample_size": 15,
+  "n_conditions": 4,
+  "confidence_vs_cer_correlation": {
+    "pearson_r": -0.9835084046661161,
+    "pearson_p": 1.4030542611148824e-30,
+    "spearman_r": -0.9108013937282232,
+    "spearman_p": 1.437920364053961e-16
+  },
+  "mean_by_severity": [
+    {
+      "severity": "mild",
+      "CER": 0.028903667207317192,
+      "WER": 0.037241209765727784,
+      "ocr_confidence": 0.934004716237376
+    },
+    {
+      "severity": "moderate",
+      "CER": 0.10512225254990627,
+      "WER": 0.15878630129488308,
+      "ocr_confidence": 0.8765256504674717
+    },
+    {
+      "severity": "severe",
+      "CER": 0.874448120953689,
+      "WER": 0.9758145137106815,
+      "ocr_confidence": 0.22358309244320412
+    }
+  ],
+  "retrieval_by_condition": {
+    "clean": {
+      "n_docs": 15,
+      "n_scored": 15,
+      "Recall@3": 0.9055555555555556,
+      "nDCG@3": 0.938828394585881
+    },
+    "mild": {
+      "n_docs": 15,
+      "n_scored": 15,
+      "Recall@3": 0.9055555555555556,
+      "nDCG@3": 0.9142237114906447
+    },
+    "moderate": {
+      "n_docs": 15,
+      "n_scored": 15,
+      "Recall@3": 0.9222222222222222,
+      "nDCG@3": 0.9334764471957602
+    },
+    "severe": {
+      "n_docs": 15,
+      "n_scored": 11,
+      "Recall@3": 0.5454545454545454,
+      "nDCG@3": 0.4209936139610416
+    }
+  },
+  "ear_weight_on_clean_ground_truth": {
+    "agreement": 1.6642717745377256,
+    "ocr_confidence": -0.0030427897896785983,
+    "contradiction": -0.5794737418682977,
+    "complexity": 1.0304393516544461
+  },
+  "ear_weight_on_mixed_clean_degraded": {
+    "agreement": 0.0001745877528165577,
+    "ocr_confidence": 0.0003223394699878317,
+    "contradiction": 0.0012348822932178878,
+    "complexity": -0.0010065524051884852
+  }
+}

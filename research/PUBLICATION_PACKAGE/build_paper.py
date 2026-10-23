@@ -524,7 +524,7 @@ doc.add_heading("3.5 Evaluating EAR Beyond a Single Threshold: Selective-Predict
 doc.add_paragraph(
     "Section 5.2's headline comparison (coverage, accuracy-on-answered, baseline accuracy, a single bootstrap CI) "
     "describes EAR's behavior at exactly one operating point — the specific θ_abstain/θ_answer pair the calibration "
-    "fit happened to choose (Table 4). This is the standard selective-prediction reporting format, but it "
+    "fit happened to choose (Table 5). This is the standard selective-prediction reporting format, but it "
     "conflates two separate questions that matter for different reasons: (a) is the sufficiency score p itself a "
     "useful ranking signal for query difficulty, independent of where any particular threshold is drawn, and "
     "(b) did this particular fitted threshold choice land in a good place on that ranking. A system can have an "
@@ -811,6 +811,90 @@ doc.add_paragraph(
     "does not depend on the threshold-based coverage/accuracy numbers reaching significance."
 )
 
+doc.add_heading("3.8 EICV-RAG: A Claim-Level Evidence Verification Layer", level=2)
+doc.add_paragraph(
+    "A further pass added a claim-level verification layer on top of the production backend described in "
+    "Section 3.6 (docs/production/EICV_RAG.md carries the full scoped-vs-deferred breakdown; this section "
+    "summarizes it for the paper). The motivating brief specified an 18-part research program -- an evidence "
+    "lineage graph database, 7 counterfactual test types, a 10-signal learned integrity score compared across "
+    "5 model variants, an adaptive verification-budget optimizer, and a dedicated literature review -- that is "
+    "genuinely multi-week, multi-person scope. Consistent with this paper's standing discipline (evidence "
+    "first, scope stated honestly, nothing silently dropped), what was actually built and verified is a "
+    "deliberately scoped subset, stated here as built vs. deferred rather than claimed in full."
+)
+doc.add_heading("3.8.1 What was built and verified", level=3)
+doc.add_paragraph(
+    "Claim-level attribution (backend/claim_verification.py): a previously-generated answer is decomposed into "
+    "atomic claims via the same two-step, context-hidden-first extraction pattern already proven in "
+    "quimrag/ragas_eval.py (which avoids a documented failure mode where a small local judge lists context "
+    "sentences as claims when shown context and answer together), then each claim is independently attributed "
+    "to the specific evidence chunk_id(s) that support it. This is a strict superset of the existing "
+    "citation-marker check (backend/citations.py), which only confirms a [C12]-style marker resolves to a real "
+    "chunk, not that the chunk actually supports the claim attached to it -- EICV's attribution step "
+    "independently re-derives support and therefore also catches a citation that resolves correctly but does "
+    "not support its claim."
+)
+doc.add_paragraph(
+    "One counterfactual test (of the seven specified; the other six are named, scoped follow-ups, not silently "
+    "dropped -- see the deferral table below): evidence deletion. For each SUPPORTED claim, its supporting "
+    "chunk(s) are removed and the attribution judge is re-run on the reduced evidence set. A real, repeatable "
+    "flip from SUPPORTED to UNSUPPORTED was observed when a claim's sole supporting chunk was removed -- "
+    "reported, per the module's own stated caveat, as a diagnostic signal of evidence dependence, not as proof "
+    "of correctness or hallucination; the unchanged-support case is captioned in the UI as possibly redundant "
+    "evidence or the model's own prior knowledge, not as a pass/fail verdict."
+)
+doc.add_paragraph(
+    "A real correctness bug was found and fixed during this pass's own manual verification, not assumed: after "
+    "a process restart, SQLite still reported a document's status as ready while the in-process retrieval "
+    "index -- which lives only in memory -- was actually empty, so a document could appear retrievable while "
+    "genuinely not being so. Fixed with rebuild_index_from_storage(), invoked at backend startup; verified by "
+    "killing and restarting the server and observing chunks_indexed go 1 -> 0 -> 1 across the restart, with "
+    "/ask working immediately afterward with no manual re-upload. Covered by a new regression test "
+    "(tests/test_backend_api.py::test_restart_recovery_rebuilds_index_from_storage)."
+)
+doc.add_paragraph(
+    "The frontend (frontend/index.html) was rebuilt as a single-page chat interface -- a collapsible sidebar "
+    "with persisted conversation history, citation-linked answers, an EAR decision badge, and expandable "
+    "Sources / Claim-level Verification panels (verification is opt-in per query, the adaptive-verification-"
+    "budget principle in lightweight form: cheap EAR routing runs on every query, the more expensive multi-call "
+    "verification only runs on request). This was verified by actually driving it through the Claude Browser "
+    "pane tooling -- a file injected via DataTransfer (no native file picker in that environment), each "
+    "Upload/Ask/Verify/Delete action clicked and its resulting state change confirmed via DOM inspection and "
+    "screenshots, not asserted from the source alone. Two real bugs were found and fixed during that "
+    "verification itself: an overlay sidebar that covered its own toggle button on narrow viewports, and a "
+    "verification results panel that silently re-collapsed on re-render because its open/closed state was not "
+    "tracked per message."
+)
+doc.add_paragraph(
+    "9 new unit tests (claim extraction, attribution parsing including multi-chunk-id and malformed-line "
+    "tolerance, lineage assembly, counterfactual-sensitivity detection -- judge mocked, deterministic, no "
+    "Ollama required) plus 5 new integration tests (the full /verify loop against a real backend, the 404/409 "
+    "error paths, and the restart-recovery regression) bring the project's full suite to 91 passed, 1 skipped, "
+    "confirmed again by a fresh run from the consolidated project folder (Section 6's deployment discussion)."
+)
+doc.add_heading("3.8.2 What was explicitly deferred, and why", level=3)
+add_table(
+    ["Specified component", "Status", "Why"],
+    [
+        ["Full evidence-lineage graph database (cell-level provenance, bounding boxes, transformation history)",
+         "Not built", "A lighter-weight schema was explicitly permitted as an alternative; no genuine bounding-box or cell-level data exists in the current extraction pipeline to populate a graph schema honestly"],
+        ["Counterfactual tests 2-7 (masking, replacement, distractor injection, OCR perturbation, citation substitution, redundancy controls)",
+         "Not built", "Test 1 alone required three new judge-call types; each remaining test is comparable scope, named as a follow-up rather than dropped silently"],
+        ["10-signal learned claim-integrity score, 5 compared model variants",
+         "Not built", "Would require the same document-disjoint calibration/evaluation infrastructure EAR already uses (Section 4.2) -- reusing it correctly for a second, different target is real follow-up work, not shortcut here"],
+        ["Adaptive verification-budget optimizer",
+         "Partial", "Present only as a design principle (opt-in verification per query); a formal cost/latency-aware policy needs usage data (call frequency, cost) not yet collected"],
+        ["14 baseline/ablation configurations; 30-scenario adversarial suite; Playwright E2E automation",
+         "Not run", "No comparative benchmark was executed for the claim-verification layer itself; correctness was verified manually and via unit/integration tests, not comparative accuracy against alternatives"],
+    ],
+    caption="EICV-RAG scope: built vs. explicitly deferred.", cap_num=1,
+)
+doc.add_paragraph(
+    "This section exists specifically so this paper does not implicitly overstate EICV-RAG's scope by omission "
+    "-- the full docs/production/EICV_RAG.md carries the same table with additional detail and is the "
+    "authoritative source if the two ever diverge."
+)
+
 # ============================================================================
 # 4. EXPERIMENTAL SETUP
 # ============================================================================
@@ -881,7 +965,7 @@ add_table(
     ],
     caption="Benchmark selection, evaluated against what EAR's four specific signals need to be meaningfully "
             "exercised — not a generic leaderboard comparison.",
-    cap_num=1,
+    cap_num=2,
 )
 doc.add_paragraph(
     "No benchmark in this comparison matches QuIM-RAG's original NDSU task (institutional FAQ retrieval over "
@@ -950,7 +1034,7 @@ add_table(
         ["Hybrid (RRF)", "0.444", "0.505", "0.726", "39.6", "0.008 (significant)"],
     ],
     caption="Corrected baseline comparison, 247-query document-disjoint evaluation split.",
-    cap_num=2,
+    cap_num=3,
 )
 add_figure(os.path.join(HERE, "fig1_baseline_comparison.png"),
            "Corrected retrieval-quality/latency comparison, document-disjoint split.", 1, width=5.2)
@@ -975,11 +1059,11 @@ add_table(
     ],
     caption="McNemar's test, Dense-only vs. Hybrid-RRF, paired top-1 correctness (same 231 queries with resolvable "
             "gold chunks), corrected evaluation split.",
-    cap_num=3,
+    cap_num=4,
 )
 add_caveat(
     "McNemar's test on narrow top-1 correctness does NOT find a significant difference (p=0.256), while the "
-    "paired bootstrap on nDCG@5 (Table 2) DOES (p=0.008). These are not contradictory — they test different "
+    "paired bootstrap on nDCG@5 (Table 3) DOES (p=0.008). These are not contradictory — they test different "
     "things. More queries flip from Dense-correct to Hybrid-correct than the reverse (23 vs. 15, a 1.5:1 ratio "
     "favoring Hybrid), consistent with Hybrid being the better system, but this specific ratio at n=231 "
     "discordant pairs is not itself large enough to be statistically conclusive by McNemar's narrower binary "
@@ -1003,7 +1087,7 @@ add_table(
     ],
     caption="The central result of this paper: EAR's selective-prediction claim before and after correcting the "
             "calibration/evaluation split, on otherwise identical code and comparable sampling methodology.",
-    cap_num=4,
+    cap_num=5,
 )
 add_figure(os.path.join(HERE, "fig2_ear_before_after.png"),
            "EAR coverage, answered-accuracy, and baseline accuracy: original leaky split vs. corrected split.", 2, width=5.2)
@@ -1042,7 +1126,7 @@ add_table(
         ["Cohen's h, accuracy-on-answered vs. baseline", "0.128 (small effect)", "Conventional small≈0.2, medium≈0.5"],
     ],
     caption="Threshold-independent and effect-size diagnostics for EAR's sufficiency score, corrected split.",
-    cap_num=5,
+    cap_num=6,
 )
 add_figure(os.path.join(HERE, "fig4_risk_coverage.png"),
            "Risk-coverage curve for EAR's sufficiency score, corrected evaluation split. The fitted operating "
@@ -1098,7 +1182,7 @@ add_table(
     ],
     caption="Per-signal ROC-AUC, corrected evaluation split (n=247), computed for the first time in this "
             "analysis.",
-    cap_num=6,
+    cap_num=7,
 )
 add_figure(os.path.join(HERE, "fig6_per_signal_auc.png"),
            "Per-signal ROC-AUC. agreement and complexity are the two individually informative signals; "
@@ -1132,7 +1216,7 @@ add_table(
         ["Observed effect as a fraction of the minimum detectable effect", "26%"],
     ],
     caption="Combined-score ROC-AUC, calibration error, and the power analysis result.",
-    cap_num=7,
+    cap_num=8,
 )
 add_figure(os.path.join(HERE, "fig5_reliability_diagram.png"),
            "Reliability diagram, corrected evaluation split. The lowest-probability bin is overconfident "
@@ -1164,7 +1248,7 @@ add_table(
     ["Group", "n", "Mean reconstruction cosine"],
     [["Lost to quantization", "276", "0.621"], ["Not lost", "1,219", "0.671"], ["Corpus-wide average", "16,076", "0.761"]],
     caption="Welch's t-test: t = −4.710, p = 3.54×10⁻⁶.",
-    cap_num=8,
+    cap_num=9,
 )
 add_table(
     ["Config", "Recall@5", "MRR@5", "Latency mean (ms)"],
@@ -1172,7 +1256,7 @@ add_table(
      ["RVQ quantized (no rerank)", "0.161", "0.276", "12.9"],
      ["RVQ quantized + exact rerank (fix)", "0.301", "0.611", "13.0"]],
     caption="Quantize-then-exact-rerank recovers 79% of lost Recall@5 at statistically the same latency.",
-    cap_num=9,
+    cap_num=10,
 )
 add_figure(os.path.join(HERE, "fig3_rvq_recovery.png"),
            "RVQ recall recovery via quantize-then-exact-rerank, with latency overlay.", 6, width=5.2)
@@ -1191,7 +1275,7 @@ add_table(
     ["Correlation", "Coefficient", "p-value"],
     [["Pearson r (OCR confidence vs. CER)", "−0.984", "1.4×10⁻³⁰"], ["Spearman ρ", "−0.911", "1.4×10⁻¹⁶"]],
     caption="OCR confidence vs. Character Error Rate, 45 degraded observations across 15 documents.",
-    cap_num=10,
+    cap_num=11,
 )
 doc.add_paragraph(
     "Real Tesseract confidence is strongly, significantly correlated with actual character error rate under "
@@ -1233,7 +1317,7 @@ add_table(
         ["Brier score", "0.2117", "0.2080"],
     ],
     caption="EAR v1 vs. EAR v2, corrected evaluation split, identical calibration/evaluation data for both.",
-    cap_num=11,
+    cap_num=12,
 )
 add_figure(os.path.join(HERE, "fig7_ear_v1_v2_reliability.png"),
            "EAR v1 vs. EAR v2 reliability diagrams on the same evaluation split. EAR v2's curve tracks the "
@@ -1455,6 +1539,20 @@ doc.add_paragraph(
     "to solve, and report the actual outcome against that stated expectation — the same evidence-first discipline "
     "this paper applied to the leakage correction that motivated it in the first place, applied now to closing "
     "the gap that correction opened rather than leaving it open."
+)
+doc.add_paragraph(
+    "This revision also adds EICV-RAG (Section 3.8), a claim-level evidence verification layer on top of the "
+    "production backend: per-claim attribution to specific evidence chunks (a strict superset of citation-marker "
+    "checking), one real counterfactual test (evidence deletion, with an observed genuine SUPPORTED-to-"
+    "UNSUPPORTED flip), a persisted, independently re-inspectable audit trail, and a rebuilt single-page frontend "
+    "verified by actually driving it end-to-end rather than only reading its source. As with every other "
+    "component in this paper, EICV-RAG's scope is reported honestly as built-vs-deferred (Table 1) rather than "
+    "claimed in full against its much larger originating brief. Finally, the entire project — backend, frontend, "
+    "research pipeline, and this paper's own build scripts — was consolidated into a single, independent, "
+    "git-tracked project folder with its own virtual environment, verified to install and pass its full test "
+    "suite (91 passed, 1 skipped) from a clean checkout, and pushed to a public GitHub repository, so that the "
+    "system described in this paper is something a reader can actually clone, run locally, and inspect, not only "
+    "a description of one."
 )
 
 # ============================================================================
