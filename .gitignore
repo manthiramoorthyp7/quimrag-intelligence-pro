@@ -19,3 +19,8 @@ data/benchmarks/*/raw/
 # which holds real, versioned project artifacts (OHR-Bench adapter output,
 # the EAR calibration model, etc.) and must stay tracked.
 /data/
+
+# PID files written by scripts/start.sh / read by scripts/stop.sh -- pure
+# runtime state, meaningless (and potentially stale/misleading) on another
+# machine or after a reboot.
+/.run/
