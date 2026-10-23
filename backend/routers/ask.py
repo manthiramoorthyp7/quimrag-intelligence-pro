@@ -34,8 +34,27 @@ def ask(req: AskRequest, db: Session = Depends(get_db)):
         engine = get_engine()
         if not engine.chunks:
             raise HTTPException(409, "No documents are indexed yet -- upload and wait for ingestion to finish first")
-        model = get_ear_model()
-        evidence, sig, decision, probability, reason = EAR.retrieve_adaptive(engine, req.query, model, k=k)
+
+        if req.mode == "Hybrid":
+            # EAR's signals (esp. "agreement") need both the BM25 and dense
+            # rankings, so adaptive routing only applies in Hybrid mode.
+            ear_model = get_ear_model()
+            evidence, sig, decision, probability, reason = EAR.retrieve_adaptive(engine, req.query, ear_model, k=k)
+            ear_applied = True
+        else:
+            # Dense only / Lexical only: EAR is bypassed by request -- there is
+            # no "agreement between two rankings" to compute with only one
+            # ranking, so we don't fabricate a routing decision. Signals are
+            # still computed (cheap, already-retrieved evidence, no extra model
+            # calls) purely for display; the decision is always "answer" if
+            # retrieval found anything, "abstain" if it found nothing.
+            evidence = engine.retrieve(req.query, k, req.mode)
+            sig = EAR.compute_signals(engine, req.query, evidence, k) if evidence else \
+                {"agreement": 0.0, "ocr_confidence": 0.0, "contradiction": 0.0, "complexity": 0.0}
+            decision = "answer" if evidence else "abstain"
+            probability = 1.0 if evidence else 0.0
+            reason = f"EAR routing bypassed -- mode={req.mode} requested explicitly"
+            ear_applied = False
 
     answer_text = None
     provider_used = None
@@ -44,7 +63,7 @@ def ask(req: AskRequest, db: Session = Depends(get_db)):
     if decision in ("answer", "expand_retrieval") and evidence:
         provider = req.generation_provider or config.GENERATION_PROVIDER
         try:
-            answer_text, provider_used = generate(req.query, evidence, provider)
+            answer_text, provider_used = generate(req.query, evidence, provider, model=req.model)
             citations_ok = verify_citations(answer_text, evidence)
         except GenerationError as ex:
             raise HTTPException(502, str(ex))
@@ -69,6 +88,8 @@ def ask(req: AskRequest, db: Session = Depends(get_db)):
     return AskResponse(
         query_record_id=record.id,
         query=req.query,
+        mode_used=req.mode,
+        ear_applied=ear_applied,
         decision=decision,
         probability=probability,
         reason=reason,

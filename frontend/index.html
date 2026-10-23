@@ -195,7 +195,8 @@
         <button class="icon-btn" id="sidebar-toggle" title="Toggle sidebar">☰</button>
         <strong id="conv-title" style="font-size:13.5px;color:var(--muted);">New chat</strong>
       </div>
-      <div>
+      <div style="display:flex;gap:8px;">
+        <button class="pill-btn" id="settings-pill">⚙ Hybrid+EAR · local</button>
         <button class="pill-btn" id="debug-pill">Debug: off</button>
       </div>
     </div>
@@ -243,6 +244,44 @@
   </div>
 </div>
 
+<div class="modal-overlay" id="settings-overlay">
+  <div class="modal" style="width:480px;">
+    <div class="modal-header">
+      <h2>Retrieval &amp; Generation Settings</h2>
+      <button class="icon-btn" id="close-settings-btn">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="margin-bottom:18px;">
+        <label style="display:block;font-size:12.5px;color:var(--muted);margin-bottom:6px;">Retrieval mode</label>
+        <select id="setting-mode" class="sb-btn" style="width:100%;color:var(--dark);">
+          <option value="Hybrid">Hybrid + EAR (adaptive routing, recommended)</option>
+          <option value="Dense only">Dense only (semantic/embedding retrieval)</option>
+          <option value="Lexical only">Lexical only (BM25 keyword retrieval)</option>
+        </select>
+        <p style="font-size:11.5px;color:var(--muted);margin-top:6px;">
+          EAR's answer/expand/inspect/abstain routing only applies in Hybrid mode -- it needs both rankings to
+          compute agreement. Dense-only and Lexical-only always answer if any evidence is retrieved.
+        </p>
+      </div>
+      <div style="margin-bottom:18px;">
+        <label style="display:block;font-size:12.5px;color:var(--muted);margin-bottom:6px;">Answer generation</label>
+        <select id="setting-provider" class="sb-btn" style="width:100%;color:var(--dark);">
+          <option value="local">Local LLM (Ollama, fully offline)</option>
+          <option value="extractive">Extractive (no model call, sentences pulled directly from evidence)</option>
+          <option value="anthropic">Anthropic API (requires ANTHROPIC_API_KEY on the backend)</option>
+        </select>
+      </div>
+      <div id="setting-model-wrap" style="margin-bottom:6px;">
+        <label style="display:block;font-size:12.5px;color:var(--muted);margin-bottom:6px;">Model</label>
+        <select id="setting-model-local" class="sb-btn" style="width:100%;color:var(--dark);"></select>
+        <input id="setting-model-anthropic" class="sb-btn" style="width:100%;color:var(--dark);display:none;"
+               placeholder="claude-sonnet-5" />
+      </div>
+      <div id="settings-status" style="font-size:11.5px;color:var(--muted);margin-top:10px;"></div>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -261,7 +300,21 @@ let state = {
   activeId: null,
   debug: false,
   documents: [],
+  settings: JSON.parse(localStorage.getItem("quimrag_settings") || "null") || {
+    mode: "Hybrid", provider: "local", model: "",
+  },
+  systemModels: null,
 };
+
+function saveSettings() {
+  localStorage.setItem("quimrag_settings", JSON.stringify(state.settings));
+}
+function updateSettingsPill() {
+  const s = state.settings;
+  const modeShort = { "Hybrid": "Hybrid+EAR", "Dense only": "Dense", "Lexical only": "Lexical" }[s.mode];
+  const provShort = { "local": "local", "extractive": "extractive", "anthropic": "anthropic" }[s.provider];
+  $("settings-pill").textContent = `⚙ ${modeShort} · ${provShort}`;
+}
 
 function saveConversations() {
   localStorage.setItem("quimrag_conversations", JSON.stringify(state.conversations));
@@ -463,7 +516,7 @@ function renderMessage(m, idx) {
 
   if (state.debug) {
     html += `<details class="expando" data-panel="debug" open><summary>Debug: EAR signals &amp; routing</summary><div class="expando-body">
-        <div style="font-size:11.5px;color:var(--muted);">p=${r.probability.toFixed(3)} · ${r.latency_ms.toFixed(0)}ms · query_record_id=${r.query_record_id}${r.generation_provider ? " · " + r.generation_provider : ""}</div>
+        <div style="font-size:11.5px;color:var(--muted);">mode=${esc(r.mode_used || "?")}${r.ear_applied === false ? " (EAR bypassed)" : ""} · p=${r.probability.toFixed(3)} · ${r.latency_ms.toFixed(0)}ms · query_record_id=${r.query_record_id}${r.generation_provider ? " · " + r.generation_provider : ""}</div>
         <div style="font-size:11px;color:var(--muted);margin-top:4px;">${esc(r.reason)}</div>
         <div class="signal-grid">
           <div class="signal"><div class="label">agreement</div><div class="value">${r.signals.agreement.toFixed(2)}</div></div>
@@ -549,8 +602,11 @@ async function sendMessage(text) {
   renderChat();
 
   try {
+    const s = state.settings;
+    const body = { query: text, mode: s.mode, generation_provider: s.provider };
+    if (s.model) body.model = s.model;
     const r = await api("/ask", {
-      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ query: text }),
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
     });
     pendingMsg.pending = false;
     pendingMsg.result = r;
@@ -578,6 +634,54 @@ function updateDebugPill() {
   p.textContent = "Debug: " + (state.debug ? "on" : "off");
   p.classList.toggle("active", state.debug);
 }
+
+/* ---------- Settings (retrieval mode / generation provider / model) ---------- */
+async function openSettings() {
+  $("settings-overlay").classList.add("open");
+  $("setting-mode").value = state.settings.mode;
+  $("setting-provider").value = state.settings.provider;
+  syncModelField();
+  if (!state.systemModels) {
+    try {
+      state.systemModels = await api("/system/models");
+    } catch (e) {
+      $("settings-status").textContent = "Could not load model list: " + e.message;
+      state.systemModels = { local_models: [], anthropic_available: false };
+    }
+    const sel = $("setting-model-local");
+    const models = state.systemModels.local_models || [];
+    sel.innerHTML = models.length
+      ? models.map((m) => `<option value="${esc(m)}">${esc(m)}</option>`).join("")
+      : `<option value="">(no local Ollama models installed)</option>`;
+    if (state.settings.model && models.includes(state.settings.model)) sel.value = state.settings.model;
+    if (!state.systemModels.anthropic_available) {
+      $("settings-status").textContent = "Anthropic API: no ANTHROPIC_API_KEY set on the backend -- that option will fail until one is configured.";
+    }
+  }
+}
+function syncModelField() {
+  const isAnthropic = $("setting-provider").value === "anthropic";
+  $("setting-model-local").style.display = isAnthropic ? "none" : "";
+  $("setting-model-anthropic").style.display = isAnthropic ? "" : "none";
+  if (isAnthropic) $("setting-model-anthropic").value = state.settings.model || "";
+}
+function applySettingsFromForm() {
+  state.settings.mode = $("setting-mode").value;
+  state.settings.provider = $("setting-provider").value;
+  state.settings.model = $("setting-provider").value === "anthropic"
+    ? $("setting-model-anthropic").value.trim()
+    : $("setting-model-local").value;
+  saveSettings();
+  updateSettingsPill();
+}
+$("settings-pill").addEventListener("click", openSettings);
+$("close-settings-btn").addEventListener("click", () => { applySettingsFromForm(); $("settings-overlay").classList.remove("open"); });
+$("settings-overlay").addEventListener("click", (e) => { if (e.target.id === "settings-overlay") { applySettingsFromForm(); $("settings-overlay").classList.remove("open"); } });
+$("setting-mode").addEventListener("change", applySettingsFromForm);
+$("setting-provider").addEventListener("change", () => { syncModelField(); applySettingsFromForm(); });
+$("setting-model-local").addEventListener("change", applySettingsFromForm);
+$("setting-model-anthropic").addEventListener("input", applySettingsFromForm);
+updateSettingsPill();
 
 $("file-input").addEventListener("change", async (e) => {
   const f = e.target.files[0];

@@ -36,6 +36,7 @@ class AskRequest(BaseModel):
     k: int | None = None
     mode: str = Field(default="Hybrid", pattern="^(Dense only|Lexical only|Hybrid)$")
     generation_provider: str | None = None  # overrides config.GENERATION_PROVIDER for this call
+    model: str | None = None  # overrides the default model for the chosen generation_provider
 
 
 class EvidenceOut(BaseModel):
@@ -58,6 +59,8 @@ class EARSignals(BaseModel):
 class AskResponse(BaseModel):
     query_record_id: int
     query: str
+    mode_used: str  # Hybrid | Dense only | Lexical only -- what retrieval actually ran
+    ear_applied: bool  # false when mode bypasses EAR routing (Dense only / Lexical only)
     decision: str  # answer | expand_retrieval | inspect_structure | abstain
     probability: float
     reason: str

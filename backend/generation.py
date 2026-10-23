@@ -16,23 +16,28 @@ class GenerationError(Exception):
     pass
 
 
-def generate(query: str, evidence: list[dict], provider: str) -> tuple[str, str]:
+def generate(query: str, evidence: list[dict], provider: str, model: str | None = None) -> tuple[str, str]:
     """Returns (answer_text, provider_actually_used). Falls back to
     extractive ONLY within the same trust boundary (no external call), and
     always reports which provider actually produced the answer so the API
-    response is never misleading about where the text came from."""
+    response is never misleading about where the text came from. `model`
+    overrides the provider's own default model string when given (e.g. a
+    specific locally-installed Ollama tag, or a specific Claude model id) --
+    ignored for provider="extractive", which never calls a model at all."""
     if provider == "extractive":
         return extractive_answer(query, evidence), "extractive"
 
     if provider == "anthropic":
         if not config.ANTHROPIC_API_KEY:
             raise GenerationError("provider=anthropic requested but ANTHROPIC_API_KEY is not set")
-        answer = generate_answer(query, evidence, api_key=config.ANTHROPIC_API_KEY)
+        kwargs = {"model": model} if model else {}
+        answer = generate_answer(query, evidence, api_key=config.ANTHROPIC_API_KEY, **kwargs)
         return answer, "anthropic"
 
     # default: local (Ollama)
     if not ollama_available():
         # explicit, visible fallback -- never silently claim "local" succeeded
         return extractive_answer(query, evidence), "extractive (ollama unavailable)"
-    answer = generate_answer_local(query, evidence)
+    kwargs = {"model": model} if model else {}
+    answer = generate_answer_local(query, evidence, **kwargs)
     return answer, "local"

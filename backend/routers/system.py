@@ -8,7 +8,8 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 from fastapi import Depends
 
-from quimrag.local_llm import ollama_available
+from quimrag.local_llm import DEFAULT_MODEL as OLLAMA_DEFAULT_MODEL
+from quimrag.local_llm import list_local_models, ollama_available
 
 from .. import config
 from ..db import get_db
@@ -36,6 +37,22 @@ def health():
         auth_enabled=config.AUTH_ENABLED,
         database_url_scheme=config.DATABASE_URL.split(":")[0],
     )
+
+
+@router.get("/system/models")
+def system_models():
+    """What the frontend's settings panel actually offers, read live rather
+    than hardcoded: which Ollama models are installed right now, and whether
+    an Anthropic key is configured (never implies the key is valid, only
+    that the provider is reachable at all per Phase 7's explicit-opt-in rule)."""
+    return {
+        "generation_providers": ["local", "extractive", "anthropic"],
+        "local_models": list_local_models() if ollama_available() else [],
+        "local_default": OLLAMA_DEFAULT_MODEL,
+        "anthropic_available": bool(config.ANTHROPIC_API_KEY),
+        "anthropic_default": "claude-sonnet-5",
+        "retrieval_modes": ["Hybrid", "Dense only", "Lexical only"],
+    }
 
 
 @router.get("/system/stats")
