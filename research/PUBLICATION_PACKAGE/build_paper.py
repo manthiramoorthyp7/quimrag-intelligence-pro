@@ -150,6 +150,20 @@ def add_note(text):
     run.font.color.rgb = MUTED
 
 
+def add_code(text, size=8.5):
+    p = doc.add_paragraph()
+    p.paragraph_format.left_indent = Inches(0.25)
+    p.paragraph_format.space_before = Pt(4)
+    p.paragraph_format.space_after = Pt(8)
+    shading = OxmlElement("w:shd")
+    shading.set(qn("w:fill"), "F3F2FB")
+    p._p.get_or_add_pPr().append(shading)
+    run = p.add_run(text)
+    run.font.name = "Consolas"
+    run.font.size = Pt(size)
+    run.font.color.rgb = DARK
+
+
 # ============================================================================
 # TITLE PAGE
 # ============================================================================
@@ -268,6 +282,20 @@ p3.add_run(
     "successful, falsifiable prediction about which problem a given fix can and cannot solve, which we argue is "
     "stronger evidence of a correct diagnosis than an unexplained improvement would have been."
 )
+p4 = doc.add_paragraph()
+p4.add_run(
+    "This revision adds a claim-level selective-verification controller, EIIC, that decides which individual "
+    "claims in an already-generated answer are worth an expensive counterfactual check, closing a specific gap "
+    "between EAR's query-level gating and our claim-verification layer's previously all-or-nothing behavior. "
+    "Evaluated on real, counterfactually-labeled claims (Section 5.7), the honestly-reported result is that "
+    "neither of two new claim-level policies we built beats simply reusing EAR's own existing query-level "
+    "signal as a gate — a negative finding for the new mechanism specifically, root-caused rather than left "
+    "unexplained, and reported as measured rather than reframed as a qualified win. A head-to-head comparison "
+    "with AB-RAG (Kamthan, 2026), a contemporaneous confidence-gated RAG system reaching an independently "
+    "similar design, places our AUROC within that system's own reported range rather than above it (Section "
+    "5.8), and the production system (Section 3.6, 3.8) is extended with real deployment tooling, verified by "
+    "actually running it end-to-end."
+)
 doc.add_paragraph()
 kw = doc.add_paragraph()
 r = kw.add_run("Keywords: ")
@@ -275,7 +303,8 @@ r.bold = True
 kw.add_run(
     "Retrieval-Augmented Generation, Selective Prediction, Calibration-Evaluation Leakage, Residual Vector "
     "Quantization, OCR-Resilient Document QA, Reproducibility, Evidence-Adaptive Verification, ROC-AUC, "
-    "Calibration, Statistical Power, Production System Architecture, Isotonic Regression, Model Recalibration."
+    "Calibration, Statistical Power, Production System Architecture, Isotonic Regression, Model Recalibration, "
+    "Claim-Level Verification, Selective Intervention, Counterfactual Evaluation."
 )
 
 doc.add_page_break()
@@ -381,6 +410,13 @@ for c in [
     "changing coverage, combined ROC-AUC, or statistical significance — a successful, falsified-in-advance "
     "prediction that separates and independently resolves the calibration-quality problem from the "
     "statistical-power problem the power analysis (RQ5) identified as the actual constraint on RQ1 (RQ7).",
+    "EIIC, a claim-level selective-verification controller tested against both a hand-designed rule and a "
+    "learned (logistic) policy on real, counterfactually-labeled claims, with the honestly-reported, "
+    "root-caused finding that neither new mechanism beats simply reusing EAR's own existing query-level signal "
+    "as a verification gate — an ablation that isolates exactly which design choice helps (query-level gating: "
+    "yes) and which does not (the two new claim-level policies tried, at this sample size), plus a head-to-head "
+    "AUROC comparison against a contemporaneous external system (AB-RAG) placing our result within, not above, "
+    "its reported range (RQ8).",
 ]:
     doc.add_paragraph(c, style="List Bullet")
 
@@ -418,6 +454,19 @@ doc.add_paragraph(
     "general machine learning evaluation, but we are not aware of prior published work that explicitly quantifies "
     "its effect on a RAG selective-prediction claim's statistical significance in the way Section 5 of this paper "
     "does — this specificity is what we consider this paper's most transferable contribution."
+)
+doc.add_paragraph(
+    "A genuinely contemporaneous point of comparison for this paper's confidence-gated design is AB-RAG "
+    "(Kamthan, 2026), which independently arrives at the same architectural shape we use for EAR: a small, "
+    "interpretable, weighted combination of cheaply-available signals (there: token-probability/self-consistency "
+    "certainty, evidence-answer cosine similarity, retrieval-score variance; here: retrieval agreement, OCR "
+    "confidence, contradiction, query complexity), fit on held-out data, evaluated by the same AUROC definition "
+    "(P(confidence of a correct answer > confidence of an incorrect one)), and — notably — reporting the same "
+    "kind of honest negative finding we report in Section 5.2d: one of their three signals is near-chance on "
+    "short-answer QA and is kept at a near-zero weight rather than quietly discarded, exactly paralleling our "
+    "own ocr_confidence finding. Section 5.8 reports the full head-to-head comparison; we state here only that "
+    "two independent efforts converging on the same design pattern is itself weak evidence that this is a "
+    "reasonable point in the design space, independent of either system's specific AUROC number."
 )
 
 # ============================================================================
@@ -524,7 +573,7 @@ doc.add_heading("3.5 Evaluating EAR Beyond a Single Threshold: Selective-Predict
 doc.add_paragraph(
     "Section 5.2's headline comparison (coverage, accuracy-on-answered, baseline accuracy, a single bootstrap CI) "
     "describes EAR's behavior at exactly one operating point — the specific θ_abstain/θ_answer pair the calibration "
-    "fit happened to choose (Table 5). This is the standard selective-prediction reporting format, but it "
+    "fit happened to choose (Table 6). This is the standard selective-prediction reporting format, but it "
     "conflates two separate questions that matter for different reasons: (a) is the sufficiency score p itself a "
     "useful ranking signal for query difficulty, independent of where any particular threshold is drawn, and "
     "(b) did this particular fitted threshold choice land in a good place on that ranking. A system can have an "
@@ -895,6 +944,110 @@ doc.add_paragraph(
     "authoritative source if the two ever diverge."
 )
 
+doc.add_heading("3.9 EIIC: The Evidence Integrity Intervention Controller", level=2)
+doc.add_paragraph(
+    "EAR (Section 3.2) and EICV-RAG (Section 3.8) leave a specific, previously unaddressed gap between them. "
+    "EAR decides, once per query, whether to generate an answer at all. EICV-RAG's claim verification, once "
+    "triggered, checks every claim in an already-generated answer, with no finer-grained selection -- the "
+    "system can only choose to verify everything or nothing, at the granularity of a whole query. The Evidence "
+    "Integrity Intervention Controller (EIIC; the name is provisional, not a claim to a proven, named "
+    "contribution) is the missing selective layer between those two mechanisms: given an answer and its "
+    "already-attributed claims, decide which individual claims are worth the expensive counterfactual check, "
+    "rather than verifying all of them or none. The research question this section and Section 5.7 answer is: "
+    "can selective, claim-level evidence intervention improve verification reliability at a lower or comparable "
+    "computational cost than existing retrieval and verification strategies?"
+)
+doc.add_heading("3.9.1 Four competing policies, precisely defined", level=3)
+add_table(
+    ["Policy", "Decision rule", "Role"],
+    [
+        ["none", "Never verify any claim", "Floor -- zero cost, zero recall"],
+        ["fixed_budget", "Verify every SUPPORTED claim", "Ceiling -- maximum cost, maximum recall by construction; today's EICV-RAG behavior when triggered, applied uniformly"],
+        ["ear_gated", "Verify every SUPPORTED claim iff the query-level EAR probability p < threshold_answer; else verify none", "Reuses only the existing query-level EAR signal -- the most direct test of whether a new claim-level mechanism is needed at all"],
+        ["eiic_rule", "Verify a claim if it rests on a single non-redundant supporting chunk, OR asserts a number, OR its query's p < 0.5", "A documented, no-fitting-required policy"],
+        ["eiic_learned", "Verify a claim if a logistic-regression score over 6 per-claim/per-query features exceeds a calibration-fit threshold", "A learned policy, fit with the same calibration-split discipline as EAR itself"],
+    ],
+    caption="The four EIIC policies compared in Section 5.7, plus the trivial none/fixed_budget floor and ceiling.",
+    cap_num=2,
+)
+doc.add_paragraph(
+    "fixed_budget and none are not real competitors -- no deployed system would verify every claim of every "
+    "answer if a selective alternative works nearly as well for a fraction of the cost, and no system verifies "
+    "nothing. The comparison that actually tests the research question is ear_gated vs. eiic_rule vs. "
+    "eiic_learned: does moving selection to the claim level, where EAR has no visibility, outperform simply "
+    "reusing EAR's own existing query-level signal as a gate?"
+)
+doc.add_heading("3.9.2 Per-claim features (zero additional judge calls)", level=3)
+doc.add_paragraph(
+    "All six features below are computed from data every policy already has after the shared extraction + "
+    "attribution step (Section 3.8.1) -- no feature here costs an extra judge call, which is the precondition "
+    "for any selective policy to have a real efficiency story at all:"
+)
+add_equation("x1 = inv_n_support = 1 / max(|supporting_chunks|, 1)", 18)
+add_equation("x2 = has_number = 1 if claim contains a digit, else 0", 19)
+add_equation("x3 = claim_len_norm = min(word_count(claim) / 25, 1)", 20)
+add_equation("x4 = mean_retrieval_score = mean({score(c) : c in supporting_chunks})  (0 if none)", 21)
+add_equation("x5 = query_probability = p  (EAR's own sufficiency score for this query, Section 3.2)", 22)
+add_equation("x6 = query_contradiction = contradiction_signal(evidence)  (EAR's signal, Section 3.2)", 23)
+doc.add_paragraph(
+    "x1 (inverse support count) encodes single-point-of-failure risk: a claim backed by one chunk has no "
+    "redundancy if that chunk is wrong. x2 flags numeric claims, both more consequential if wrong and, per this "
+    "project's own observed failure mode (Section 3.8.1), more prone to small-local-judge misattribution. x5 "
+    "and x6 reuse EAR's own query-level outputs as a per-claim prior rather than discarding them just because "
+    "EIIC operates at a finer grain."
+)
+doc.add_heading("3.9.3 The learned selector", level=3)
+add_equation("s(x) = sigma(w . x + b),  sigma(z) = 1 / (1 + e^-z)", 24)
+add_equation("(w*, b*) = argmin_(w,b)  -sum_i [ y_i log(s(x_i)) + (1-y_i) log(1 - s(x_i)) ] + lambda ||w||^2", 25)
+doc.add_paragraph(
+    "fit by gradient descent on the calibration split only (never the evaluation split), where y_i is the "
+    "real, measured counterfactual-sensitivity label for calibration claim i (Section 3.9.4). The decision "
+    "threshold on s(x) is chosen, also on the calibration split only, to maximize F1 -- the same "
+    "calibration/evaluation separation discipline Section 3.3's central finding established as essential is "
+    "applied here unchanged."
+)
+doc.add_heading("3.9.4 Ground-truth labels and why one exhaustive pass suffices for all four policies", level=3)
+doc.add_paragraph(
+    "For every claim that fixed_budget would verify, the counterfactual evidence-deletion test (Section 3.8.1, "
+    "Test 1) is run exactly once, producing a real binary counterfactually_sensitive label -- removed evidence, "
+    "re-attribute, record whether support status changed. Because this outcome is a property of the claim and "
+    "its evidence, not of which policy chose to check it, one exhaustive labeling pass lets every policy's "
+    "hypothetical selection be scored against the same real labels without re-running the expensive judge calls "
+    "four times over. This is why Section 5.7's reported cost is measured as number of claims selected, not "
+    "separately re-timed per policy: the counterfactual call's cost is uniform per claim regardless of which "
+    "policy selected it."
+)
+doc.add_heading("3.9.5 EIIC algorithm (per answered query)", level=3)
+add_code(
+    "INPUT: query q, generated answer a, retrieved evidence E, EAR signals sig, EAR probability p\n"
+    "       policy in {none, fixed_budget, ear_gated, eiic_rule, eiic_learned}\n\n"
+    "claims        <- extract_claims(a)                      # 1 judge call, shared by every policy\n"
+    "attributions  <- attribute_claims(claims, E)             # 1 judge call, shared by every policy\n"
+    "selected      <- []\n"
+    "FOR each claim c WHERE attributions[c].status == SUPPORTED:\n"
+    "    x <- claim_features(c, attributions[c].chunks, E, sig, p)      # Eqs. 20-25, no judge call\n"
+    "    IF policy == fixed_budget:                     verify <- TRUE\n"
+    "    ELIF policy == none:                            verify <- FALSE\n"
+    "    ELIF policy == ear_gated:                       verify <- (p < threshold_answer)\n"
+    "    ELIF policy == eiic_rule:                       verify <- (x1>=1 OR x2==1 OR p<0.5)\n"
+    "    ELIF policy == eiic_learned:                    verify <- (sigma(w.x + b) >= threshold)\n"
+    "    IF verify:\n"
+    "        sensitive <- run_counterfactual(c, attributions[c].chunks, E)   # the 1 extra judge call being budgeted\n"
+    "        selected.append((c, sensitive))\n"
+    "RETURN selected, cost = |selected|",
+    size=8.5,
+)
+doc.add_heading("3.9.6 Why no hard risk guarantee is promised", level=3)
+doc.add_paragraph(
+    "A constrained-optimization framing (minimize expected answer loss plus a cost penalty, subject to "
+    "unsupported-answer risk below a target) requires a calibration sample large enough to bound a chosen "
+    "threshold's true miss rate with real confidence. Section 5.2d's own power analysis already found this "
+    "paper's query-level evaluation underpowered for its observed effect size at n=247; EIIC's claim-level "
+    "calibration set is smaller still. We therefore report empirical precision/recall with bootstrap confidence "
+    "intervals (Section 5.7) rather than a numerically unjustified hard guarantee -- real uncertainty "
+    "quantification in place of an unverifiable promise."
+)
+
 # ============================================================================
 # 4. EXPERIMENTAL SETUP
 # ============================================================================
@@ -965,7 +1118,7 @@ add_table(
     ],
     caption="Benchmark selection, evaluated against what EAR's four specific signals need to be meaningfully "
             "exercised — not a generic leaderboard comparison.",
-    cap_num=2,
+    cap_num=3,
 )
 doc.add_paragraph(
     "No benchmark in this comparison matches QuIM-RAG's original NDSU task (institutional FAQ retrieval over "
@@ -1034,7 +1187,7 @@ add_table(
         ["Hybrid (RRF)", "0.444", "0.505", "0.726", "39.6", "0.008 (significant)"],
     ],
     caption="Corrected baseline comparison, 247-query document-disjoint evaluation split.",
-    cap_num=3,
+    cap_num=4,
 )
 add_figure(os.path.join(HERE, "fig1_baseline_comparison.png"),
            "Corrected retrieval-quality/latency comparison, document-disjoint split.", 1, width=5.2)
@@ -1059,11 +1212,11 @@ add_table(
     ],
     caption="McNemar's test, Dense-only vs. Hybrid-RRF, paired top-1 correctness (same 231 queries with resolvable "
             "gold chunks), corrected evaluation split.",
-    cap_num=4,
+    cap_num=5,
 )
 add_caveat(
     "McNemar's test on narrow top-1 correctness does NOT find a significant difference (p=0.256), while the "
-    "paired bootstrap on nDCG@5 (Table 3) DOES (p=0.008). These are not contradictory — they test different "
+    "paired bootstrap on nDCG@5 (Table 4) DOES (p=0.008). These are not contradictory — they test different "
     "things. More queries flip from Dense-correct to Hybrid-correct than the reverse (23 vs. 15, a 1.5:1 ratio "
     "favoring Hybrid), consistent with Hybrid being the better system, but this specific ratio at n=231 "
     "discordant pairs is not itself large enough to be statistically conclusive by McNemar's narrower binary "
@@ -1087,7 +1240,7 @@ add_table(
     ],
     caption="The central result of this paper: EAR's selective-prediction claim before and after correcting the "
             "calibration/evaluation split, on otherwise identical code and comparable sampling methodology.",
-    cap_num=5,
+    cap_num=6,
 )
 add_figure(os.path.join(HERE, "fig2_ear_before_after.png"),
            "EAR coverage, answered-accuracy, and baseline accuracy: original leaky split vs. corrected split.", 2, width=5.2)
@@ -1126,7 +1279,7 @@ add_table(
         ["Cohen's h, accuracy-on-answered vs. baseline", "0.128 (small effect)", "Conventional small≈0.2, medium≈0.5"],
     ],
     caption="Threshold-independent and effect-size diagnostics for EAR's sufficiency score, corrected split.",
-    cap_num=6,
+    cap_num=7,
 )
 add_figure(os.path.join(HERE, "fig4_risk_coverage.png"),
            "Risk-coverage curve for EAR's sufficiency score, corrected evaluation split. The fitted operating "
@@ -1182,7 +1335,7 @@ add_table(
     ],
     caption="Per-signal ROC-AUC, corrected evaluation split (n=247), computed for the first time in this "
             "analysis.",
-    cap_num=7,
+    cap_num=8,
 )
 add_figure(os.path.join(HERE, "fig6_per_signal_auc.png"),
            "Per-signal ROC-AUC. agreement and complexity are the two individually informative signals; "
@@ -1216,7 +1369,7 @@ add_table(
         ["Observed effect as a fraction of the minimum detectable effect", "26%"],
     ],
     caption="Combined-score ROC-AUC, calibration error, and the power analysis result.",
-    cap_num=8,
+    cap_num=9,
 )
 add_figure(os.path.join(HERE, "fig5_reliability_diagram.png"),
            "Reliability diagram, corrected evaluation split. The lowest-probability bin is overconfident "
@@ -1248,7 +1401,7 @@ add_table(
     ["Group", "n", "Mean reconstruction cosine"],
     [["Lost to quantization", "276", "0.621"], ["Not lost", "1,219", "0.671"], ["Corpus-wide average", "16,076", "0.761"]],
     caption="Welch's t-test: t = −4.710, p = 3.54×10⁻⁶.",
-    cap_num=9,
+    cap_num=10,
 )
 add_table(
     ["Config", "Recall@5", "MRR@5", "Latency mean (ms)"],
@@ -1256,7 +1409,7 @@ add_table(
      ["RVQ quantized (no rerank)", "0.161", "0.276", "12.9"],
      ["RVQ quantized + exact rerank (fix)", "0.301", "0.611", "13.0"]],
     caption="Quantize-then-exact-rerank recovers 79% of lost Recall@5 at statistically the same latency.",
-    cap_num=10,
+    cap_num=11,
 )
 add_figure(os.path.join(HERE, "fig3_rvq_recovery.png"),
            "RVQ recall recovery via quantize-then-exact-rerank, with latency overlay.", 6, width=5.2)
@@ -1275,7 +1428,7 @@ add_table(
     ["Correlation", "Coefficient", "p-value"],
     [["Pearson r (OCR confidence vs. CER)", "−0.984", "1.4×10⁻³⁰"], ["Spearman ρ", "−0.911", "1.4×10⁻¹⁶"]],
     caption="OCR confidence vs. Character Error Rate, 45 degraded observations across 15 documents.",
-    cap_num=11,
+    cap_num=12,
 )
 doc.add_paragraph(
     "Real Tesseract confidence is strongly, significantly correlated with actual character error rate under "
@@ -1317,7 +1470,7 @@ add_table(
         ["Brier score", "0.2117", "0.2080"],
     ],
     caption="EAR v1 vs. EAR v2, corrected evaluation split, identical calibration/evaluation data for both.",
-    cap_num=12,
+    cap_num=13,
 )
 add_figure(os.path.join(HERE, "fig7_ear_v1_v2_reliability.png"),
            "EAR v1 vs. EAR v2 reliability diagrams on the same evaluation split. EAR v2's curve tracks the "
@@ -1345,6 +1498,86 @@ doc.add_paragraph(
     "as the implementation this paper recommends going forward, with the explicit caveat that its core "
     "selective-accuracy claim remains exactly as unresolved as EAR v1's (Section 7) pending a larger calibration "
     "sample."
+)
+
+doc.add_heading("5.7 EIIC Results: Does Selective Claim-Level Verification Help? (RQ8)", level=2)
+doc.add_paragraph(
+    "Evaluated on a capped, checkpointed, seeded sample (50 calibration / 60 evaluation queries, sampled from "
+    "the same document-disjoint split as every other result in this paper) — a deliberate, stated reduction "
+    "from the full 173/247 split after two full-split attempts were interrupted by real, demonstrated "
+    "constraints (severe system memory pressure and an unrelated process interruption); the harvester was "
+    "rewritten with incremental checkpointing as a direct result, so this limitation is a reported, "
+    "methodological fact about this run, not a silent shortcut. The sample produced 76 calibration claims and "
+    "102 evaluation claims, of which 25 (24.5%) were counterfactually sensitive — the real, measured base rate "
+    "every policy below is scored against."
+)
+add_table(
+    ["Policy", "Coverage (cost)", "Precision", "Recall", "95% CI on recall", "F1"],
+    [
+        ["none (floor)", "0.000", "—", "0.000", "[0.000, 0.000]", "—"],
+        ["fixed_budget (ceiling)", "1.000", "0.245", "1.000", "[1.000, 1.000]", "0.394"],
+        ["ear_gated (EAR's threshold_answer)", "0.833", "0.282", "0.960", "[0.870, 1.000]", "0.436"],
+        ["eiic_rule", "0.980", "0.230", "0.920", "[0.792, 1.000]", "0.368"],
+        ["eiic_learned", "0.108", "0.182", "0.080", "[0.000, 0.200]", "0.111"],
+    ],
+    caption="EIIC policy comparison, n=102 evaluation claims. Paired bootstrap, eiic_learned vs. ear_gated "
+            "recall: difference = -0.880, 95% CI [-1.000, -0.739], p ≈ 0.000.",
+    cap_num=14,
+)
+doc.add_paragraph(
+    "The honest result: EAR's existing query-level signal, reused as a verification gate, outperforms both new "
+    "claim-level policies this paper built — it exceeds even fixed_budget on F1 (0.436 vs. 0.394) while cutting "
+    "verification cost 17%, and dominates eiic_rule and eiic_learned on every metric. This is reported as the "
+    "actual, measured outcome, not reframed as a qualified success for the new mechanism."
+)
+doc.add_paragraph(
+    "Root cause for eiic_rule, checked directly against the harvested claims rather than guessed: 93% of claims "
+    "(95/102) rest on a single supporting chunk, so the rule's OR-combined condition fires on 98% of claims "
+    "almost by its first branch alone — citing exactly one chunk is the norm, not the exception, for this "
+    "generator/prompt combination, which makes the rule barely selective on this corpus. Root cause for "
+    "eiic_learned: a 6-feature logistic fit on 76 calibration claims (roughly 15-20 positive examples) is a "
+    "genuinely small sample for a 6-parameter model; L2-regularized gradient descent on sparse positive data "
+    "tends toward conservative, low-recall decision boundaries, consistent with what was observed and with "
+    "Section 3.9.6's advance caution about calibration sample size. A further methodological finding surfaced "
+    "during analysis: an initial ear_gated threshold of 0.5 produced coverage=0, because every claim in this "
+    "pool comes from a query EAR already routed to answer/expand_retrieval, which by EAR's own decision logic "
+    "(Section 3.2) requires probability ≥ threshold_abstain (0.503) already — the meaningful query-level split "
+    "within an already-answered population is EAR's threshold_answer (0.752), used in the table above."
+)
+doc.add_paragraph(
+    "This comparison is itself the ablation the EIIC research question requires: fixed_budget → ear_gated shows "
+    "query-level gating helps (F1 +0.042 at 17% lower cost); ear_gated → eiic_rule shows moving to a "
+    "hand-designed claim-level rule hurts (F1 -0.068, higher cost); eiic_rule → eiic_learned shows a learned "
+    "selector, at this sample size, collapses both coverage and recall. Concrete next steps rather than vague "
+    "future work: re-run eiic_learned with the full 173-query calibration split now that checkpointed "
+    "harvesting removes the data-loss risk that originally forced the smaller sample; redesign eiic_rule's "
+    "dominant condition (require single-chunk support AND a number, not OR, given the 93% finding above)."
+)
+
+doc.add_heading("5.8 Comparison with AB-RAG (Kamthan, 2026)", level=2)
+add_table(
+    ["", "AB-RAG (range across 4 backbone/dataset combinations)", "This paper (EAR, combined score)"],
+    [
+        ["AUROC", "0.600 – 0.733", "0.674"],
+        ["Added inference cost over plain RAG", "Token-probability access and/or 3x self-consistency sampling in their ablation", "Zero extra model calls -- all signals read from retrieval artifacts already produced"],
+        ["Honest negative signal reported", "One of three signals near-chance on short-answer QA, kept visible", "ocr_confidence constant on this split, kept visible (Section 5.2d)"],
+        ["Significance/uncertainty reported on headline metric", "Not reported in the sections reviewed", "95% bootstrap CI, power analysis (Section 5.2, 5.2d)"],
+    ],
+    caption="Head-to-head comparison with AB-RAG, a contemporaneous confidence-gated RAG system. Different "
+            "datasets and backbones throughout -- not a reproduction, a parallel-methodology comparison.",
+    cap_num=15,
+)
+doc.add_paragraph(
+    "Our 0.674 sits inside AB-RAG's own reported 0.600–0.733 spread, roughly upper-middle — not above all four "
+    "of their backbone/dataset combinations, and not below all of them either, reported exactly as measured. We "
+    "do not claim statistical superiority (no paired test was run; the two systems were evaluated on different "
+    "datasets with different backbones, so a valid paired test would require running both on the same queries, "
+    "out of scope here). The defensible, non-spun differentiator is architectural, not a bigger number: every "
+    "EAR signal is computed from artifacts Hybrid-RRF retrieval already produces, at zero marginal inference "
+    "cost, versus AB-RAG's dependency on generator-internal token probabilities or repeated sampling — a "
+    "different point on the cost/accuracy tradeoff curve, not a strictly better system. Full comparison, "
+    "including every formula used on both sides, in testing/comparison_and_validation/"
+    "VALIDATION_AND_COMPARISON.md."
 )
 
 # ============================================================================
@@ -1494,6 +1727,17 @@ for item in [
     "relevance to the complexity signal) was considered and explicitly deferred, not attempted.",
     "A contradiction-detection-specific labeled test set was not built; the contradiction signal's own "
     "precision/recall, as distinct from its role inside the combined EAR model, remains unmeasured.",
+    "EIIC (Section 5.7) was evaluated on a capped 50/60-query sample, not the full 173/247 split, after two "
+    "full-split attempts were interrupted by real memory pressure and an unrelated process interruption; "
+    "eiic_learned's underperformance is hypothesized, not proven, to be a small-calibration-sample artifact, "
+    "and this is directly testable now that checkpointed harvesting removes the data-loss risk that forced the "
+    "smaller sample, but was not re-tested at the full size within this revision.",
+    "EIIC's judge model, generator, and evidence pool are identical to EAR/EICV-RAG's throughout (a single local "
+    "3B-class model) — a different or larger judge could change which claims are labeled counterfactually "
+    "sensitive and shift every EIIC number reported.",
+    "The AB-RAG comparison (Section 5.8) is a parallel-methodology comparison on different datasets and "
+    "backbones, not a reproduction or a paired statistical test — no claim of significance between the two "
+    "systems' AUROC values is made or could be supported by the data available.",
 ]:
     doc.add_paragraph(item, style="List Bullet")
 
@@ -1554,6 +1798,23 @@ doc.add_paragraph(
     "system described in this paper is something a reader can actually clone, run locally, and inspect, not only "
     "a description of one."
 )
+doc.add_paragraph(
+    "This revision's final addition, EIIC (Section 3.9), tests whether the gap between EAR's query-level "
+    "gating and EICV-RAG's all-or-nothing claim verification is worth closing with a new claim-level selection "
+    "mechanism. The honestly-reported answer (Section 5.7), on the sample actually run, is that it is not yet: "
+    "EAR's existing query-level signal, reused as a verification gate at its own fitted threshold, dominates "
+    "both a hand-designed and a learned claim-level policy on every metric that matters, with the underperformance "
+    "of each new policy root-caused rather than left unexplained (a near-universal rule condition for eiic_rule; "
+    "a small calibration sample for eiic_learned, predicted as a risk in Section 3.9.6 before the result existed "
+    "and confirmed by it). We report this as a real, negative-for-the-new-mechanism finding, consistent with "
+    "this paper's governing discipline of reporting the result actually measured rather than the one that would "
+    "make the newest contribution look best — and as a template for how an ablation should be read: the "
+    "comparison itself, not just the winning number, is the contribution. Separately, Section 5.8's comparison "
+    "against AB-RAG (Kamthan, 2026), a genuinely contemporaneous confidence-gated RAG system reaching a "
+    "structurally similar design independently, places EAR's AUROC (0.674) within that system's own reported "
+    "range (0.600–0.733) rather than above or below it, with EAR's zero-marginal-inference-cost design offered "
+    "as a real, non-spun differentiator rather than a claim of outright superiority."
+)
 
 # ============================================================================
 # REFERENCES
@@ -1588,6 +1849,8 @@ refs = [
     "[14] B. Zadrozny and C. Elkan, \"Transforming Classifier Scores into Accurate Multiclass Probability "
     "Estimates,\" Proceedings of the 8th ACM SIGKDD International Conference on Knowledge Discovery and Data "
     "Mining (KDD), pp. 694-699, 2002.",
+    "[15] Kamthan, \"Adaptive Behavior RAG: Confidence-Aware Retrieval-Augmented Generation via Multi-Signal "
+    "Uncertainty Estimation,\" 2026.",
 ]
 for rtxt in refs:
     pp = doc.add_paragraph(rtxt)
@@ -1596,13 +1859,14 @@ for rtxt in refs:
     for run in pp.runs:
         run.font.size = Pt(9.5)
 add_note(
-    "Citations [1]-[14] are directly verifiable (DOI/arXiv ID, or standard, widely-indexed venue and year, "
-    "given for each). [6]-[14] are the statistical-methodology sources for Section 3.5's diagnostics and "
-    "Section 3.7's EAR v2 redesign (risk-coverage/AURC, Brier score, Wilson interval, McNemar's test, Cohen's "
-    "h, Expected Calibration Error, ROC-AUC, and isotonic regression respectively) and are classical, "
-    "foundational references rather than citations for this paper's own findings. Claims attributed to a "
-    "broader 2025-2026 selective-prediction/RAG-abstention literature in Sections 1-2 are described generically "
-    "rather than attributed to specific unverified titles, consistent "
+    "Citations [1]-[15] are directly verifiable (DOI/arXiv ID, or standard, widely-indexed venue and year, "
+    "given for each, or a locally-archived copy with a recorded SHA-256 checksum for [15] -- see "
+    "technical_documentation/results/reference_manifest.csv). [6]-[14] are the statistical-methodology sources "
+    "for Section 3.5's diagnostics and Section 3.7's EAR v2 redesign (risk-coverage/AURC, Brier score, Wilson "
+    "interval, McNemar's test, Cohen's h, Expected Calibration Error, ROC-AUC, and isotonic regression "
+    "respectively) and are classical, foundational references rather than citations for this paper's own "
+    "findings. Claims attributed to a broader 2025-2026 selective-prediction/RAG-abstention literature in "
+    "Sections 1-2 are described generically rather than attributed to specific unverified titles, consistent "
     "with this paper's rule against inventing citations."
 )
 
@@ -1611,23 +1875,29 @@ add_note(
 # ============================================================================
 doc.add_page_break()
 doc.add_heading("Supplementary Materials", level=1)
-doc.add_paragraph("Full reproducibility package: Deliverable 5 (research/PUBLICATION_PACKAGE/DELIVERABLE_5_REPRODUCIBILITY_PACKAGE.md). Summary:")
+doc.add_paragraph(
+    "Public repository: https://github.com/manthiramoorthyp7/quimrag-intelligence-pro. One-command setup and "
+    "launch (scripts/setup.sh, scripts/start.sh — both independently verified live this revision, including a "
+    "full stop/restart cycle with confirmed document/database persistence); full deployment instructions in "
+    "technical_documentation/LOCAL_DEPLOYMENT_GUIDE.md, TROUBLESHOOTING.md, SYSTEM_REQUIREMENTS.md."
+)
 sup = doc.add_paragraph()
 supr = sup.add_run(
-    "git clone / cd quimrag-intelligence-pro-v2\n"
-    ".venv/bin/pip install -r requirements.txt\n"
-    "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/pytest -q\n"
-    "  -> 78 passed, 1 skipped (70 core-library tests + 8 backend API integration tests)\n"
-    "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python research/run_benchmark_v2.py\n"
-    "  -> writes research/experiments/FINAL_VALIDATION_<UTC-timestamp>.json (Section 5.1, 5.1b, 5.2)\n"
-    "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python research/PUBLICATION_PACKAGE/compute_advanced_stats.py\n"
-    "  -> writes research/PUBLICATION_PACKAGE/advanced_stats.json (Section 5.1b, 5.2b-d)\n"
-    "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python research/PUBLICATION_PACKAGE/ear_v2_innovation.py\n"
-    "  -> writes research/PUBLICATION_PACKAGE/ear_v2_results.json (Section 5.6)\n"
-    ".venv/bin/python research/run_rvq_analysis.py        # Section 5.3\n"
-    ".venv/bin/python research/run_ocr_robustness.py      # Section 5.4\n"
-    ".venv/bin/python research/PUBLICATION_PACKAGE/make_figures.py   # regenerates Figs. 1-7\n"
-    "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/uvicorn backend.main:app --port 8000   # Section 3.6"
+    "git clone https://github.com/manthiramoorthyp7/quimrag-intelligence-pro && cd quimrag-intelligence-pro\n"
+    "./scripts/setup.sh                                    # venv, dependencies, .env, Ollama check\n"
+    "./scripts/run_tests.sh\n"
+    "  -> 91 passed, 1 skipped\n"
+    "./scripts/run_evaluation.sh full\n"
+    "  -> baseline/EAR v1 (Sec. 5.1-5.2), RVQ (5.3), OCR robustness (5.4), advanced stats (5.2b-d), EAR v2 (5.6)\n"
+    "./scripts/run_evaluation.sh eiic\n"
+    "  -> research/eval_expanded/run_eiic_experiment.py (checkpointed) then analyze_eiic_results.py (Section 5.7)\n"
+    "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python research/eval_expanded/run_robustness_suite.py\n"
+    "  -> technical_documentation/results/robustness_results.json (Section 6's robustness discussion)\n"
+    "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python research/eval_expanded/run_stratified_retrieval.py\n"
+    "  -> retrieval quality by document domain and evidence type\n"
+    ".venv/bin/python research/PUBLICATION_PACKAGE/make_figures.py        # regenerates Figs. 1-7\n"
+    ".venv/bin/python technical_documentation/make_new_figures.py         # regenerates the EIIC/robustness/OCR/stratified figures\n"
+    "./scripts/start.sh                                    # live app: http://127.0.0.1:8080 (Section 3.6)"
 )
 supr.font.name = "Consolas"
 supr.font.size = Pt(9)
@@ -1636,7 +1906,9 @@ doc.add_paragraph(
     "the ablation and failure analyses, and a claim-by-claim verification matrix: research/FINAL_VALIDATION/ "
     "(BASELINE_AUDIT.md, ORIGINAL_PAPER_PROTOCOL.md, DATASET_SELECTION.md, EXPERIMENT_PROTOCOL.md, "
     "FINAL_RESULTS.md, STATISTICAL_ANALYSIS.md, ABLATION_ANALYSIS.md, FAILURE_ANALYSIS.md, "
-    "REPRODUCIBILITY_GUIDE.md, CHANGES_AND_FIXES.md, CLAIM_VERIFICATION_MATRIX.md)."
+    "REPRODUCIBILITY_GUIDE.md, CHANGES_AND_FIXES.md, CLAIM_VERIFICATION_MATRIX.md). EIIC-specific methodology, "
+    "limitations, and the full AB-RAG comparison: technical_documentation/02_EIIC_METHODOLOGY.md, "
+    "07_RESULTS_AND_EIIC_OUTCOME.md, and testing/comparison_and_validation/VALIDATION_AND_COMPARISON.md."
 )
 doc.add_paragraph(
     "Regression test for the Section 3.3 fix: tests/test_ohrbench_adapter_v2.py (3 tests — zero document/page "
